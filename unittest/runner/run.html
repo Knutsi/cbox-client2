@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        body { font-family: sans-serif; }
+        
+        #testlist {
+            position: fixed;
+            left:0;
+            top: 0;
+            height: 100%;
+            width: 25%;
+            overflow: auto;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        }
+
+        #output { margin-left: 450px;}
+        #output iframe {
+            position: fixed;
+            left: 25%;
+            top: 0px;
+            width: 75%;
+            height: 100%;
+        }
+        
+        .test_listing {
+            padding: 5px;
+            font-size: x-small;
+        }
+
+        .test_heading {
+            padding: 5px;
+            font-size: small;
+            background-color: rgb(4, 1, 62);
+            color: white;
+            font-weight: bold;;
+        }
+
+        .test_listing:hover { background-color: coral;  cursor: pointer;}
+
+        .failed {background-color: #ffabb7; }
+        .passed {background-color: #c3ffc8; }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="testlist"></div>
+<div id="output"></div>
+
+<script src="run.js" type="text/javascript"></script>
+</body>
+</html>

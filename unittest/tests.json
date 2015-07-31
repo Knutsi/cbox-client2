@@ -1,0 +1,8 @@
+{
+  "tests" : [
+    "../../tests/example_test.js",
+    "../../tests/event.js",
+    "../../tests/statemachine.js",
+    "../../tests/template.js"
+  ]
+}
