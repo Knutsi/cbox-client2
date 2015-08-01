@@ -7,17 +7,35 @@
 
 class TemplateTest extends UnitTest.Test {
 
-    element_template = "// demo: html elements and : \
-ul \
-    li \
-        Cheese \
-    li \
-        Jam \
-    li \
-        Milk \
-    li\
-        Bread\
-";
+    element_template = [
+        "ul",
+        "-li",
+        "--'Bread'",
+        "-li",
+        "--'Butter'",
+        "-li",
+        "--'Milk'",
+        "p",
+        "-'Demo mode!'"
+    ]
+
+    div_template = [
+        ".wrapper id='demo'",
+        "-.header",
+        "-.content",
+        "--.headline",
+        "--.paragraph",
+        "-.footer",
+        ".wrapper"
+    ];
+
+    component_template = [
+        "div id='demo'",
+        "-div id='wrapper'",
+        "--!CustomElement id='c1'",
+        "--!CustomElement id='c2'",
+        "!CustomElementTwo"
+    ];
 
     TestElementTemplate() {
         // create template and render it, then validate the elements it has created:

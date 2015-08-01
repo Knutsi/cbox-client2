@@ -4,9 +4,11 @@
 
 module cbox {
 
-    class TemplateLine {
+    export class TemplateLine {
 
-
+        indent:number;
+        command:string;
+        params:string;
 
     }
 
