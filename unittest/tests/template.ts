@@ -41,6 +41,7 @@ class TemplateTest extends UnitTest.Test {
         // create template and render it, then validate the elements it has created:
         var template = new cbox.Template(this.element_template);
         var output = template.render();
+        console.log(template);
 
         this.assertTrue(output != null);
 
@@ -48,6 +49,14 @@ class TemplateTest extends UnitTest.Test {
         this.assertEqual(output.children[0].tagName, "li");
         this.assertEqual(output.children[3].tagName, "li");
         this.assertEqual(output.children[3].firstChild.textContent, "Bread");
+    }
+
+    TestDivTemplate() {
+        var template = new cbox.Template(this.div_template);
+    }
+
+    TestComponentTemplate() {
+        var template = new cbox.Template(this.component_template);
     }
 }
 

@@ -15,51 +15,69 @@ module cbox {
     export class Template {
 
         public source:string[];
+        public parsed:TemplateLine[] = [];
+        public indentChar:string;
         private parserState = {
             indentLevel: 0,
             stack: []
         };
 
-        constructor(source:string[], indent_token="-") {
+        constructor(source:string[], indent_char="-") {
             this.source = source;
+            this.indentChar = indent_char;
+
+            // parse the template:
+            this.parsed = this.source.map((line) => { return new TemplateLine(line, this) })
+
+            // validate:
+            var indent = 0;
+            this.parsed.forEach((line, i) => {
+
+                // check no ident is greater than current + 1:
+                if(line.indent > indent + 1)
+                    throw "Template.render: line indent is > current line indent (line " + i + ")";
+                else
+                    indent = line.indent;
+            })
         }
 
-
-        render():HTMLElement {
-            // reset parser state:
-            this.parserState.indentLevel = 0;
-            this.parserState.stack = [];
+        /***
+         * Parses the template and provides a HTMLElement containing the output.
+         * It can also augment an object with IDs
+         *
+         * @returns {*}
+         */
+        render(augment:{} = null):HTMLElement {
+            // parser state:
+            var stack:HTMLElement[] = [];
 
             // run trough the source:
             var root = document.createElement("div");
+            stack[0] = root;
 
-            this.source.forEach( (src_line) => {
-
-                // parse line:
-                var line = this.parseLine(src_line);
+            this.parsed.forEach( (line, i) => {
 
                 // realise object (create it, render it etc.):
-                var line_element = this.realise(line);
+                var element = this.realise(line);
 
-                // if indent is higher than parent, add as child 
+                // if current indent is less than max stack, clear levers higher in stack:
+                if(stack.length > line.indent)
+                    stack.splice(line.indent, stack.length - line.indent);
 
+                // set current element at it's place in the stack, and check we are not off numbers:
+                stack[line.indent] = element;
 
-
-
-
+                // append child to higher node:
+                stack[line.indent - 1].appendChild(element);
             });
 
             return root;
         }
 
 
-        parseLine(str:string):TemplateLine {
-            return new TemplateLine();
-        }
-
 
         realise(line:TemplateLine):HTMLElement {
-
+            return document.createElement("div");
         }
     }
 }
