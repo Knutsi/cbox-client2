@@ -1,0 +1,99 @@
+body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 1.6;}
+
+#accent_header
+{
+    font-size: large;
+    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%,rgb(251, 251, 251) 96%,rgb(255, 255, 255) 100%);
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: cadetblue;
+
+    animation-duration: 0.6s;
+    animation-name: slidein_top;
+}
+
+#case {
+    animation-duration: 0.6s;
+    animation-name: slidein_left;
+}
+
+#actions {
+    animation-duration: 0.6s;
+    animation-name: slidein_right;
+}
+
+h1 { margin:0; font-family: 'Lato', sans-serif;}
+
+@media screen and (orientation:portrait) {
+
+}
+
+@media screen and (orientation:landscape) {
+
+    #case {
+
+        margin-right: 33%;
+    }
+
+    #actions {
+        position: absolute;
+        width: 30%;
+        right: 0px;
+        top: 80px;
+    }
+
+}
+
+.asset {
+    display: inline-block;
+    padding: 4px;
+    box-shadow: 0px 1px 2px 0px #636363;
+    margin-right: 10px;
+
+}
+
+.std_pad {  padding: 20px; }
+
+.resize110x100 {
+    width: 100px;
+    height:100px;
+}
+
+.button {
+    border: 1px solid #A0A0A0;
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #FFE5B8;
+    margin: 2px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.header { font-size: x-large; }
+
+.flash_highlight {
+    animation-duration: 3s;
+    animation-name: flash_highlight;
+    background-color: rgba(251, 255, 223, 1);
+}
+
+
+@keyframes flash_highlight {
+    from {  background-color: rgb(255, 254, 88);  }
+    to {  background-color: rgba(251, 255, 223, 1);  }
+}
+
+@keyframes slidein_top {
+    from {  transform: translateY(-20%); opacity: 0; }
+    to {  }
+}
+
+@keyframes slidein_right {
+    from {  transform: translateX(20%); opacity: 0;  }
+    to {  }
+}
+
+@keyframes slidein_left {
+    from {  transform: translateX(-20%);opacity: 0;  }
+    to {    }
+}
