@@ -42,7 +42,7 @@ module cbox {
             // interpret command token:
             switch(this.commandToken) {
                 case '.':
-                    this.command = TemplateLineCommand.CLASS:
+                    this.command = TemplateLineCommand.CLASS;
                     break;
 
                 case '!':
@@ -133,8 +133,7 @@ module cbox {
 
         realiseCmdObject(prop_target):HTMLElement {
             // objects are javascript objects that create their own HTML-strucutre.
-
-
+            throw "Not implemented";
         }
 
         addElementAttributes(element:HTMLElement) {

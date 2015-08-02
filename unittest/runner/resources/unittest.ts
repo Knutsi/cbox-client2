@@ -2,7 +2,7 @@
  * Created by knutsi on 23/07/15.
  */
 
-//interface Window { PageController: UnitTest.TestPageController; }
+interface Window { PageController: UnitTest.TestPageController; }
 //window.PageController = window.PageController || {};
 
 module UnitTest {
@@ -124,7 +124,7 @@ module UnitTest {
         output1:HTMLDivElement;
         output2:HTMLDivElement;
         output3:HTMLDivElement;
-
+        output4:HTMLDivElement;
 
         constructor(name:string) {
             this.name = name;
@@ -145,6 +145,7 @@ module UnitTest {
             this.output1 = <HTMLDivElement>document.querySelector("#output1");
             this.output2 = <HTMLDivElement>document.querySelector("#output2");
             this.output3 = <HTMLDivElement>document.querySelector("#output3");
+            this.output4 = <HTMLDivElement>document.querySelector("#output4");
 
             // get all test methods:
             var test_methods = [];

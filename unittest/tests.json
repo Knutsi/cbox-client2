@@ -3,6 +3,7 @@
     "../../tests/example_test.js",
     "../../tests/event.js",
     "../../tests/statemachine.js",
-    "../../tests/template.js"
+    "../../tests/template.js",
+    "../../tests/screenmanager.js"
   ]
 }
