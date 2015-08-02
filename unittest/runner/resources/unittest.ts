@@ -2,7 +2,7 @@
  * Created by knutsi on 23/07/15.
  */
 
-interface Window { PageController: UnitTest.TestPageController; }
+//interface Window { PageController: UnitTest.TestPageController; }
 //window.PageController = window.PageController || {};
 
 module UnitTest {
@@ -12,6 +12,7 @@ module UnitTest {
         testScriptAddress:string;
         tests:Test[] = [];
         complete = false;
+
 
         constructor() {
             // notify controller is created:
@@ -32,13 +33,13 @@ module UnitTest {
 
             var script = <HTMLScriptElement>document.createElement("script");
             script.src = this.testScriptAddress;
-            script.type = "text/javascript"
+            script.type = "text/javascript";
             document.head.appendChild(script);
 
             // handle success:
             script.onload = () => {
                 console.log("Loaded " + this.testScriptAddress);
-            }
+            };
 
             // handle failiure:
             script.onerror = () => {
@@ -51,8 +52,10 @@ module UnitTest {
          * Runs the tests registered.
          */
         run() {
+
+
             // for each test:
-            this.tests.forEach((test) => { test.run(); })
+            this.tests.forEach((test) => { test.run(); });
             this.complete = true;
         }
 
@@ -69,9 +72,6 @@ module UnitTest {
 
         /***
          * Registers the result of an assertion.
-         * @param test
-         * @param passed
-         * @param message
          */
         get results():TestResult[] {
             var results:TestResult[] = [];
@@ -121,6 +121,10 @@ module UnitTest {
         // state management while running tests:
         private currentMethod = "";
 
+        output1:HTMLDivElement;
+        output2:HTMLDivElement;
+        output3:HTMLDivElement;
+
 
         constructor(name:string) {
             this.name = name;
@@ -135,10 +139,15 @@ module UnitTest {
 
 
         public run() {
-            console.log("UnitTest: run()");
+            console.log(this.name + " -> run()");
+
+            // grab divs:
+            this.output1 = <HTMLDivElement>document.querySelector("#output1");
+            this.output2 = <HTMLDivElement>document.querySelector("#output2");
+            this.output3 = <HTMLDivElement>document.querySelector("#output3");
 
             // get all test methods:
-            var test_methods = []
+            var test_methods = [];
             for(var m in this) {
                 if(typeof this[m] == "function" && m.indexOf("Test") == 0) {
                     test_methods.push(m);
@@ -148,11 +157,11 @@ module UnitTest {
             // execute each method:
             test_methods.forEach((method) => {
                 this.currentMethod = method;
-                try {
+                //try {
                     this[method]();
-                } catch (e) {
-                    this.reportFail("Exception in '" + this.currentMethod + "' :" + e);
-                }
+                //} catch (e) {
+                  //  this.reportFail("Exception in '" + this.currentMethod + "' :" + e);
+                //}
             });
         }
 
