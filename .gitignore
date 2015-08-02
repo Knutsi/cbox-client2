@@ -1,4 +1,4 @@
 *.js
 *.js.map
-*/workspace.xml
-*/tasks.xml
+workspace.xml
+tasks.xml
