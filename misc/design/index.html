@@ -14,65 +14,149 @@
         <ul id="screenlist"></ul>
     </div>
 
-    <div id="playscreen" class="screen">
-        <div id="accent_header" class="std_pad">
-            P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+
+    <div id="root">
+
+        <!-- PLAYSCREEN -->
+        <div id="playscreen" class="screen">
+            <div id="accent_header" class="std_pad">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+            <div id="case" class="std_pad">
+                <h1>Kvinne 99, akutt dyspne</h1>
+                <p>
+                    A 90-year-old woman has been a <span class="flash_highlight">patient of the Beacham Ambulatory Care Center since 2000.  Chronic conditions are pernicious anemia, osteoarthritis,</span> and urinary incontinency.  She is fully functional and fully independent.  She provides care for the homebound husband who has severe COPD.  They live in a row home specifically “close to the hospital” to ensure access to house calls for her husband.
+
+                </p>
+                <p>
+                    In September 2000, the husband dies as a result of respiratory arrest.  Her only relative is a nephew who talks with her about once a month.  In October 2002, her home is broken into and our patient is raped and robbed.  She was taken to a local hospital specializing in rape.  Here, she is distressed, delusional, and is reported to be very emotionally distraught.
+                </p>
+
+                <div id="assetbox">
+                    <div class="asset">
+                        <img class="resize110x100" src="ecg.jpg" /><br />
+                        ECG
+                    </div>
+
+                    <div class="asset">
+                        <img class="resize110x100" src="ecg.jpg" /><br />
+                        ECG
+                    </div>
+
+                </div>
+            </div>
+            <div id="actions" class="std_pad">
+                <h1>Todo</h1>
+                <div class="action"><input type="checkbox"/>Sosialanamnese</div>
+                <div class="action"><input type="checkbox"/>Nasopharynxprøve</div>
+                <div class="action"><input type="checkbox"/>S-CRP</div>
+                <div class="action"><input type="checkbox"/>S-Hb</div>
+                <div class="action"><input type="checkbox"/>S-Leukocytter m/diff</div>
+                <div class="action"><input type="checkbox"/>Arteriell blodgass</div>
+                <div class="action"><input type="checkbox"/>Rtg thorax</div>
+                <div class="action"><input type="checkbox"/>Børsteprøve (utslett 2)</div>
+                <div class="action"><input type="checkbox"/>Yrkesanamnese</div>
+                <div class="action"><input type="checkbox"/>Naturlige funksjoner</div>
+
+                <br /><div class="button">Utfør plan</div>
+                <div class="button">Fjern valgt</div>
+                <h1>Muligheter</h1>
+                <div class="button">Anamnese</div>
+                <div class="button">Klinisk undersøkelse</div>
+                <div class="button">Blod, beinmarg, biopsi</div>
+                <div class="button">Radiologi</div>
+                <div class="button">Genetikk</div>
+                <div class="button">Mikrobiologi</div>
+                <div class="button red">Søk</div>
+            </div>
+            <div id="controls" class="std_pad">
+
+
+            </div>
+
         </div>
-        <div id="case" class="std_pad">
-            <h1>Kvinne 99, akutt dyspne</h1>
-            <p>
-                A 90-year-old woman has been a <span class="flash_highlight">patient of the Beacham Ambulatory Care Center since 2000.  Chronic conditions are pernicious anemia, osteoarthritis,</span> and urinary incontinency.  She is fully functional and fully independent.  She provides care for the homebound husband who has severe COPD.  They live in a row home specifically “close to the hospital” to ensure access to house calls for her husband.
 
-            </p>
-            <p>
-                In September 2000, the husband dies as a result of respiratory arrest.  Her only relative is a nephew who talks with her about once a month.  In October 2002, her home is broken into and our patient is raped and robbed.  She was taken to a local hospital specializing in rape.  Here, she is distressed, delusional, and is reported to be very emotionally distraught.
-            </p>
+        <!-- SEARCHSCREEN -->
+        <div id="searchscreen" class="screen">
 
-            <div id="assetbox">
-                <div class="asset">
-                    <img class="resize110x100" src="ecg.jpg" /><br />
-                    ECG
+            <div id="accent_header" class="std_pad">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div class="std_pad">
+                <div class="button">Tilbake</div>
+                <div>
+                    <input type="text" class="largesearchbox" placeholder="Søk.." />
+                    <span class="comment">(søk prøvenavn, anamnestiske spørsmål, kliniske prosedyrer)</span>
                 </div>
 
-                <div class="asset">
-                    <img class="resize110x100" src="ecg.jpg" /><br />
-                    ECG
+                <div class="topline">
+                    <div class="searchresult"><input type="checkbox" />S-CRP</div>
+                    <div class="searchresult"><input type="checkbox" />S-Hb</div>
+                    <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 1)</div>
+                    <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 2)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DnTSCREEN -->
+        <div id="dntscreen" class="screen">
+            <div id="accent_header" class="std_pad">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div class="std_pad">
+                <div class="button">Tilbake</div>
+                <h1 >
+                    Hva er det pasienten feiler?
+                </h1>
+                <input type="text" class="largesearchbox" placeholder="Søk.." />
+                <div>
+                    <div class="searchresult"><input type="checkbox" /> Primær hypertensjon</div>
+                    <div class="searchresult"><input type="checkbox" /> KOLS</div>
+                </div>
+                <div>
+                    <div class="button">Fjern merkede</div>
+
                 </div>
 
             </div>
-        </div>
-        <div id="actions" class="std_pad">
-            <h1>Todo</h1>
-            <div class="action"><input type="checkbox"/>Sosialanamnese</div>
-            <div class="action"><input type="checkbox"/>Nasopharynxprøve</div>
-            <div class="action"><input type="checkbox"/>S-CRP</div>
-            <div class="action"><input type="checkbox"/>S-Hb</div>
-            <div class="action"><input type="checkbox"/>S-Leukocytter m/diff</div>
-            <div class="action"><input type="checkbox"/>Arteriell blodgass</div>
-            <div class="action"><input type="checkbox"/>Rtg thorax</div>
-            <div class="action"><input type="checkbox"/>Børsteprøve (utslett 2)</div>
-            <div class="action"><input type="checkbox"/>Yrkesanamnese</div>
-            <div class="action"><input type="checkbox"/>Naturlige funksjoner</div>
 
-            <br /><div class="button">Utfør plan</div>
-            <div class="button">Fjern valgt</div>
-            <h1>Muligheter</h1>
-            <div class="button">Anamnese</div>
-            <div class="button">Klinisk undersøkelse</div>
-            <div class="button">Blod, beinmarg, biopsi</div>
-            <div class="button">Radiologi</div>
-            <div class="button">Genetikk</div>
-            <div class="button">Mikrobiologi</div>
-            <div class="button red">Søk</div>
-        </div>
-        <div id="controls" class="std_pad">
+            <div class="std_pad">
+                <h1>
+                    Hvilke tiltak vil du vurdere?
+                </h1>
 
+                <input type="text" class="largesearchbox" placeholder="Søk.." />
+                <div>
+                    <div class="searchresult"><input type="checkbox" disabled="true" /> <div class="dosetoggle">Øk dose</div>Furix</div>
+                    <div class="searchresult"><input type="checkbox" disabled="true"  /> <div class="dosetoggle">Øk dose</div>Metoprolol</div>
+                    <div class="searchresult"><input type="checkbox" /> Samtaleterapi</div>
+                    <div class="searchresult"><input type="checkbox" /> Livsstilsintervensjon</div>
+                </div>
+                <div>
+                    <div class="button">Fjern merkede</div>
+                </div>
+            </div>
 
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Fullfør og gå videre!</div>
+            </div>
         </div>
 
-    </div>
+        <!-- QUIZSCREEN -->
+        <div id="quizscreen" class="screen">
+        </div>
 
-    <div id="searchscreen" class="screen">
+        <!-- SnCSCREEN -->
+        <div id="sncscreen" class="screen">
+        </div>
+
+        <!-- MENUSCREEN -->
+        <div id="menuscreen" class="screen">
+        </div>
+
+
     </div>
 
     <script src="controller.js" type="text/javascript" ></script>

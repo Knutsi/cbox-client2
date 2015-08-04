@@ -5,6 +5,12 @@ body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 
 
 #debug:hover { right: 0px; }
 
+.screen {
+    animation-duration: 0.0s;
+    animation-name: slidein_left;
+
+}
+
 #accent_header
 {
     font-size: large;
@@ -12,19 +18,14 @@ body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 
     font-weight: bolder;
     text-transform: uppercase;
     color: cadetblue;
-
-    animation-duration: 0.6s;
-    animation-name: slidein_top;
 }
 
 #case {
-    animation-duration: 0.6s;
-    animation-name: slidein_left;
+
 }
 
 #actions {
-    animation-duration: 0.6s;
-    animation-name: slidein_right;
+
 }
 
 h1 { margin:0; font-family: 'Lato', sans-serif;}
@@ -59,6 +60,13 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .std_pad {  padding: 20px; }
 
+
+
+.topline {
+    margin-top: 10px;
+    border-top: 1px dotted gray;
+}
+
 .red { background-color: rgb(249, 186, 186); }
 
 .resize110x100 {
@@ -76,6 +84,16 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     cursor: pointer;
 }
 
+.buttonbar {
+    background-color: #E6E6E6;
+}
+
+
+.completetbutton_mod {
+    background-color: #EAF4F7;
+    font-size: large;
+}
+
 .header { font-size: x-large; }
 
 .flash_highlight {
@@ -84,23 +102,48 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     background-color: rgba(251, 255, 223, 1);
 }
 
+.largesearchbox {
+    font-size: x-large;
+    margin-top:10px;
+
+}
+
+.comment {
+    font-style: italic;
+    color: gray;
+}
+
+.searchresult {
+    background-color: aliceblue;
+    margin: 5px 0;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.dosetoggle {
+    display: inline;
+    margin-right: 7px;
+    border-radius: 3px;
+    background-color: #F9BF9D;
+    padding: 0px 7px;
+    
+}
+
+.searchresult:hover { background-color: #FFE5B8; }
+
 
 @keyframes flash_highlight {
     from {  background-color: rgb(255, 254, 88);  }
     to {  background-color: rgba(251, 255, 223, 1);  }
 }
 
-@keyframes slidein_top {
-    from {  transform: translateY(-20%); opacity: 0; }
-    to {  }
-}
 
 @keyframes slidein_right {
-    from {  transform: translateX(20%); opacity: 0;  }
+    from {  /*transform: translateX(20%); opacity: 0; */ opacity: 0.5; }
     to {  }
 }
 
 @keyframes slidein_left {
-    from {  transform: translateX(-20%);opacity: 0;  }
+    from { /*transform: translateX(-20%);opacity: 0; */ opacity: 0.5; }
     to {    }
 }
