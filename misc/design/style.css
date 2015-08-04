@@ -1,5 +1,10 @@
 body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 1.6;}
 
+#debug { position: fixed; width: 300px; right: -290px; top: 0px;
+    opacity: 0.5; background-color: gray; }
+
+#debug:hover { right: 0px; }
+
 #accent_header
 {
     font-size: large;
