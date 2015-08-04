@@ -54,6 +54,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .std_pad {  padding: 20px; }
 
+.red { background-color: rgb(249, 186, 186); }
+
 .resize110x100 {
     width: 100px;
     height:100px;
