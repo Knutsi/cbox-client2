@@ -60,10 +60,12 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .std_pad {  padding: 20px; }
 
+.top_margin10px {  margin-top:10px; }
 
 
 .topline {
     margin-top: 10px;
+    padding-top:10px;
     border-top: 1px dotted gray;
 }
 
@@ -72,6 +74,22 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .resize110x100 {
     width: 100px;
     height:100px;
+}
+
+
+.centercomplete {
+    font-size: x-large;
+    background-color: #EAEAEA;
+    padding: 5% 10%;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 1px 1px black;
+    border: 1px solid #F7F7F7;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .button {
@@ -96,6 +114,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .header { font-size: x-large; }
 
+.problem_title {  color: gray;}
+
 .flash_highlight {
     animation-duration: 3s;
     animation-name: flash_highlight;
@@ -110,14 +130,16 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .comment {
     font-style: italic;
-    color: gray;
+    opacity: 0.5;
 }
+
 
 .searchresult {
     background-color: aliceblue;
     margin: 5px 0;
     padding: 3px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .dosetoggle {
@@ -131,6 +153,18 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .searchresult:hover { background-color: #FFE5B8; }
 
+
+.score {
+    font-size: x-large;
+    padding: 10px 20px;
+    background-color: greenyellow;
+    border-radius: 10px;
+    display: inline-block;
+    color: darkgreen;
+    font-family: sans-serif;
+    font-weight: bold;
+
+}
 
 @keyframes flash_highlight {
     from {  background-color: rgb(255, 254, 88);  }

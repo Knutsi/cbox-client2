@@ -23,14 +23,16 @@
                 P: 1/100 R: 20% C: 4000,- Time: 00:05:20
             </div>
             <div id="case" class="std_pad">
-                <h1>Kvinne 99, akutt dyspne</h1>
+                <h1>Kvinne 99, gradvis økende dyspne</h1>
                 <p>
-                    A 90-year-old woman has been a <span class="flash_highlight">patient of the Beacham Ambulatory Care Center since 2000.  Chronic conditions are pernicious anemia, osteoarthritis,</span> and urinary incontinency.  She is fully functional and fully independent.  She provides care for the homebound husband who has severe COPD.  They live in a row home specifically “close to the hospital” to ensure access to house calls for her husband.
+                   Hoste 3 uker.  Ikke produktiv.  Lett redusert allmenntilstand. Lettgradig feber, varierer gjennom dagen.  Ikke nattesvette.  10 kg vekttap siste tre mnd, utilsiktet. Ikke hovne lyfeknuter.  Pensjonert enke.  Bor alene i hus i 3 etg.  <span class="flash_highlight">Yrkesanamnese: kokk 3 år, sekretær 15 år.</span>  Røyker ikke.  Røykeksponert på jobb.  Ikke smerter respirasjon.  3 barn.  Alle barn friske.  Opphopning av hjertesykdom i familien.
+                </p>
+                <p>
+                    Lett redusert allmenntilstand.  Ikke generell glandelsvulst.  Huden er tørr og varm.  Afebril.  Pulm: dempning over høyre lunges nedre bakflate. Normal respirasjonslyd. Cor: u.a.  Abdomen: u.a.
+                </p>
+                <p>CRP:23*. SR: 30*. U-stix: +1 nitritt</p>
 
-                </p>
-                <p>
-                    In September 2000, the husband dies as a result of respiratory arrest.  Her only relative is a nephew who talks with her about once a month.  In October 2002, her home is broken into and our patient is raped and robbed.  She was taken to a local hospital specializing in rape.  Here, she is distressed, delusional, and is reported to be very emotionally distraught.
-                </p>
+                <p><span class="problem_title">Utslett venstre ankel</span>: eksematøst utslett venster ankel. 5x7 cm areal. Ikke palpasjonsømt.  Klør. Gule kruster. </p>
 
                 <div id="assetbox">
                     <div class="asset">
@@ -60,18 +62,23 @@
 
                 <br /><div class="button">Utfør plan</div>
                 <div class="button">Fjern valgt</div>
-                <h1>Muligheter</h1>
-                <div class="button">Anamnese</div>
-                <div class="button">Klinisk undersøkelse</div>
-                <div class="button">Blod, beinmarg, biopsi</div>
-                <div class="button">Radiologi</div>
-                <div class="button">Genetikk</div>
-                <div class="button">Mikrobiologi</div>
-                <div class="button red">Søk</div>
-            </div>
-            <div id="controls" class="std_pad">
 
+                <div>
+                    <h1>Muligheter</h1>
+                    <div class="button">Anamnese</div>
+                    <div class="button">Klinisk undersøkelse</div>
+                    <div class="button">Blod, beinmarg, biopsi</div>
+                    <div class="button">Radiologi</div>
+                    <div class="button">Genetikk</div>
+                    <div class="button">Mikrobiologi</div>
+                    <div class="button red">Søk</div>
 
+                    <div id="controls" class="topline">
+
+                        <div class="button red ">Diagnose og behandling</div>
+
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -85,9 +92,9 @@
 
             <div class="std_pad">
                 <div class="button">Tilbake</div>
+                <h1>Finn spørsmål, prøver, prosedyrer, bildeunderøkselser etc.</h1>
                 <div>
                     <input type="text" class="largesearchbox" placeholder="Søk.." />
-                    <span class="comment">(søk prøvenavn, anamnestiske spørsmål, kliniske prosedyrer)</span>
                 </div>
 
                 <div class="topline">
@@ -146,14 +153,63 @@
 
         <!-- QUIZSCREEN -->
         <div id="quizscreen" class="screen">
+            <div class="std_pad">
+                <h1>Oppfølgingsspørsmål</h1>
+                <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
+                <input type="radio" name="q1" /><label>Småcellet</label><br />
+                <input type="radio" name="q1"  /><label>Plateepitelkarsinom</label><br />
+                <input type="radio" name="q1"  /><label>Storcellekarsinom</label>
+
+                <p>Lungekreft bør vurderes hos personer som røyker > 15 sigaretter pr. dag med persisterende/forværret hoste i over..</p>
+                <input type="radio" name="q2" /><label>2 uker</label><br />
+                <input type="radio" name="q2"  /><label>6 uker</label><br />
+                <input type="radio" name="q2"  /><label>12 uker</label>
+
+                <p>Hvor lenge kan infeksjon med mycoplasma pneumonia påvises i nasofarynxprøve?</p>
+                <input type="radio" name="q3" /><label>Maksimalt 2 uker fra hostestart</label><br />
+                <input type="radio" name="q3"  /><label>Maksimalt 4 uker fra hostestart</label><br />
+                <input type="radio" name="q3"  /><label>Så lenge pasienten hoster</label>
+            </div>
+
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Ferdig</div>
+            </div>
+
         </div>
 
         <!-- SnCSCREEN -->
         <div id="sncscreen" class="screen">
+            <div class="std_pad">
+                <h1>Resultat</h1>
+                <div class="score">78 poeng <span class="comment">av 100</span></div>
+                <div>
+                    <ul>
+                        <li>3 av 5 relevante diagnoser</li>
+                        <li>Relevante behandlinger</li>
+                        <li>3 av 3 riktige oppføgingsspørsmål</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Kommentarer</h2>
+                    <ul>
+                        <li>Pasienten hadde mycoplasma infeksjon </li>
+                        <li>Pasiente hadde snikende tungpust, et uvanlig debutsymptom for lungecancer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Ferdig</div>
+            </div>
         </div>
 
         <!-- MENUSCREEN -->
         <div id="menuscreen" class="screen">
+            <div class="centercomplete">Klargjør...</div>
+        </div>
+
+        <!-- MENUSCREEN -->
+        <div id="loadscreen" class="screen">
         </div>
 
 
