@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+    <title></title>
+
+    <script src="../library/client.js" type="text/javascript" ></script>
+    <script src="bootstrap.js" type="text/javascript" ></script>
+</head>
+<body onload="cbox.ClientBootstrap.run();">
+    <div id="debug">
+        <ul id="screenlist"></ul>
+    </div>
+
+    <div class="accent"></div>
+    <div id="root">
+
+        <!-- PLAYSCREEN -->
+        <div id="playscreen" class="screen">
+            <div class="accent_header std_pad">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+            <div class="std_pad case">
+                <h1>Kvinne 99, gradvis økende dyspne</h1>
+                <p>
+                   Hoste 3 uker.  Ikke produktiv.  Lett redusert allmenntilstand. Lettgradig feber, varierer gjennom dagen.  Ikke nattesvette.  10 kg vekttap siste tre mnd, utilsiktet. Ikke hovne lyfeknuter.  Pensjonert enke.  Bor alene i hus i 3 etg.  <span class="flash_highlight">Yrkesanamnese: kokk 3 år, sekretær 15 år.</span>  Røyker ikke.  Røykeksponert på jobb.  Ikke smerter respirasjon.  3 barn.  Alle barn friske.  Opphopning av hjertesykdom i familien.
+                </p>
+                <p>
+                    Lett redusert allmenntilstand.  Ikke generell glandelsvulst.  Huden er tørr og varm.  Afebril.  Pulm: dempning over høyre lunges nedre bakflate. Normal respirasjonslyd. Cor: u.a.  Abdomen: u.a.
+                </p>
+                <p>CRP:23*. SR: 30*. U-stix: +1 nitritt</p>
+
+                <p><span class="problem_title">Utslett venstre ankel</span>: eksematøst utslett venster ankel. 5x7 cm areal. Ikke palpasjonsømt.  Klør. Gule kruster. </p>
+
+                <div id="assetbox">
+                    <div class="asset">
+                        ASSET<br />
+                        ECG
+                    </div>
+
+                    <div class="asset">
+                        ASSET<br />
+                        ECG
+                    </div>
+
+                </div>
+            </div>
+            <div class="std_pad actions">
+                <h1>Todo</h1>
+                <div class="action"><input type="checkbox"/>Sosialanamnese</div>
+                <div class="action"><input type="checkbox"/>Nasopharynxprøve</div>
+                <div class="action"><input type="checkbox"/>S-CRP</div>
+                <div class="action"><input type="checkbox"/>S-Hb</div>
+                <div class="action"><input type="checkbox"/>S-Leukocytter m/diff</div>
+                <div class="action"><input type="checkbox"/>Arteriell blodgass</div>
+                <div class="action"><input type="checkbox"/>Rtg thorax</div>
+                <div class="action"><input type="checkbox"/>Børsteprøve (utslett 2)</div>
+                <div class="action"><input type="checkbox"/>Yrkesanamnese</div>
+                <div class="action"><input type="checkbox"/>Naturlige funksjoner</div>
+
+                <br /><div class="button">Utfør plan</div>
+                <div class="button">Fjern valgt</div>
+
+                <div>
+                    <h1>Muligheter</h1>
+                    <div class="button">Anamnese</div>
+                    <div class="button">Klinisk undersøkelse</div>
+                    <div class="button">Blod, beinmarg, biopsi</div>
+                    <div class="button">Radiologi</div>
+                    <div class="button">Genetikk</div>
+                    <div class="button">Mikrobiologi</div>
+                    <div class="button red">Søk</div>
+
+                    <div id="controls" class="topline">
+
+                        <div class="button completetbutton_mod">Diagnose og behandling</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- SEARCHSCREEN -->
+        <div id="searchscreen" class="screen">
+
+            <div class="std_pad accent_header">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div class="std_pad">
+                <div class="button">Tilbake</div>
+                <h1>Finn spørsmål, prøver, prosedyrer, bildeunderøkselser etc.</h1>
+                <div>
+                    <input type="text" class="largesearchbox" placeholder="Søk.." />
+                </div>
+
+                <div class="topline">
+                    <div class="searchresult"><input type="checkbox" />S-CRP</div>
+                    <div class="searchresult"><input type="checkbox" />S-Hb</div>
+                    <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 1)</div>
+                    <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 2)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DnTSCREEN -->
+        <div id="dntscreen" class="screen">
+            <div class="std_pad accent_header">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div class="std_pad">
+                <div class="button">Tilbake</div>
+                <div class="snapleft_on_landscape">
+                    <h1 >
+                        Hva er det pasienten feiler?
+                    </h1>
+                    <input type="text" class="largesearchbox" placeholder="Søk.." />
+                    <div>
+                        <div class="searchresult"><input type="checkbox" /> Primær hypertensjon</div>
+                        <div class="searchresult"><input type="checkbox" /> KOLS</div>
+                    </div>
+                    <div>
+                        <div class="button">Fjern merkede</div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="std_pad snapright_on_landscape">
+                <h1>
+                    Hvilke tiltak vil du vurdere?
+                </h1>
+
+                <input type="text" class="largesearchbox" placeholder="Søk.." />
+                <div>
+                    <div class="searchresult"><input type="checkbox" disabled="true" /> <div class="dosetoggle">Øk dose</div>Furix</div>
+                    <div class="searchresult"><input type="checkbox" disabled="true"  /> <div class="dosetoggle">Øk dose</div>Metoprolol</div>
+                    <div class="searchresult"><input type="checkbox" /> Samtaleterapi</div>
+                    <div class="searchresult"><input type="checkbox" /> Livsstilsintervensjon</div>
+                </div>
+                <div>
+                    <div class="button">Fjern merkede</div>
+                </div>
+            </div>
+
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Fullfør og gå videre!</div>
+            </div>
+        </div>
+
+        <!-- QUIZSCREEN -->
+        <div id="quizscreen" class="screen">
+            <div class="std_pad">
+                <h1>Oppfølgingsspørsmål</h1>
+                <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
+                <input type="radio" name="q1" /><label>Småcellet</label><br />
+                <input type="radio" name="q1"  /><label>Plateepitelkarsinom</label><br />
+                <input type="radio" name="q1"  /><label>Storcellekarsinom</label>
+
+                <p>Lungekreft bør vurderes hos personer som røyker > 15 sigaretter pr. dag med persisterende/forværret hoste i over..</p>
+                <input type="radio" name="q2" /><label>2 uker</label><br />
+                <input type="radio" name="q2"  /><label>6 uker</label><br />
+                <input type="radio" name="q2"  /><label>12 uker</label>
+
+                <p>Hvor lenge kan infeksjon med mycoplasma pneumonia påvises i nasofarynxprøve?</p>
+                <input type="radio" name="q3" /><label>Maksimalt 2 uker fra hostestart</label><br />
+                <input type="radio" name="q3"  /><label>Maksimalt 4 uker fra hostestart</label><br />
+                <input type="radio" name="q3"  /><label>Så lenge pasienten hoster</label>
+            </div>
+
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Ferdig</div>
+            </div>
+
+        </div>
+
+        <!-- SnCSCREEN -->
+        <div id="sncscreen" class="screen">
+            <div class="std_pad">
+                <h1>Resultat</h1>
+                <div class="score">78 poeng <span class="comment">av 100</span></div>
+                <div>
+                    <ul>
+                        <li>3 av 5 relevante diagnoser</li>
+                        <li>Relevante behandlinger</li>
+                        <li>3 av 3 riktige oppføgingsspørsmål</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Kommentarer</h2>
+                    <ul>
+                        <li>Pasienten hadde mycoplasma infeksjon </li>
+                        <li>Pasiente hadde snikende tungpust, et uvanlig debutsymptom for lungecancer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="std_pad buttonbar" >
+                <div class="button completetbutton_mod">Ferdig</div>
+            </div>
+        </div>
+
+        <!-- LOADSCREEN -->
+        <div id="loadscreen" class="screen">
+            <div class="centercomplete">Klargjør...</div>
+        </div>
+
+    </div>
+</body>
+</html>
