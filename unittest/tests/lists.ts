@@ -41,8 +41,8 @@ class BindingListTest extends UnitTest.Test {
         var remove_fired = false;
 
         // check events:
-        list.onadd.subscribe( ((items) => { add_fired = true; } ));
-        list.onadd.subscribe( ((items) => { remove_fired = true; } ));
+        list.onAdd.subscribe( ((items) => { add_fired = true; } ));
+        list.onAdd.subscribe( ((items) => { remove_fired = true; } ));
 
         this.assertNotTrue(add_fired);
         this.assertNotTrue(remove_fired);

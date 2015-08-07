@@ -15,9 +15,9 @@ module cbox {
         items:T[] = [];
         selectedIndexes:number[] = [];
 
-        onchange:Event<GenericEventArgs> = new Event<GenericEventArgs>();
-        onadd:Event<BindingListEventArgs<T>> = new Event<BindingListEventArgs<T>>();
-        onremove:Event<BindingListEventArgs<T>> = new Event<BindingListEventArgs<T>>();
+        onChange:Event<GenericEventArgs> = new Event<GenericEventArgs>();
+        onAdd:Event<BindingListEventArgs<T>> = new Event<BindingListEventArgs<T>>();
+        onRemove:Event<BindingListEventArgs<T>> = new Event<BindingListEventArgs<T>>();
 
 
         constructor(items:T[] = []) {
@@ -29,8 +29,8 @@ module cbox {
 
             items.forEach( (item) => { this.items.push(item) } );
 
-            this.onadd.fire(new BindingListEventArgs(items));
-            this.onchange.fire();
+            this.onAdd.fire(new BindingListEventArgs(items));
+            this.onChange.fire();
         }
 
 
@@ -54,15 +54,15 @@ module cbox {
                 }
             }
 
-            this.onremove.fire(new BindingListEventArgs(removed));
-            this.onchange.fire();
+            this.onRemove.fire(new BindingListEventArgs(removed));
+            this.onChange.fire();
         }
 
 
         clear() {
             this.items = [];
             this.selectedIndexes = [];
-            this.onchange.fire();
+            this.onChange.fire();
         }
 
 
