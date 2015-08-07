@@ -4,6 +4,8 @@
     "../../tests/event.js",
     "../../tests/statemachine.js",
     "../../tests/template.js",
-    "../../tests/screenmanager.js"
+    "../../tests/screenmanager.js",
+    "../../tests/lists.js"
+
   ]
 }
