@@ -9,7 +9,12 @@
 /// <reference path="support/ScreenManager.ts" />
 /// <reference path="support/ReactiveElementController.ts" />
 
+/// <reference path="game/GameClientState.ts" />
 /// <reference path="game/GameClient.ts" />
+/// <reference path="game/PendingAction.ts" />
+/// <reference path="game/Action.ts" />
+/// <reference path="game/Case.ts" />
+/// <reference path="game/Problem.ts" />
 
 
 
