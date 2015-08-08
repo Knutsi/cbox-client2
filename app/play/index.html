@@ -7,23 +7,37 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
     <title></title>
 
-    <script src="../library/client.js" type="text/javascript" ></script>
-    <script src="bootstrap.js" type="text/javascript" ></script>
+    <script src="../../library/client.js" type="text/javascript" ></script>
 </head>
-<body onload="cbox.ClientBootstrap.run();">
-    <div id="debug">
-        <ul id="screenlist"></ul>
-    </div>
 
-    <div class="accent"></div>
+<body onload="cbox.MVC.load(new cbox.PlayPageController())">
+    <!--<div id="debug">
+        <ul id="screenlist"></ul>
+    </div>-->
+
     <div id="root">
 
+        <!-- LOADSCREEN -->
+        <div id="loadscreen" class="screen" data-cbox-controller="ScreenView">
+            <div class="centercomplete">Klargjør...</div>
+        </div>
+
+        <!-- READYSCREEN -->
+        <div id="readyscreen" class="screen" data-cbox-controller="ScreenView">
+            <div class="centercomplete">
+                <div id="startGameButton" class="button">Start</div>
+            </div>
+        </div>
+
+
         <!-- PLAYSCREEN -->
-        <div id="playscreen" class="screen">
-            <div class="accent_header std_pad">
+        <div id="playscreen" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
                 P: 1/100 R: 20% C: 4000,- Time: 00:05:20
             </div>
-            <div class="std_pad case">
+
+            <div class="std_pad case" data-cbox-controller="CaseView">
                 <h1>Kvinne 99, gradvis økende dyspne</h1>
                 <p>
                    Hoste 3 uker.  Ikke produktiv.  Lett redusert allmenntilstand. Lettgradig feber, varierer gjennom dagen.  Ikke nattesvette.  10 kg vekttap siste tre mnd, utilsiktet. Ikke hovne lyfeknuter.  Pensjonert enke.  Bor alene i hus i 3 etg.  <span class="flash_highlight">Yrkesanamnese: kokk 3 år, sekretær 15 år.</span>  Røyker ikke.  Røykeksponert på jobb.  Ikke smerter respirasjon.  3 barn.  Alle barn friske.  Opphopning av hjertesykdom i familien.
@@ -48,23 +62,25 @@
 
                 </div>
             </div>
-            <div class="std_pad actions">
-                <h1>Todo</h1>
-                <div class="action"><input type="checkbox"/>Sosialanamnese</div>
-                <div class="action"><input type="checkbox"/>Nasopharynxprøve</div>
-                <div class="action"><input type="checkbox"/>S-CRP</div>
-                <div class="action"><input type="checkbox"/>S-Hb</div>
-                <div class="action"><input type="checkbox"/>S-Leukocytter m/diff</div>
-                <div class="action"><input type="checkbox"/>Arteriell blodgass</div>
-                <div class="action"><input type="checkbox"/>Rtg thorax</div>
-                <div class="action"><input type="checkbox"/>Børsteprøve (utslett 2)</div>
-                <div class="action"><input type="checkbox"/>Yrkesanamnese</div>
-                <div class="action"><input type="checkbox"/>Naturlige funksjoner</div>
+            <div class="std_pad actions" >
+                <div data-cbox-controller="TodoView">
+                    <h1>Todo</h1>
+                    <div class="action"><input type="checkbox"/>Sosialanamnese</div>
+                    <div class="action"><input type="checkbox"/>Nasopharynxprøve</div>
+                    <div class="action"><input type="checkbox"/>S-CRP</div>
+                    <div class="action"><input type="checkbox"/>S-Hb</div>
+                    <div class="action"><input type="checkbox"/>S-Leukocytter m/diff</div>
+                    <div class="action"><input type="checkbox"/>Arteriell blodgass</div>
+                    <div class="action"><input type="checkbox"/>Rtg thorax</div>
+                    <div class="action"><input type="checkbox"/>Børsteprøve (utslett 2)</div>
+                    <div class="action"><input type="checkbox"/>Yrkesanamnese</div>
+                    <div class="action"><input type="checkbox"/>Naturlige funksjoner</div>
 
-                <br /><div class="button">Utfør plan</div>
-                <div class="button">Fjern valgt</div>
+                    <br /><div class="button">Utfør plan</div>
+                    <div class="button">Fjern valgt</div>
+                </div>
 
-                <div>
+                <div data-cbox-controller="ActionView">
                     <h1>Muligheter</h1>
                     <div class="button">Anamnese</div>
                     <div class="button">Klinisk undersøkelse</div>
@@ -76,23 +92,22 @@
 
                     <div id="controls" class="topline">
 
-                        <div class="button completetbutton_mod">Diagnose og behandling</div>
+                        <div id="gotoDnTButton" class="button completetbutton_mod">Diagnose og behandling</div>
 
                     </div>
                 </div>
             </div>
-
-
         </div>
 
-        <!-- SEARCHSCREEN -->
-        <div id="searchscreen" class="screen">
 
-            <div class="std_pad accent_header">
+        <!-- SEARCHSCREEN -->
+        <div id="searchscreen" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
                 P: 1/100 R: 20% C: 4000,- Time: 00:05:20
             </div>
 
-            <div class="std_pad">
+            <div class="std_pad"  data-cbox-controller="SearchView">
                 <div class="button">Tilbake</div>
                 <h1>Finn spørsmål, prøver, prosedyrer, bildeunderøkselser etc.</h1>
                 <div>
@@ -108,14 +123,16 @@
             </div>
         </div>
 
+
         <!-- DnTSCREEN -->
-        <div id="dntscreen" class="screen">
-            <div class="std_pad accent_header">
+        <div id="dntscreen" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad accent_header" data-cbox-controller="ScoreView">
                 P: 1/100 R: 20% C: 4000,- Time: 00:05:20
             </div>
 
-            <div class="std_pad">
-                <div class="button">Tilbake</div>
+            <div class="std_pad" data-cbox-controller="DiagnosisPickerView">
+                <div id="cancelDnTButton" class="button">Tilbake</div>
                 <div class="snapleft_on_landscape">
                     <h1 >
                         Hva er det pasienten feiler?
@@ -133,7 +150,7 @@
 
             </div>
 
-            <div class="std_pad snapright_on_landscape">
+            <div class="std_pad snapright_on_landscape" data-cbox-controller="TreatmentPickerView">
                 <h1>
                     Hvilke tiltak vil du vurdere?
                 </h1>
@@ -151,13 +168,15 @@
             </div>
 
             <div class="std_pad buttonbar" >
-                <div class="button completetbutton_mod">Fullfør og gå videre!</div>
+                <div id="commitDnTButton" class="button completetbutton_mod">Fullfør og gå videre!</div>
             </div>
         </div>
 
+
         <!-- QUIZSCREEN -->
-        <div id="quizscreen" class="screen">
-            <div class="std_pad">
+        <div id="followupscreen" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad" data-cbox-controller="FollowupView">
                 <h1>Oppfølgingsspørsmål</h1>
                 <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
                 <input type="radio" name="q1" /><label>Småcellet</label><br />
@@ -176,14 +195,16 @@
             </div>
 
             <div class="std_pad buttonbar" >
-                <div class="button completetbutton_mod">Ferdig</div>
+                <div id="commitFollowupButton"  class="button completetbutton_mod">Ferdig</div>
             </div>
 
         </div>
 
+
         <!-- SnCSCREEN -->
-        <div id="sncscreen" class="screen">
-            <div class="std_pad">
+        <div id="sncscreen" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad" data-cbox-controller="FinalScoreView">
                 <h1>Resultat</h1>
                 <div class="score">78 poeng <span class="comment">av 100</span></div>
                 <div>
@@ -193,7 +214,8 @@
                         <li>3 av 3 riktige oppføgingsspørsmål</li>
                     </ul>
                 </div>
-                <div>
+
+                <div data-cbox-controller="CommentView">
                     <h2>Kommentarer</h2>
                     <ul>
                         <li>Pasienten hadde mycoplasma infeksjon </li>
@@ -203,14 +225,10 @@
             </div>
 
             <div class="std_pad buttonbar" >
-                <div class="button completetbutton_mod">Ferdig</div>
+                <div id="doneButton"  class="button completetbutton_mod">Ferdig</div>
             </div>
         </div>
 
-        <!-- LOADSCREEN -->
-        <div id="loadscreen" class="screen">
-            <div class="centercomplete">Klargjør...</div>
-        </div>
 
     </div>
 </body>
