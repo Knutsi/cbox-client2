@@ -17,8 +17,9 @@ module cbox {
             super();
 
             // setup the game client:
+            var serviceUrl = "../../testservice/";
             this.service = new DummyServiceInterface();
-            this.storage = new StorageManager();
+            this.storage = new StorageManager(serviceUrl);
             this.game = new GameClient(this.service, this.storage);
         }
 
@@ -31,13 +32,16 @@ module cbox {
                 this.handleGameStateChange(args.toState);
             } )
 
-            // setup events for buttons:
+            // setup events for buttons that control flow (buttons for elements are handled by controllers):
             this.element('startGameButton').onclick = () => { this.game.play() };
             this.element('gotoDnTButton').onclick = () => { this.screenManager.activate("dntscreen") };
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
+
+            this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
+            this.element('cancelSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
 
             // initialize game client. From now on, this will control everything:
@@ -71,15 +75,15 @@ module cbox {
 
 
         activateActionSearch() {
-
+            this.screenManager.activate("searchscreen");
         }
 
         activateDiagnosisSearch() {
-
+            this.screenManager.activate("searchscreen");
         }
 
         activateTreatmentSearch() {
-
+            this.screenManager.activate("searchscreen");
         }
     }
 }
