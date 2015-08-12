@@ -17,7 +17,6 @@ module cbox {
         // internal fields:
         clientpackageRaw:{};
 
-        classes:Class[];
         forms:Form[];
         actions:Action[];
         diagnosis:Diagnosis[];

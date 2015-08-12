@@ -16,5 +16,9 @@ module cbox {
             this.pageController = pc;
         }
 
+        player(role:string):HTMLElement {
+            return <HTMLElement>this.root.querySelector("[data-cbox-role=\"" + role + "\"]");
+        }
+
     }
 }

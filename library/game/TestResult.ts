@@ -7,5 +7,6 @@ module cbox {
     export class TestResult {
         // *TODO* this needs to track problem, result etc.
 
+
     }
 }

@@ -15,7 +15,7 @@ module cbox {
             this.screens.push(screen);
         }
 
-        activate(ident:string) {
+        activate(ident:string, sethash=true) {
 
             // get screen:
             var screen = this.get(ident);
@@ -46,6 +46,10 @@ module cbox {
                 prev_screen.deactivated();
                 prev_screen.onDeactivated.fire();
             }
+
+            // set location hash:
+            if(sethash)
+                document.location.hash = ident;
         }
 
         get(ident:string):Screen {

@@ -35,7 +35,7 @@
 /* Game layer implemntation */
 /// <reference path="game/ClientState.ts" />
 /// <reference path="game/GameClient.ts" />
-/// <reference path="game/PendingAction.ts" />
+/// <reference path="game/ActionProblemPair.ts" />
 /// <reference path="game/Action.ts" />
 /// <reference path="game/Case.ts" />
 /// <reference path="game/Problem.ts" />
@@ -60,6 +60,7 @@
 /// <reference path="controllers/playpage/CommentView.ts" />
 /// <reference path="controllers/playpage/TreatmentPickerView.ts" />
 /// <reference path="controllers/playpage/DiagnosisPickerView.ts" />
+/// <reference path="controllers/playpage/ActionSearchView.ts" />
 
 
 

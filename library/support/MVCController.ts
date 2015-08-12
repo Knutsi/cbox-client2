@@ -10,6 +10,7 @@ module cbox {
 
         elementControllers: { [name: string]: any; } = { };
         pageController:PageController;
+        ids:{ [id:string] : ElementController } = {};
 
         constructor() {
             console.log("MVC controller created");
@@ -39,15 +40,21 @@ module cbox {
             for(var i in elements) {
                 var element = <HTMLDivElement>elements.item(i);
                 var controller_name = element.getAttribute("data-cbox-controller");
+                var id = element.getAttribute("id");
 
                 console.log("-- MVC instancing: " + controller_name);
 
+                // look up the controller name, and instance if it exists:
+                var controller;
                 var class_ = this.elementControllers[controller_name];
                 if(class_)
-                    var controller = <ElementController>(new class_(element, this.pageController));
+                    controller = <ElementController>(new class_(element, this.pageController));
                 else
                     throw "MVC could not instancer unregistered controller class: " + controller_name;
 
+                // if it has an ID, keep that for later use:
+                if(id)
+                    this.ids[id] = controller;
             }
 
             // run page controller:

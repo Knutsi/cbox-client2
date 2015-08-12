@@ -40,9 +40,14 @@ module cbox {
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
 
-            this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
-            this.element('cancelSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
+            this.element('actionSearchButton').onclick = () => { this.screenManager.activate("actionsearch") };
+            this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
+
+            // respond to hash changes:
+            window.onhashchange = () => {
+                this.screenManager.activate(document.location.hash.substr(1), false);
+            };
 
             // initialize game client. From now on, this will control everything:
             this.game.initialize();

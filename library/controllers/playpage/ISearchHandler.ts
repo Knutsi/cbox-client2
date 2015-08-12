@@ -4,7 +4,7 @@
 
 module cbox {
 
-    export interface ISearchController {
+    export interface ISearchHandler {
         title:string;
         resultRoot:HTMLDivElement;
         handleQueryUpdated():HTMLElement;

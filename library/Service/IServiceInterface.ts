@@ -14,7 +14,7 @@
             actions:any,
             callback:(
                 status:AsyncRequestResult,
-                result:TestResult[],
+                result:Problem[],
                 assets:Asset[],
                 score:Scorecard) => void);
 

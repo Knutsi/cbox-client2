@@ -8,18 +8,27 @@ module cbox {
 
     export class Case {
 
-        results:TestResult[] = [];
+        static ROOT_IDENT:string = "_Root";
+
         problems:Problem[] = [];
-        rootProblem:Problem;
 
-        extend(new_results:TestResult[]) {
+        extend(new_results:Problem[]) {
 
-            new_results.forEach( (r) => {
-
-                // FIXME - check result does not already exist on case!
-                this.results.push(r);
-            } )
+            throw "Not implemented!";
         }
+
+
+        get rootProblem():Problem {
+
+            for(var i in this.problems) {
+
+                if(this.problems[i].ident == Case.ROOT_IDENT)
+                    return this.problems[i];
+
+                return null;    // should never really get here..
+            }
+        }
+
 
     }
 
