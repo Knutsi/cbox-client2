@@ -9,6 +9,8 @@ module cbox {
     export class Case {
 
         results:TestResult[] = [];
+        problems:Problem[] = [];
+        rootProblem:Problem;
 
         extend(new_results:TestResult[]) {
 

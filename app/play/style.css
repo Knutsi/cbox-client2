@@ -29,6 +29,13 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .case {  }
 .actions {  }
 
+.searchpanel {
+    padding: 5px 20px;
+    background-color: rgb(244, 244, 244);
+    box-shadow: 5px 1px 17px rgba(128, 151, 169, 0.21);
+    border: 1px solid #D7D7D6;
+}
+
 .accent_header
 {
     font-size: large;
@@ -56,6 +63,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 }
 
 .buttonbar {  background-color: #E6E6E6; }
+
 .completetbutton_mod {  background-color: #EAF4F7;  font-size: large;  }
 .header { font-size: x-large; }
 .problem_title {  color: gray;}
@@ -64,12 +72,14 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .comment {  font-style: italic; opacity: 0.5; }
 
 .searchresult {
-    background-color: aliceblue;
+    background-color: white;
     margin: 5px 0;
     padding: 3px;
     cursor: pointer;
     border-radius: 3px;
 }
+
+.searchresult:hover { background-color: #FFE5B8; }
 
 .dosetoggle {
     display: inline;
@@ -79,7 +89,6 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     padding: 0px 7px;
 }
 
-.searchresult:hover { background-color: #FFE5B8; }
 
 .score {
     font-size: x-large;

@@ -16,9 +16,18 @@
 /// <reference path="support/StorageManager.ts" />
 /// <reference path="support/PageController.ts" />
 /// <reference path="support/ElementController.ts" />
+/// <reference path="support/LoadTask.ts" />
 
 
-/* Service layer implementation */
+/// <reference path="game/Action.ts" />
+/// <reference path="game/Class.ts" />
+/// <reference path="game/Form.ts" />
+/// <reference path="game/Headline.ts" />
+/// <reference path="game/Diagnosis.ts" />
+/// <reference path="game/Treatment.ts" />
+
+
+/* service layer implementation */
 /// <reference path="service/IServiceInterface.ts" />
 /// <reference path="service/DummyServiceInterface.ts" />
 /// <reference path="service/FileServiceInterface.ts" />

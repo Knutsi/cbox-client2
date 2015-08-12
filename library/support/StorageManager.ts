@@ -10,10 +10,14 @@ module cbox {
 
         serviceRootUrl:string;
 
+        // loading tasks undertaken by the storage manager:
+        tasks:LoadTask[] = [];
+        taskCheckInterval:any;
+
         // internal fields:
         clientpackageRaw:{};
 
-        classes:Class[]
+        classes:Class[];
         forms:Form[];
         actions:Action[];
         diagnosis:Diagnosis[];
@@ -32,18 +36,47 @@ module cbox {
         load(callback:(status:AsyncRequestResult) => void) {
             console.log("Loading clientpackage");
 
+            // set up the tasks to load:
+            var cp_task = new LoadTask("Client package");
+            var dx_task = new LoadTask("Diagnosis package");
+            this.tasks.push(cp_task, dx_task);
+
+            // load and parse client package:
+            this.loadAndParse(
+                cp_task,
+                this.serviceRootUrl + "clientpackage.json",
+                (task:LoadTask, data:string) => { this.parseClientPackage(task, data) });
+
+            // load and parse diagnosis table:
+            this.loadAndParse(
+                dx_task,
+                this.serviceRootUrl + "icd10.txt",
+                (task:LoadTask, data:string) => { this.parseICD10(task, data) });
+
+            // run a timer to check if tasks are done:
+            this.taskCheckInterval = setInterval(() => {
+                if(this.allDone) {
+                    console.log("StorageManager: all tasks done");
+                    callback(new AsyncRequestResult(true));
+                    clearInterval(this.taskCheckInterval);
+                }
+
+            }, 100);
+        }
+
+        loadAndParse(task:LoadTask, url, parser) {
             // creating request to load client package
             // *TODO* Make this cache using local storage - file will get big.
             var req = new XMLHttpRequest();
-            req.open("GET", this.serviceRootUrl + "clientpackage.json", true);
+            req.open("GET", url, true);
 
             // handler to send response to parser if received:
             req.onreadystatechange = () => {
                 if(req.readyState == 4 && req.status == 200) {
-                    this.parseClientPackage(req.responseText);
-                    callback(new AsyncRequestResult(true));
+                    parser(task, req.responseText);
+                    task.setOkAndDone();
                 } else if(req.readyState == 4) {
-                    callback(new AsyncRequestResult(false));
+                    task.setFailAndDone();
                 }
             }
 
@@ -52,12 +85,49 @@ module cbox {
         }
 
 
-        parseClientPackage(text:string) {
+
+        parseClientPackage(task:LoadTask, text:string) {
             this.clientpackageRaw = JSON.parse(text);
 
-            // parse
+            var cp = this.clientpackageRaw;
+
+            // parses:
+            this.actions = cp["Actions"].map((a) => { return Action.fromObject(a) });
+            this.forms = cp["Forms"].map( (f) => { return Form.fromObject(f, this.actions) });
+
+            task.ok = true;
         }
 
+
+        parseICD10(task:LoadTask, text:string) {
+
+            var rows = text.split("\n");
+            this.diagnosis = rows.map( (r) => { return Diagnosis.fromTabDelimitedLine(r) });
+
+            task.ok = true;
+
+            console.log("Parsing ICD10");
+
+
+        }
+
+
+        get allDone():boolean {
+
+            for(var i in this.tasks)
+                if(!this.tasks[i].done)
+                    return false;
+
+            return true;
+        }
+
+        get allOK():Boolean {
+            for(var i in this.tasks)
+                if(!this.tasks[i].ok)
+                    return false;
+
+            return true;
+        }
     }
 
 }
