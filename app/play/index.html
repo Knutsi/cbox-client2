@@ -71,24 +71,15 @@
                         Du kan starte søk ved å skrive her og nå.
                     </div>
                     <div data-cbox-role="list"></div>
-                    <div class="button" data-cbox-role="commit">Utfør plan</div>
-                    <div class="button" data-cbox-role="clear">Fjern valgt</div>
+                    <div class="button" data-cbox-role="commit">Utfør plan</div><div class="button" data-cbox-role="clear">Fjern valgt</div>
                 </div>
 
-                <div data-cbox-controller="ActionView">
+                <div id="actionview" data-cbox-controller="ActionView">
                     <h1>Muligheter</h1>
-                    <div class="button">Anamnese</div>
-                    <div class="button">Klinisk undersøkelse</div>
-                    <div class="button">Blod, beinmarg, biopsi</div>
-                    <div class="button">Radiologi</div>
-                    <div class="button">Genetikk</div>
-                    <div class="button">Mikrobiologi</div>
-                    <div id="actionSearchButton" class="button red">Søk</div>
+                    <span data-cbox-role="list"></span><div id="actionSearchButton" class="button red">Søk</div>
 
                     <div id="controls" class="topline">
-
                         <div id="gotoDnTButton" class="button completetbutton_mod">Diagnose og behandling</div>
-
                     </div>
                 </div>
             </div>
@@ -102,7 +93,7 @@
                 P: 1/100 R: 20% C: 4000,- Time: 00:05:20
             </div>
 
-            <div class="searchpanel" data-cbox-controller="ActionSearchView">
+            <div id="actionsearchview" class="searchpanel" data-cbox-controller="ActionSearchView">
                 <div id="cancelActionSearchButton" class="button">Tilbake</div>
                 <h1 data-cbox-role="headline"  >Finn spørsmål, prøver, prosedyrer, bilder m.m.</h1>
                 <div>
@@ -111,14 +102,7 @@
                         <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
                     </div>
 
-                    <div class="topline" data-cbox-role="results">
-                        <!--
-                        <div class="searchresult"><input type="checkbox" />S-CRP</div>
-                        <div class="searchresult"><input type="checkbox" />S-Hb</div>
-                        <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 1)</div>
-                        <div class="searchresult"><input type="checkbox" />Børsteprøve på transportmedium (Utslett 2)</div>
-                        -->
-                    </div>
+                    <div class="topline" data-cbox-role="results"></div>
                 </div>
 
             </div>

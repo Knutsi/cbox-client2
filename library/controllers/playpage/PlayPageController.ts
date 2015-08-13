@@ -40,7 +40,7 @@ module cbox {
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
 
-            this.element('actionSearchButton').onclick = () => { this.screenManager.activate("actionsearch") };
+            this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
             this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
 
@@ -80,7 +80,8 @@ module cbox {
 
 
         activateActionSearch() {
-            this.screenManager.activate("searchscreen");
+            this.screenManager.activate("actionsearch");
+            (<ActionSearchView>MVC.ids['actionsearchview']).focus();
         }
 
         activateDiagnosisSearch() {
@@ -89,6 +90,10 @@ module cbox {
 
         activateTreatmentSearch() {
             this.screenManager.activate("searchscreen");
+        }
+
+        activateForm(ident:string) {
+            alert(ident);
         }
     }
 }

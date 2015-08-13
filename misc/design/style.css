@@ -122,3 +122,38 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     from {  background-color: rgb(255, 254, 88);  }
     to {  background-color: rgba(251, 255, 223, 1);  }
 }
+
+
+.form {
+    margin-top: 10px;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 10px #848484;
+    border: 1px solid #909090;
+}
+
+.form .content {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.form .contentblock {
+    padding: 10px;
+    border-right: 1px solid #E7EDEF;
+    margin: 2px;
+    width: 220px;
+}
+
+.form h1 { color: rgb(144, 0, 0); border-bottom: 7px solid rgb(144, 0, 0); }
+.form .contentblock h2 { margin: 0; }
+
+.tiny { font-size: xx-small; }
+
+
+
+
+
+
+
+
+

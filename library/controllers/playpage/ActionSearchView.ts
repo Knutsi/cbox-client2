@@ -15,6 +15,10 @@ module cbox {
 
         }
 
+        focus() {
+            this.searchField.focus();
+        }
+
         handleInput(input:string) {
             // for short string we just clear the results:
             if(input.length < 2) {

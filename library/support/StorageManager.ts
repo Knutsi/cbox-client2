@@ -22,6 +22,8 @@ module cbox {
         diagnosis:Diagnosis[];
         treatment:Treatment[];
 
+        // events:
+        onLoadDone:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
         constructor(serviceRootUrl:string) {
             this.serviceRootUrl = serviceRootUrl;
@@ -57,6 +59,7 @@ module cbox {
                 if(this.allDone) {
                     console.log("StorageManager: all tasks done");
                     callback(new AsyncRequestResult(true));
+                    this.onLoadDone.fire(new GenericEventArgs());
                     clearInterval(this.taskCheckInterval);
                 }
 
