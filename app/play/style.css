@@ -62,6 +62,11 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     cursor: pointer;
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
 .buttonbar {  background-color: #E6E6E6; }
 
 .completetbutton_mod {  background-color: #EAF4F7;  font-size: large;  }
@@ -109,6 +114,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .topline {  margin-top: 10px; padding-top:10px; border-top: 1px dotted gray;  }
 .red { background-color: rgb(249, 186, 186); }
 .resize110x100 {  width: 100px;  height:100px; }
+.clickable { cursor: pointer; }
 
 .centercomplete {
     font-size: x-large;

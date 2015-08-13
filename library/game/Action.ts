@@ -2,6 +2,7 @@
  * Created by knutsi on 07/08/15.
  */
 
+/// <reference path="../cboxclient.ts" />
 
 module cbox {
 
@@ -30,6 +31,20 @@ module cbox {
             return action;
         }
 
+
+        /**
+         * Checks if the action applies to the given problem.
+         * **/
+        appliesTo(problem:Problem):boolean {
+
+            for(var i in this.targetClasses) {
+                var class_ = this.targetClasses[i];
+                if(problem.classes.indexOf(class_) != -1)
+                    return true;
+            }
+
+            return false;
+        }
     }
 
 }

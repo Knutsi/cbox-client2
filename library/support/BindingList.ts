@@ -67,7 +67,9 @@ module cbox {
 
 
         forEach(callback) {
-            this.items.forEach(callback);
+            this.items.forEach((item, i) => {
+                callback(item, i, this.selectedIndexes.indexOf(i) != -1);
+            });
         }
 
 
@@ -102,6 +104,30 @@ module cbox {
             return this.selectedIndexes.map( (i) => { return this.items[i] } );
         }
 
+
+        get unselected() {
+            var results:T[] = [];
+
+            this.items.forEach( (item, i) => {
+                if(this.selectedIndexes.indexOf(i) == -1)
+                    results.push(item);
+            })
+
+            return results;
+        }
+
+        clearSelected() {
+            var keep = this.unselected;
+            this.selectedIndexes = [];
+            this.items = keep;
+            this.onChange.fire();
+        }
+
+        clearUnselected() {
+            var keep = this.selected;
+            this.items = keep;
+            this.onChange.fire();
+        }
 
         private updateSelectionIndexes(deleted_index:number) {
             /* When an element is deleted, indexes at higher numbers shift down by one, so we

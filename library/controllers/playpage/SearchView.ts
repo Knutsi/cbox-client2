@@ -17,6 +17,7 @@ module cbox {
         searchField:HTMLInputElement;
         resultRoot:HTMLDivElement;
         needsSearchUpdate:boolean = false;
+        private lastQuery:string;
 
         constructor(root, pc) {
             super(root, pc);
@@ -27,18 +28,26 @@ module cbox {
             this.resultRoot = <HTMLDivElement>this.player("results");
 
             // multiple changes that will trigger update, but only once for a change:
-            this.searchField.onkeydown = () => { this.needsSearchUpdate = true; };
-            this.searchField.onchange = () => { this.needsSearchUpdate = true; };
+            this.searchField.onkeydown = () => { this.triggerUpdate() };
+            this.searchField.onchange = () => { this.triggerUpdate() };
+            (<PlayPageController>pc).game.pendingActions.onChange.subscribe( () => { this.triggerUpdate() });
 
             // start timer that checks if input update is needed:
             setInterval( () => {
                 if(this.needsSearchUpdate) {
                     this.handleInput(this.searchField.value);
+                    this.lastQuery = this.searchField.value;
                     this.needsSearchUpdate = false;
                 }
 
             }, 300);
         }
+
+
+        triggerUpdate() {
+            this.needsSearchUpdate = true;
+        }
+
 
         handleInput(input:string) {
             throw "SearchView handleInput not overridden";

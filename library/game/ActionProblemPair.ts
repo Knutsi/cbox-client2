@@ -16,6 +16,10 @@ module cbox {
             this.problem = problem;
         }
 
+        get displayName():string {
+            return this.action.title + " (" + this.problem.title + ")";
+        }
+
     }
 
 

@@ -197,6 +197,38 @@ module cbox {
             this.go(ClientState.READY);
         }
 
+
+        private getPending(action_ident:string, problem_ident:string) {
+            for(var i in this.pendingActions.items) {
+                var ap = this.pendingActions.items[i];
+
+                if(ap.action.ident == action_ident && ap.problem.ident == problem_ident)
+                    return ap;
+            }
+
+            return null;
+
+        }
+
+
+        hasPending(ap_pair:ActionProblemPair):boolean {
+
+            if(this.getPending(ap_pair.action.ident, ap_pair.problem.ident))
+                return true;
+            else
+                return false;
+        }
+
+
+        togglePending(ap_pair:ActionProblemPair) {
+
+            var pending = this.getPending(ap_pair.action.ident, ap_pair.problem.ident);
+            if(!pending)
+                this.pendingActions.add([ap_pair]);
+            else
+                this.pendingActions.remove([pending]);
+        }
+
     }
 
 }
