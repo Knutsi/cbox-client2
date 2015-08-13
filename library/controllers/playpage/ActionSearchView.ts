@@ -22,21 +22,19 @@ module cbox {
 
             // get current storage:
             var pc = <PlayPageController>this.pageController;
-            var storage = pc.storage;
-
-            // get input:
-
 
             // find all actions matching the name:
-            var found:Action[] = [];
-            storage.actions.forEach( (action) => {
-
-                // FIXME this should work on problem basis!
+            var found:ActionProblemPair[] = [];
+            pc.storage.actions.forEach( (action) => {
 
                 // match query with title:
                 if(action.title.toLowerCase().indexOf(input.toLowerCase()) != -1){
 
-                    found.push(action);
+                    pc.game.case_.problems.forEach( (existing_prob) => {
+
+
+                    } )
+
                 }
             });
 

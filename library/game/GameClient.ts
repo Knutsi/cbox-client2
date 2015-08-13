@@ -27,7 +27,7 @@ module cbox {
         storage:StorageManager;
 
         // internal fields:
-        pendingActions:BindingList<PendingAction> = new BindingList<PendingAction>();
+        pendingActions:BindingList<ActionProblemPair> = new BindingList<ActionProblemPair>();
         pendingDiagnosis:BindingList<DiagnosisChoice> = new BindingList<DiagnosisChoice>();
         pendingTreatments:BindingList<TreatmentChoice> = new BindingList<TreatmentChoice>();
 

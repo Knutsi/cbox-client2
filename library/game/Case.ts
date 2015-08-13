@@ -8,7 +8,7 @@ module cbox {
 
     export class Case {
 
-        static ROOT_IDENT:string = "_Root";
+        static ROOT_IDENT:string = "_root";
 
         problems:Problem[] = [];
 
@@ -22,7 +22,6 @@ module cbox {
 
         }
 
-
         get rootProblem():Problem {
 
             for(var i in this.problems) {
@@ -34,6 +33,9 @@ module cbox {
             }
         }
 
+        addProblem(problem:Problem) {
+            this.problems.push(problem);
+        }
 
     }
 

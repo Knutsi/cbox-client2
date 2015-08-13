@@ -9,6 +9,8 @@ module cbox {
     export class Problem {
 
         ident:string;
+        title:string;
+        classes:string[] = ["General"];
         results:TestResult[] = [];
 
         addResult(result:TestResult) {
@@ -22,6 +24,15 @@ module cbox {
 
             // if not, we add it:
             this.results.push(result);
+        }
+
+        addResultQuick(key, value, type="TEXT", prefix = null) {
+            var result = new TestResult();
+            result.key = key;
+            result.values[0] = value;
+            result.prefix = prefix;
+
+            this.addResult(result);
         }
     }
 }
