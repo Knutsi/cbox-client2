@@ -106,8 +106,6 @@ module cbox {
             task.ok = true;
 
             console.log("Parsing ICD10");
-
-
         }
 
 

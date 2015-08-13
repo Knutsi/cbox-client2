@@ -14,7 +14,12 @@ module cbox {
 
         extend(new_results:Problem[]) {
 
-            throw "Not implemented!";
+            new_results.forEach((problem) => {
+
+                // find matching problem, or add 
+
+            })
+
         }
 
 

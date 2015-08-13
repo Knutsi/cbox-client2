@@ -12,7 +12,16 @@ module cbox {
         results:TestResult[] = [];
 
         addResult(result:TestResult) {
-            throw "Not implemented";
+
+            // if value exists, we replace it:
+            for(var i in this.results)
+                if(this.results[i].key == result.key) {
+                    this.results[i] = result;
+                    return;
+                }
+
+            // if not, we add it:
+            this.results.push(result);
         }
     }
 }
