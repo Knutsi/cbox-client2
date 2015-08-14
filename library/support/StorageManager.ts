@@ -51,7 +51,7 @@ module cbox {
             // load and parse diagnosis table:
             this.loadAndParse(
                 dx_task,
-                this.serviceRootUrl + "icd10.txt",
+                this.serviceRootUrl + "icd10no.txt",
                 (task:LoadTask, data:string) => { this.parseICD10(task, data) });
 
             // run a timer to check if tasks are done:

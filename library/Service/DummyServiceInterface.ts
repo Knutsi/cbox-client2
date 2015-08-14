@@ -35,7 +35,7 @@ module cbox {
             prob1.addResultQuick("clinic.cor", "Regelmessig aksjon, ingen bilyder.");
             prob1.addResultQuick("clinic.pulm", "Normale respirasjonslyder.  Ingen fremmelyder.");
 
-            prob1.addResultQuick("lab.vblood.crp", "233", "NUMBER", "S-CRP");
+            prob1.addResultQuick("lab.vblood.crp", Math.floor(Math.random() * 400), "NUMBER", "S-CRP");
             prob1.addResultQuick("lab.vblood.hemoglobin", "9.7", "NUMBER", "S-Hb");
 
             case_.addProblem(prob1);

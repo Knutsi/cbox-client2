@@ -38,5 +38,6 @@ module cbox {
         static stripFinalDot(str:string):string {
             return str;
         }
+
     }
 }

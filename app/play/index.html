@@ -39,19 +39,8 @@
 
             <div class="std_pad case" data-cbox-controller="CaseView">
                 <h1 data-cbox-role="title">Kvinne 99, gradvis økende dyspne</h1>
-                <div data-cbox-role="case">
-                    <!--<p>
-                       Hoste 3 uker.  Ikke produktiv.  Lett redusert allmenntilstand. Lettgradig feber, varierer gjennom dagen.  Ikke nattesvette.  10 kg vekttap siste tre mnd, utilsiktet. Ikke hovne lyfeknuter.  Pensjonert enke.  Bor alene i hus i 3 etg.  <span class="flash_highlight">Yrkesanamnese: kokk 3 år, sekretær 15 år.</span>  Røyker ikke.  Røykeksponert på jobb.  Ikke smerter respirasjon.  3 barn.  Alle barn friske.  Opphopning av hjertesykdom i familien.
-                    </p>
-                    <p>
-                        Lett redusert allmenntilstand.  Ikke generell glandelsvulst.  Huden er tørr og varm.  Afebril.  Pulm: dempning over høyre lunges nedre bakflate. Normal respirasjonslyd. Cor: u.a.  Abdomen: u.a.
-                    </p>
-                    <p>CRP:23*. SR: 30*. U-stix: +1 nitritt</p>
-
-                    <p><span class="problem_title">Utslett venstre ankel</span>: eksematøst utslett venster ankel. 5x7 cm areal. Ikke palpasjonsømt.  Klør. Gule kruster. </p>
-                    -->
-                </div>
-                <div id="assetbox">
+                <div data-cbox-role="case"></div>
+                <!--<div id="assetbox">
                     <div class="asset">
                         ASSET<br />
                         ECG
@@ -61,9 +50,9 @@
                         ASSET<br />
                         ECG
                     </div>
-
-                </div>
+                </div>-->
             </div>
+
             <div class="std_pad actions" >
                 <div data-cbox-controller="TodoView">
                     <h1>Todo</h1>
@@ -96,8 +85,36 @@
             </div>
 
             <div id="actionsearchview" class="searchpanel" data-cbox-controller="ActionSearchView">
-                <div id="cancelActionSearchButton" class="button">Tilbake</div>
+                <div id="cancelActionSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
                 <h1 data-cbox-role="headline"  >Finn spørsmål, prøver, prosedyrer, bilder m.m.</h1>
+                <div>
+
+                    <div>
+                        <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
+                    </div>
+
+                    <div class="topline" data-cbox-role="results"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DIAGNOSIS SEARCH SCREEN -->
+        <div id="dxsearch" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div id="dxsearchview" class="searchpanel" data-cbox-controller="DiagnosisSearchView">
+                <div id="cancelDxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
+                <h1 data-cbox-role="headline"  >Finn diagoser, diagnosekoder</h1>
+                <div class="tiny">
+                    Tips: Utfyllende kodesøk
+                    <a target="_blank" href="https://finnkode.helsedirektoratet.no/#|icd10|ICD10SysDel|-1|flow">hos Helsedirektoratets</a>
+                    (nytt vindu)</a>
+                </div>
                 <div>
 
                     <div>
@@ -121,19 +138,15 @@
             </div>
 
             <div class="std_pad" data-cbox-controller="DiagnosisPickerView">
-                <div id="cancelDnTButton" class="button">Tilbake</div>
+                <div id="cancelDnTButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
                 <div class="snapleft_on_landscape">
                     <h1 >
                         Hva er det pasienten feiler?
                     </h1>
-                    <input type="text" class="largesearchbox" placeholder="Søk.." />
+                    <input id="dxSearchField" type="text" class="largesearchbox" placeholder="Søk.." />
+                    <div data-cbox-role="list"></div>
                     <div>
-                        <div class="searchresult"><input type="checkbox" /> Primær hypertensjon</div>
-                        <div class="searchresult"><input type="checkbox" /> KOLS</div>
-                    </div>
-                    <div>
-                        <div class="button">Fjern merkede</div>
-
+                        <div class="button" data-cbox-role="clear">Fjern merkede</div>
                     </div>
                 </div>
 

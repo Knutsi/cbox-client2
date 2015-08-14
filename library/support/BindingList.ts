@@ -85,6 +85,7 @@ module cbox {
             // if index is in collection and not already selected, we add it:
             if(index != -1 && this.selectedIndexes.indexOf(index) == -1) {
                 this.selectedIndexes.push(index);
+                this.onChange.fire(new BindingListEventArgs([]));
             }
         }
 
@@ -94,9 +95,12 @@ module cbox {
             if(item_index != -1) {
                 // item exists, is it selected?
                 var selection_index = this.selectedIndexes.indexOf(item_index);
-                if(selection_index != -1)
+                if(selection_index != -1) {
                     this.selectedIndexes.splice(selection_index, 1);
+                    this.onChange.fire(new BindingListEventArgs([]));
+                }
             }
+
         }
 
 

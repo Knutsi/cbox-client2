@@ -28,7 +28,7 @@ module cbox {
 
         // internal fields:
         pendingActions:BindingList<ActionProblemPair> = new BindingList<ActionProblemPair>();
-        pendingDiagnosis:BindingList<DiagnosisChoice> = new BindingList<DiagnosisChoice>();
+        pendingDiagnosis:BindingList<Diagnosis> = new BindingList<Diagnosis>();
         pendingTreatments:BindingList<TreatmentChoice> = new BindingList<TreatmentChoice>();
 
         case_:Case;
@@ -238,6 +238,20 @@ module cbox {
                 this.pendingActions.add([ap_pair]);
             else
                 this.pendingActions.remove([pending]);
+        }
+
+
+        hasPendingDx(dx:Diagnosis) {
+            return this.pendingDiagnosis.items.indexOf(dx) != -1;
+        }
+
+
+        togglePendingDx(dx:Diagnosis) {
+            if(this.hasPendingDx(dx))
+                this.pendingDiagnosis.remove([dx]);
+            else
+                this.pendingDiagnosis.add([dx])
+
         }
 
     }

@@ -13,8 +13,15 @@ module cbox {
         storage:StorageManager;
         game:GameClient;
 
+        debugHash:string;
+
         constructor() {
             super();
+
+            // DEBUG - catch initial hash:
+            if(window.location.hash)
+                this.debugHash = window.location.hash.substr(1);
+
 
             // setup the game client:
             var serviceUrl = "../../testservice/";
@@ -47,6 +54,9 @@ module cbox {
             this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
 
+            this.element('dxSearchField').onclick = () => { this.activateDiagnosisSearch() };
+            this.element('cancelDxSearchButton').onclick = () => { this.screenManager.activate("dntscreen") };
+
             // respond to hash changes:
             window.onhashchange = () => {
                 this.screenManager.activate(document.location.hash.substr(1), false);
@@ -64,10 +74,15 @@ module cbox {
 
                 case ClientState.READY:
                     this.screenManager.activate("readyscreen");
+                    if(this.debugHash)
+                        this.game.play();
                     break;
 
                 case ClientState.PLAYING_CASE:
                     this.screenManager.activate("playscreen");
+                    if(this.debugHash)
+                        this.screenManager.activate(this.debugHash);
+
                     break;
 
                 case ClientState.PLAYING_FOLLOWUP:
@@ -88,11 +103,12 @@ module cbox {
         }
 
         activateDiagnosisSearch() {
-            this.screenManager.activate("searchscreen");
+            this.screenManager.activate("dxsearch");
+            (<DiagnosisSearchView>MVC.ids['dxsearchview']).focus();
         }
 
         activateTreatmentSearch() {
-            this.screenManager.activate("searchscreen");
+            this.screenManager.activate("dssnsearch");
         }
 
         activateForm(ident:string) {

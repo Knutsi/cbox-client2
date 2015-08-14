@@ -23,6 +23,13 @@ module cbox {
 
             return dx;
         }
+
+        get displayName():string {
+            if(this.code.length > 3)
+                return this.title + " (" + this.code.substr(0,3) + "." + this.code.substr(3) + ") ";
+            else
+                return this.title + " (" + this.code + ") ";
+        }
     }
 
 }
