@@ -14,6 +14,14 @@ module cbox {
 
         // values for context tracking and highlighting:
         actionContext:Action = null; // the action context the value was requested in:
-        commitNr:number = 0; // the number of the commit that yielded the value
+        committedInVersion:number = 0; // the number of the commit that yielded the value
+
+
+        get displayString():string {
+            if(!this.prefix)
+                return this.values[0];
+            else
+                return this.prefix + " " + this.values[0];
+        }
     }
 }

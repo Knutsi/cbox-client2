@@ -105,7 +105,7 @@ module cbox {
                         ev.stopPropagation();
                     };
 
-                    checkbox.onchange = select;
+                    //checkbox.onchange = select;
                     div.onclick = select;
                 }
             })

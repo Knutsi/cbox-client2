@@ -36,6 +36,10 @@ module cbox {
         score:Scorecard;
         followupQuestions:BindingList<FollowupQuestion> = new BindingList<FollowupQuestion>();
 
+        // events:
+        onCaseUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
+        onScoreUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
+
         constructor(service:IServiceInterface, storage:StorageManager) {
             super();    // constructor for state machine
 
@@ -114,6 +118,10 @@ module cbox {
                 if(status.ok) {
                     this.case_ = case_;
                     this.go(ClientState.PLAYING_CASE);
+
+                    this.onCaseUpdated.fire(new GenericEventArgs());
+                    this.onScoreUpdated.fire(new GenericEventArgs());
+
                 } else {
                     alert("startGame on service failed");
                     this.go(ClientState.ERROR);
@@ -136,6 +144,9 @@ module cbox {
                     this.case_.extend(results);
                     this.assets.add(assets);
                     this.score = score;
+
+                    this.onCaseUpdated.fire(new GenericEventArgs());
+                    this.onScoreUpdated.fire(new GenericEventArgs());
 
                 } else {
                     alert("Committing actions failed");

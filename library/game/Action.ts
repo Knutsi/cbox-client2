@@ -14,7 +14,9 @@ module cbox {
         risk:number;
         targetClasses:string[];
         title:string;
+
         yields:string[];
+        doesNotGroup:boolean = false;
 
         static fromObject(obj:{}):Action {
 
@@ -26,7 +28,9 @@ module cbox {
             action.risk = obj["Risk"];
             action.targetClasses = obj["TargetClasses"];
             action.title = obj["Title"];
+
             action.yields = obj["Yield"];
+            action.doesNotGroup = obj["DoesNotGroup"] || false;
 
             return action;
         }

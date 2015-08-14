@@ -5,6 +5,9 @@
 /* THIS HAS TO GO FIRST - OTHERS DEPEND ON IT*/
 /// <reference path="support/MVCController.ts" />
 
+/// <reference path="support/RenderHelper.ts" />
+
+
 /* Support classes*/
 /// <reference path="support/AsyncRequestResult.ts" />
 /// <reference path="support/BindingList.ts" />

@@ -66,6 +66,7 @@ module cbox {
             }, 100);
         }
 
+
         loadAndParse(task:LoadTask, url, parser) {
             // creating request to load client package
             // *TODO* Make this cache using local storage - file will get big.
@@ -121,6 +122,7 @@ module cbox {
             return true;
         }
 
+
         get allOK():Boolean {
             for(var i in this.tasks)
                 if(!this.tasks[i].ok)
@@ -128,6 +130,28 @@ module cbox {
 
             return true;
         }
+
+
+        get headlines():Headline[] {
+            var headlines:Headline[] = [];
+            this.forms.forEach( (f) => { headlines = headlines.concat(f.headlines);});
+
+            return headlines;
+        }
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

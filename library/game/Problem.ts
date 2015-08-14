@@ -36,7 +36,15 @@ module cbox {
         }
 
         get isRoot():boolean {
-            return this.ident == "_root";
+            return this.ident == Case.ROOT_IDENT;
+        }
+
+        get(key:string):TestResult {
+            for(var i in this.results)
+                if(this.results[i].key == key)
+                    return this.results[i];
+
+            return null;
         }
 
     }
