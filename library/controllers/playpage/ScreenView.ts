@@ -9,12 +9,14 @@ module cbox {
 
     export class ScreenView extends ElementController{
 
+        screen:Screen;
+
         constructor(root:HTMLDivElement, pc:PlayPageController) {
             super(root, pc);
 
             // screen view register with page controller:
-            var screen = new Screen(root.id, root.id, root);
-            pc.screenManager.register(screen);
+            this.screen = new Screen(root.id, root.id, root);
+            pc.screenManager.register(this.screen);
         }
 
     }

@@ -30,7 +30,7 @@ module cbox {
 
             // re-render whenever the pending list changes:
             controller.game.pendingActions.onChange.subscribe(() => {
-                this.update(<PlayPageController>this.pageController);
+                this.update();
             })
 
             // commit actions when asked:

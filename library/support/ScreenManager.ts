@@ -11,14 +11,19 @@ module cbox {
         screens:Screen[] = [];
         current:Screen = null;
 
+
         register(screen:Screen) {
             this.screens.push(screen);
         }
 
+
         activate(ident:string, sethash=true) {
 
+            // dissasemble ident into screen and it's arguments:
+            var args = ident.split(".");
+
             // get screen:
-            var screen = this.get(ident);
+            var screen = this.get(args[0]);
             if(!screen) throw "Tried to activate unregistered screen: " + ident;
 
             // check we are not going to the one we are at already:
@@ -39,7 +44,7 @@ module cbox {
             screen.root.style.display = "block";
 
             // call overrides for post activation/deactivation:
-            screen.activated();
+            screen.activated(args);
             screen.onActivated.fire();
 
             if(prev_screen) {

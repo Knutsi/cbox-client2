@@ -35,6 +35,10 @@ module cbox {
             this.addResult(result);
         }
 
+        get isRoot():boolean {
+            return this.ident == "_root";
+        }
+
     }
 }
 

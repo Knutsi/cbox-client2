@@ -17,7 +17,10 @@ module cbox {
         }
 
         get displayName():string {
-            return this.action.title + " (" + this.problem.title + ")";
+            if(this.problem.isRoot)
+                return this.action.title;
+            else
+                return this.action.title + " (" + this.problem.title + ")";
         }
 
     }

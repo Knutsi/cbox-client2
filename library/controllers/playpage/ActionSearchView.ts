@@ -20,6 +20,7 @@ module cbox {
         }
 
         handleInput(input:string) {
+
             // for short string we just clear the results:
             if(input.length < 2) {
                 this.resultRoot.innerHTML = "";

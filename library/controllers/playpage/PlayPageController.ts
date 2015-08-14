@@ -36,9 +36,12 @@ module cbox {
             this.element('startGameButton').onclick = () => { this.game.play() };
             this.element('gotoDnTButton').onclick = () => { this.screenManager.activate("dntscreen") };
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
+            this.element('cancelFormButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
+
+
 
             this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
             this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
@@ -93,7 +96,8 @@ module cbox {
         }
 
         activateForm(ident:string) {
-            alert(ident);
+            this.screenManager.activate("formscreen." + ident);
+            (<FormView>MVC.ids["formview"]).formID = ident;
         }
     }
 }

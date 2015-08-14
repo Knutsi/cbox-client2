@@ -27,10 +27,9 @@ module cbox {
         }
 
 
-
         public created()  {}
         public preActivate() {}
-        public activated() {}
+        public activated(args:string[]) {}
         public preDeactivate() {}
         public deactivated() {}
     }
