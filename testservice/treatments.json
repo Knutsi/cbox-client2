@@ -1,0 +1,20 @@
+{
+    "Treatments": [
+        {
+            "Ident": "betareceptorantagonist",
+            "Title": "Betareseptorantagonist"
+            "Specifications": ["metoprolol"]
+        },
+        {
+            "Ident": "metoprolol",
+            "Title": "Metoprolon",
+            "Modifiers": ["Øk dose", "Reduser/seponer"]
+        },
+        {
+            "Ident": "furix",
+            "Title": "Furix",
+            "Modifiers": ["Øk dose", "Reduser/seponer"]
+        }
+    ]
+
+}
