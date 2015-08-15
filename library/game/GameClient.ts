@@ -35,10 +35,12 @@ module cbox {
         assets:BindingList<Asset> = new BindingList<Asset>();
         score:Scorecard;
         followupQuestions:BindingList<FollowupQuestion> = new BindingList<FollowupQuestion>();
+        finalScore:FinalScore;
 
         // events:
         onCaseUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
         onScoreUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
+        onFinalScoreUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
         constructor(service:IServiceInterface, storage:StorageManager) {
             super();    // constructor for state machine
@@ -117,6 +119,7 @@ module cbox {
             this.service.startGame(specs, (status, case_) => {
                 if(status.ok) {
                     this.case_ = case_;
+                    this.score = new Scorecard();
                     this.go(ClientState.PLAYING_CASE);
 
                     this.onCaseUpdated.fire(new GenericEventArgs());
@@ -191,10 +194,13 @@ module cbox {
             this.go(ClientState.AWAIT_SCORE_AND_COMMENT);
 
             // send followupQuestions answers to service:
-            this.service.commitFollowup(this.followupQuestions.items, (status, score, comments) => {
+            this.service.commitFollowup(this.followupQuestions.items, (status, finalscore) => {
 
                 if(status.ok) {
+                    this.finalScore = finalscore;
                     this.go(ClientState.SCORE_AND_COMMENT);
+                    this.onFinalScoreUpdated.fire(new GenericEventArgs());
+
                 } else {
                     alert("Commiting followupQuestions/retriving score failed");
                     this.go(ClientState.ERROR);

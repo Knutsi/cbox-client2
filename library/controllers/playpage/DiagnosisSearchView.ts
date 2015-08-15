@@ -17,10 +17,13 @@ module cbox {
 
         focus() {
             this.searchField.focus();
+            this.searchField.value = "";
             this.render();
         }
 
         handleInput(input:string) {
+
+            this.searchField.scrollIntoView(true);
 
             // for short string we just clear the results:
             if(input.length < 2) {
@@ -70,7 +73,7 @@ module cbox {
                 checkbox.checked = pc.game.hasPendingDx(dx);
 
                 // add checkbox events:
-                checkbox.onchange = () => {
+                div.onclick = () => {
                     pc.game.togglePendingDx(dx);
                     checkbox.checked = pc.game.hasPendingDx(dx);
                 }

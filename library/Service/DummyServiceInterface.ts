@@ -11,6 +11,8 @@ module cbox {
      */
     export class DummyServiceInterface implements IServiceInterface{
 
+        dummyScore:Scorecard = new Scorecard();
+
         startGame(
             specs:any,
             callback:(status:cbox.AsyncRequestResult, case_:cbox.Case)=>void)
@@ -68,7 +70,13 @@ module cbox {
             problem.ident = "_root";
             problem.addResultQuick("lab.vblood.trombocytes", 432, "NUMBER", "TBC");
 
-            callback(new AsyncRequestResult(true), [problem], [], new Scorecard());
+            // fake score:
+            this.dummyScore.timeMS += 55000;
+            this.dummyScore.risk += 0.1;
+            this.dummyScore.comfort += 1;
+            this.dummyScore.cost += 1000;
+
+            callback(new AsyncRequestResult(true), [problem], [], this.dummyScore);
         }
 
 
@@ -79,7 +87,7 @@ module cbox {
                 status:cbox.AsyncRequestResult,
                 followup:cbox.FollowupQuestion[])=>void)
         {
-            callback(new AsyncRequestResult(true), []);
+            callback(new AsyncRequestResult(true), DummyServiceInterface.demoQuestions);
         }
 
 
@@ -87,10 +95,41 @@ module cbox {
             followup:cbox.FollowupQuestion[],
             callback:(
                 status:cbox.AsyncRequestResult,
-                score:cbox.Scorecard,
-                comments:string[])=>void)
+                score:cbox.FinalScore)=>void)
         {
-            callback(new AsyncRequestResult(true), new Scorecard(), []);
+            callback(new AsyncRequestResult(true), DummyServiceInterface.demoFinalScore);
+        }
+
+
+        static get demoQuestions() {
+            var q1 = new FollowupQuestion();
+            q1.question = "Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?";
+            q1.options = ["Småcellet", "Plateepitelkarsinom", "Storcellekarsinom"];
+            q1.type = FollowupQuestion.TYPE_SINGLE_CHOICE;
+
+            var q2 = new FollowupQuestion();
+            q2.question = "Hvilke av de følgende er røde flagg ved ryggsmerter?";
+            q2.options = [
+                "Smerteintensitet varierer, ofte bedre i ro",
+                "Utbredte og eventuelle progrediserende nevrologiske utfall",
+                "Alder under 20 eller over 55 år",
+                "Hosting/nysing reproduserer smerteutstrålingen"];
+            q2.type = FollowupQuestion.TYPE_MULTIPLE_CHOICE;
+
+            return [q1, q2];
+        }
+
+
+        static get demoFinalScore() {
+            var fs = new FinalScore();
+
+            fs.points = Math.floor(Math.random() * 100);
+            fs.calculationComments = ["3 av 5 relevante diagnoser", "2 av 2 likeverdige behandlinger valg"];
+            fs.caseComments = [
+                "Primærdiagnose varicellapneumoni",
+                "Pasient med høy risiko for lungecancer grunnet over 15 pakkeår"];
+
+            return fs;
         }
 
     }

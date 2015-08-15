@@ -34,7 +34,12 @@
         <div id="playscreen" class="screen" data-cbox-controller="ScreenView">
 
             <div class="accent_header std_pad" data-cbox-controller="ScoreView">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
             </div>
 
             <div class="std_pad case" data-cbox-controller="CaseView">
@@ -80,9 +85,15 @@
         <!-- ACTION SEARCH SCREEN -->
         <div id="actionsearch" class="screen" data-cbox-controller="ScreenView">
 
-            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
             </div>
+
 
             <div id="actionsearchview" class="searchpanel" data-cbox-controller="ActionSearchView">
                 <div id="cancelActionSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
@@ -102,9 +113,15 @@
         <!-- DIAGNOSIS SEARCH SCREEN -->
         <div id="dxsearch" class="screen" data-cbox-controller="ScreenView">
 
-            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
             </div>
+
 
             <div id="dxsearchview" class="searchpanel" data-cbox-controller="DiagnosisSearchView">
                 <div id="cancelDxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
@@ -126,9 +143,15 @@
         <!-- TREATMENT SEARCH SCREEN -->
         <div id="rxsearch" class="screen" data-cbox-controller="ScreenView">
 
-            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
             </div>
+
 
             <div id="rxsearchview" class="searchpanel" data-cbox-controller="TreatmentSearchView">
                 <div id="cancelRxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
@@ -149,9 +172,15 @@
         <!-- DnTSCREEN -->
         <div id="dntscreen" class="screen" data-cbox-controller="ScreenView">
 
-            <div class="std_pad accent_header" data-cbox-controller="ScoreView">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
             </div>
+
 
             <div class="std_pad" data-cbox-controller="DiagnosisPickerView">
                 <div id="cancelDnTButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
@@ -189,10 +218,15 @@
 
         <!-- FORMSCREEN -->
         <div id="formscreen" class="screen" data-cbox-controller="ScreenView">
-            <div class="std_pad accent_header">
-                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
-            </div>
 
+            <div class="accent_header std_pad" data-cbox-controller="ScoreView">
+                <table><tr>
+                    <td data-cbox-role="time">0:0:0:00</td>
+                    <td data-cbox-role="comfort"></td>
+                    <td data-cbox-role="risk"></td>
+                    <td data-cbox-role="cost"></td>
+                </tr></table>
+            </div>
 
             <div id="formview" class="std_pad" data-cbox-controller="FormView">
                 <div id="cancelFormButton" class="button" >Tilbake <span class="tiny">(esc)</span></div>
@@ -210,22 +244,24 @@
         <!-- QUIZSCREEN -->
         <div id="followupscreen" class="screen" data-cbox-controller="ScreenView">
 
-            <div class="std_pad" data-cbox-controller="FollowupView">
+            <div class="std_pad"  data-cbox-controller="FollowupView">
                 <h1>Oppfølgingsspørsmål</h1>
-                <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
-                <input type="radio" name="q1" /><label>Småcellet</label><br />
-                <input type="radio" name="q1"  /><label>Plateepitelkarsinom</label><br />
-                <input type="radio" name="q1"  /><label>Storcellekarsinom</label>
+                <div data-cbox-role="questions">
+                    <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
+                    <input type="radio" name="q1" /><label>Småcellet</label><br />
+                    <input type="radio" name="q1"  /><label>Plateepitelkarsinom</label><br />
+                    <input type="radio" name="q1"  /><label>Storcellekarsinom</label>
 
-                <p>Lungekreft bør vurderes hos personer som røyker > 15 sigaretter pr. dag med persisterende/forværret hoste i over..</p>
-                <input type="radio" name="q2" /><label>2 uker</label><br />
-                <input type="radio" name="q2"  /><label>6 uker</label><br />
-                <input type="radio" name="q2"  /><label>12 uker</label>
+                    <p>Lungekreft bør vurderes hos personer som røyker > 15 sigaretter pr. dag med persisterende/forværret hoste i over..</p>
+                    <input type="radio" name="q2" /><label>2 uker</label><br />
+                    <input type="radio" name="q2"  /><label>6 uker</label><br />
+                    <input type="radio" name="q2"  /><label>12 uker</label>
 
-                <p>Hvor lenge kan infeksjon med mycoplasma pneumonia påvises i nasofarynxprøve?</p>
-                <input type="radio" name="q3" /><label>Maksimalt 2 uker fra hostestart</label><br />
-                <input type="radio" name="q3"  /><label>Maksimalt 4 uker fra hostestart</label><br />
-                <input type="radio" name="q3"  /><label>Så lenge pasienten hoster</label>
+                    <p>Hvor lenge kan infeksjon med mycoplasma pneumonia påvises i nasofarynxprøve?</p>
+                    <input type="radio" name="q3" /><label>Maksimalt 2 uker fra hostestart</label><br />
+                    <input type="radio" name="q3"  /><label>Maksimalt 4 uker fra hostestart</label><br />
+                    <input type="radio" name="q3"  /><label>Så lenge pasienten hoster</label>
+                </div>
             </div>
 
             <div class="std_pad buttonbar" >
@@ -240,9 +276,9 @@
 
             <div class="std_pad" data-cbox-controller="FinalScoreView">
                 <h1>Resultat</h1>
-                <div class="score">78 poeng <span class="comment">av 100</span></div>
+                <div class="score"><span data-cbox-role="score">78</span> poeng <span class="comment">av 100</span></div>
                 <div>
-                    <ul>
+                    <ul data-cbox-role="score-comment-list">
                         <li>3 av 5 relevante diagnoser</li>
                         <li>Relevante behandlinger</li>
                         <li>3 av 3 riktige oppføgingsspørsmål</li>
@@ -251,7 +287,7 @@
 
                 <div data-cbox-controller="CommentView">
                     <h2>Kommentarer</h2>
-                    <ul>
+                    <ul data-cbox-role="case-comment-list">
                         <li>Pasienten hadde mycoplasma infeksjon </li>
                         <li>Pasiente hadde snikende tungpust, et uvanlig debutsymptom for lungecancer</li>
                     </ul>

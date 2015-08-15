@@ -28,6 +28,8 @@ module cbox {
                 return;
             }
 
+            this.searchField.scrollIntoView(true);
+
             // get current storage:
             var pc = <PlayPageController>this.pageController;
 

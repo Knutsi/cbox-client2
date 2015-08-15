@@ -6,6 +6,12 @@ module cbox {
 
     export class FollowupQuestion {
 
-        userAnswer:string;
+        static TYPE_MULTIPLE_CHOICE = "checkbox";
+        static TYPE_SINGLE_CHOICE = "radio";
+
+        type:string;
+        question:string;
+        options:string[] = [];
+        userAnswerIndexes:number[] = [];
     }
 }

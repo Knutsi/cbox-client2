@@ -12,7 +12,7 @@
 #debug:hover { right: 0px; }
 
 /* HTML ELEMENTS */
-body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 1.6;}
+body { margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 1.6; font-size: 16px;}
 h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 /*  COMPONENTS */
@@ -154,7 +154,10 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 
 
-
+.accent_header td {
+    border-right: 1px solid lightgray;
+    padding: 0 5px;
+}
 
 
 

@@ -6,7 +6,10 @@ module cbox {
 
     export class Scorecard {
 
-
+        timeMS:number = 0;
+        comfort:number = 0;
+        risk:number = 0.0;
+        cost:number = 0;
     }
 
 }

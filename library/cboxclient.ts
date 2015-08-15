@@ -49,6 +49,7 @@
 /// <reference path="game/TreatmentChoice.ts" />
 /// <reference path="game/DiagnosisChoice.ts" />
 /// <reference path="game/FollowupQuestion.ts" />
+/// <reference path="game/FinalScore.ts" />
 
 /* Element Controllers */
 /// <reference path="controllers/playpage/PlayPageController.ts" />

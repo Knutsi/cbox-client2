@@ -19,9 +19,8 @@ module cbox {
             super();
 
             // DEBUG - catch initial hash:
-            if(window.location.hash)
-                this.debugHash = window.location.hash.substr(1);
-
+            /*if(window.location.hash)
+                this.debugHash = window.location.hash.substr(1);*/
 
             // setup the game client:
             var serviceUrl = "../../testservice/";
