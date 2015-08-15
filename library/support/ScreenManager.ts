@@ -12,7 +12,12 @@ module cbox {
         screens:Screen[] = [];
         current:Screen = null;
 
-        dataflag:ScreenDataFlag = ScreenDataFlag.INITIAL;
+        dataflag:ScreenDataFlag = ScreenDataFlag.STORED;
+
+        // special event that signals data changes by controllers when screen is active:
+        // used by buttons that needs to change state when this happens:
+        onDataChangeSignaled:Event<GenericEventArgs> = new Event<GenericEventArgs>();
+        onSavedSignaled:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
         register(screen:Screen) {
             this.screens.push(screen);
@@ -58,12 +63,23 @@ module cbox {
             if(sethash)
                 document.location.hash = ident;
 
-            // reset data flag:
-            this.dataflag = ScreenDataFlag.INITIAL;
+            // reset data flag on screen changed...  very hacky, special case.. ):  :
+            // (time is short)
+            this.signalDataSaved();
+
+            // move to top of screen:
+            document.body.scrollIntoView(true);
         }
 
-        setDataChanged() {
+        signalDataChanged() {
             this.dataflag = ScreenDataFlag.CHANGED;
+            this.onDataChangeSignaled.fire(new GenericEventArgs());
+        }
+
+
+        signalDataSaved() {
+            this.dataflag = ScreenDataFlag.STORED;
+            this.onSavedSignaled.fire(new GenericEventArgs());
         }
 
 

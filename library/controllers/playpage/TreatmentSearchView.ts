@@ -28,7 +28,7 @@ module cbox {
                 return;
             }
 
-            this.searchField.scrollIntoView(true);
+            //this.searchField.scrollIntoView(true);
 
             // get current storage:
             var pc = <PlayPageController>this.pageController;
@@ -82,6 +82,7 @@ module cbox {
                     rx.nextModifier();
                     modifier.innerText = rx.modifier;
                     ev.stopPropagation();
+                    pc.screenManager.signalDataChanged();
                 }
             }
 
@@ -95,6 +96,7 @@ module cbox {
             div.onclick = () => {
                 pc.game.togglePendingRx(rx);
                 checkbox.checked = pc.game.hasPendingRx(rx);
+                pc.screenManager.signalDataChanged();
             };
 
 

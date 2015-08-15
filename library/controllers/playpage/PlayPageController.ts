@@ -42,22 +42,21 @@ module cbox {
             this.element('startGameButton').onclick = () => { this.game.play() };
             this.element('gotoDnTButton').onclick = () => { this.screenManager.activate("dntscreen") };
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
-            this.element('cancelFormButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
 
-
-
             this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
-            this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
             this.element('dxSearchField').onclick = () => { this.activateDiagnosisSearch() };
             this.element('rxSearchField').onclick = () => { this.activateTreatmentSearch() };
 
-            this.element('cancelDxSearchButton').onclick = () => { this.screenManager.activate("dntscreen") };
-            this.element('cancelRxSearchButton').onclick = () => { this.screenManager.activate("dntscreen") };
 
+            // when case is updated, scroll to top if on play screen:
+            this.game.onCaseUpdated.subscribe(() => {
+                if(this.screenManager.current.ident == "playscreen")
+                    document.body.scrollIntoView(true);
+            })
 
             // respond to hash changes:
             window.onhashchange = () => {
@@ -117,6 +116,7 @@ module cbox {
         activateForm(ident:string) {
             this.screenManager.activate("formscreen." + ident);
             (<FormView>MVC.ids["formview"]).formID = ident;
+            document.body.scrollIntoView(true); // scroll to top in mobile espcailly
         }
     }
 }

@@ -76,6 +76,7 @@ module cbox {
 
         renderAction(parent_div:HTMLDivElement, action:Action):number {
             var count = 0;
+            var controller = <PlayPageController>this.pageController;
             var game = (<PlayPageController>this.pageController).game;
             var problems = game.case_.problems;
 
@@ -103,6 +104,8 @@ module cbox {
                         game.togglePending(ap_pair);
                         checkbox.checked = game.hasPending(ap_pair);
                         ev.stopPropagation();
+
+                        controller.screenManager.signalDataChanged();
                     };
 
                     //checkbox.onchange = select;

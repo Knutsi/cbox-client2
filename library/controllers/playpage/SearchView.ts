@@ -28,6 +28,7 @@ module cbox {
             this.resultRoot = <HTMLDivElement>this.player("results");
 
             // multiple changes that will trigger update, but only once for a change:
+            this.searchField.onclick = () => { this.searchField.scrollIntoView(true); }
             this.searchField.onkeydown = () => { this.triggerUpdate() };
             this.searchField.onchange = () => { this.triggerUpdate() };
             (<PlayPageController>pc).game.pendingActions.onChange.subscribe( () => { this.triggerUpdate() });

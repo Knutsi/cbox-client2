@@ -98,7 +98,14 @@
 
 
             <div id="actionsearchview" class="searchpanel" data-cbox-controller="ActionSearchView">
-                <div id="cancelActionSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
+                <!--  back button-->
+                <div class="button" data-cbox-target-screen="playscreen" data-cbox-controller="ReactiveBackButton">
+                    <span data-cbox-role="button-text" >Tilbake</span>
+                    <span class="tiny">(esc)</span>
+                </div>
+
+
                 <h1 data-cbox-role="headline"  >Finn spørsmål, prøver, prosedyrer, bilder m.m.</h1>
                 <div>
 
@@ -112,8 +119,14 @@
             </div>
         </div>
 
-        <!-- DIAGNOSIS SEARCH SCREEN -->
+        <!-- Dx SEARCH SCREEN -->
         <div id="dxsearch" class="screen" data-cbox-controller="ScreenView">
+
+            <!-- back button -->
+           <!-- <div class="button" data-cbox-target-screen="dntscreen" data-cbox-controller="ReactiveBackButton">
+                <span data-cbox-role="button-text" >Tilbake</span>
+                <span class="tiny">(esc)</span>
+            </div>-->
 
             <div class="accent_header std_pad" data-cbox-controller="ScoreView">
                 <table><tr>
@@ -126,7 +139,13 @@
 
 
             <div id="dxsearchview" class="searchpanel" data-cbox-controller="DiagnosisSearchView">
-                <div id="cancelDxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
+
+                <!--<div id="cancelDxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>-->
+                <div class="button" data-cbox-target-screen="dntscreen" data-cbox-controller="ReactiveBackButton">
+                    <span data-cbox-role="button-text" >Tilbake</span>
+                    <span class="tiny">(esc)</span>
+                </div>
 
                 <h1 data-cbox-role="headline"  >Finn diagoser, diagnosekoder</h1>
                 <div class="tiny">
@@ -156,7 +175,14 @@
 
 
             <div id="rxsearchview" class="searchpanel" data-cbox-controller="TreatmentSearchView">
-                <div id="cancelRxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
+                <!--<div id="cancelRxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>-->
+
+                <!-- back button -->
+                <div class="button" data-cbox-target-screen="dntscreen" data-cbox-controller="ReactiveBackButton">
+                    <span data-cbox-role="button-text" >Tilbake</span>
+                    <span class="tiny">(esc)</span>
+                </div>
 
                 <h1 data-cbox-role="headline"  >Finn behandlinger, terapi</h1>
 
@@ -185,6 +211,7 @@
 
 
             <div class="std_pad" data-cbox-controller="DiagnosisPickerView">
+
                 <div id="cancelDnTButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
 
                 <div class="snapleft_on_landscape">
@@ -231,7 +258,15 @@
             </div>
 
             <div id="formview" class="std_pad" data-cbox-controller="FormView">
-                <div id="cancelFormButton" class="button" >Tilbake <span class="tiny">(esc)</span></div>
+
+                <div id="cancelFormButton"
+                     class="button"
+                     data-cbox-target-screen="playscreen"
+                     data-cbox-controller="ReactiveBackButton">
+
+                    <span data-cbox-role="button-text" >Tilbake</span>
+                    <span class="tiny">(esc)</span>
+                </div>
 
                 <div class="form">
                     <h1 data-cbox-role="title">Blod, beinmarg, biopsi</h1>

@@ -13,6 +13,7 @@ module cbox {
         title:string;
         root:HTMLElement;
 
+        // events for state transitions:
         onPreActivated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
         onActivated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
         onPreDeactivated:Event<GenericEventArgs> = new Event<GenericEventArgs>();

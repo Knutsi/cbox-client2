@@ -7,7 +7,7 @@
 module cbox {
 
     export enum ScreenDataFlag {
-        INITIAL,
+        STORED,
         CHANGED
     }
 

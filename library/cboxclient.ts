@@ -54,6 +54,7 @@
 
 /* Element Controllers */
 /// <reference path="controllers/playpage/PlayPageController.ts" />
+/// <reference path="controllers/playpage/ReactiveBackButton.ts" />
 /// <reference path="controllers/playpage/ScreenView.ts" />
 /// <reference path="controllers/playpage/SearchView.ts" />
 /// <reference path="controllers/playpage/ScoreView.ts" />

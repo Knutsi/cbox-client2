@@ -40,6 +40,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     background-color: rgb(244, 244, 244);
     box-shadow: 5px 1px 17px rgba(128, 151, 169, 0.21);
     border: 1px solid #D7D7D6;
+    margin-bottom: 300px;
 }
 
 .accent_header
@@ -93,6 +94,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     transition: width 1s, height 1s, background-color 1s;
 }
 
+.data_changed_mark { background-color: #D7F7BA; }
+
 .disabled {
     opacity: 0.5;
     cursor: default;
@@ -122,6 +125,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .form {
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 10px 10px;
     box-shadow: 2px 2px 10px #848484;
     border: 1px solid #909090;
@@ -173,6 +177,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .red { background-color: rgb(249, 186, 186); }
 .resize110x100 {  width: 100px;  height:100px; }
 .clickable { cursor: pointer; }
+.flash { animation-duration: 3s; animation-name: slidein;  }
 
 .centercomplete {
     font-size: x-large;
@@ -192,9 +197,23 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 /* ANIMATIONS */
 
 @keyframes flash_highlight {
-    from {  background-color: rgb(255, 254, 88);  }
-    to {  background-color: rgba(251, 255, 223, 1);  }
+    from {
+        background-color: rgb(255, 254, 88);
+    }
+    to {
+        background-color: rgba(251, 255, 223, 1);
+    }
 }
+
+
+@keyframes slidein {
+    from {
+        transform: translateY(20%)
+    }
+    to {
+    }
+}
+
 
 
 

@@ -62,6 +62,11 @@ module cbox {
                 var div = document.createElement("div");
                 div.className = "clickable";
 
+                if(ap_pair.new) {
+                    div.classList.add("flash");
+                    ap_pair.new = false;
+                }
+
                 var checkbox = document.createElement("input");
                 checkbox.setAttribute("type", "checkbox");
                 checkbox.checked = selected;
@@ -76,7 +81,7 @@ module cbox {
                     if(selected)
                         pending.deselect(ap_pair);
                     else
-                        pending.select(ap_pair)
+                        pending.select(ap_pair);
 
                     this.update();
                 }

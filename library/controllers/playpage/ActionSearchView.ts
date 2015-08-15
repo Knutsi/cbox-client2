@@ -27,7 +27,7 @@ module cbox {
                 return;
             }
 
-            this.searchField.scrollIntoView(true);
+            //this.searchField.scrollIntoView(true);
 
             // get current storage:
             var pc = <PlayPageController>this.pageController;
@@ -80,9 +80,10 @@ module cbox {
                 checkbox.checked = pc.game.hasPending(ap_pair);
 
                 // add checkbox events:
-                checkbox.onchange = () => {
+                div.onclick = () => {
                     pc.game.togglePending(ap_pair);
                     checkbox.checked = pc.game.hasPending(ap_pair);
+                    pc.screenManager.signalDataChanged();
                 }
 
 

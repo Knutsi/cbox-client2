@@ -23,7 +23,7 @@ module cbox {
 
         handleInput(input:string) {
 
-            this.searchField.scrollIntoView(true);
+            //this.searchField.scrollIntoView(true);
 
             // for short string we just clear the results:
             if(input.length < 2) {
@@ -76,6 +76,7 @@ module cbox {
                 div.onclick = () => {
                     pc.game.togglePendingDx(dx);
                     checkbox.checked = pc.game.hasPendingDx(dx);
+                    pc.screenManager.signalDataChanged();
                 }
 
             });
