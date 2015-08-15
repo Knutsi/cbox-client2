@@ -2,6 +2,7 @@
  * Created by knut on 8/2/2015.
  */
 
+/// <reference path="../cboxclient.ts"> />
 /// <reference path="Screen.ts"> />
 
 module cbox {
@@ -11,6 +12,7 @@ module cbox {
         screens:Screen[] = [];
         current:Screen = null;
 
+        dataflag:ScreenDataFlag = ScreenDataFlag.INITIAL;
 
         register(screen:Screen) {
             this.screens.push(screen);
@@ -55,7 +57,15 @@ module cbox {
             // set location hash:
             if(sethash)
                 document.location.hash = ident;
+
+            // reset data flag:
+            this.dataflag = ScreenDataFlag.INITIAL;
         }
+
+        setDataChanged() {
+            this.dataflag = ScreenDataFlag.CHANGED;
+        }
+
 
         get(ident:string):Screen {
             for(var i in this.screens)

@@ -15,6 +15,7 @@
 /// <reference path="support/StateMachine.ts" />
 /// <reference path="support/Template.ts" />
 /// <reference path="support/ScreenManager.ts" />
+/// <reference path="support/ScreenDataFlag.ts" />
 /// <reference path="support/ReactiveElementController.ts" />
 /// <reference path="support/StorageManager.ts" />
 /// <reference path="support/PageController.ts" />
