@@ -1,20 +1,71 @@
 {
-    "Treatments": [
-        {
-            "Ident": "betareceptorantagonist",
-            "Title": "Betareseptorantagonist"
-            "Specifications": ["metoprolol"]
-        },
-        {
-            "Ident": "metoprolol",
-            "Title": "Metoprolon",
-            "Modifiers": ["Øk dose", "Reduser/seponer"]
-        },
-        {
-            "Ident": "furix",
-            "Title": "Furix",
-            "Modifiers": ["Øk dose", "Reduser/seponer"]
-        }
-    ]
+  "Treatments": [
+    {
+      "Class": "class",
+      "Ident": "betareceptorantagonist",
+      "Title": "Betareseptorantagonist",
+      "Subspecs": ["metoprolol", "atenolol"]
+    },
+    {
+      "Class": "class",
+      "Ident": "slyngediuretika",
+      "Title": "Slyngediuretika",
+      "Subspecs": ["furosemid"]
+    },
+    {
+      "Class": "class",
+      "Ident": "kalsiumspraende-diuretika",
+      "Title": "Kalsiumspraende diuretika",
+      "Subspecs": ["amilorid–hydroklortiazid"]
+    },
+    {
+      "Class": "class",
+      "Ident": "psycotherapy",
+      "Title": "Psykoterapi",
+      "Subspecs": ["cbt", "psycodynamic"]
+    },
+    {
+      "Class": "treatment",
+      "Ident": "cbt",
+      "Title": "Kognitivterapi"
+    },
+    {
+      "Class": "treatment",
+      "Ident": "psycodynamic",
+      "Title": "Psycodynamisk samtaleterapi"
+    },
+    {
+      "Class": "treatment",
+      "Ident": "metoprolol",
+      "Title": "Metoprolon",
+      "Modifiers": ["Legg til", "Øk dose", "Reduser dose", "Seponer"]
+    },
+
+    {
+      "Class": "treatment",
+      "Ident": "atenolol",
+      "Title": "Atenolol",
+      "Modifiers": ["Legg til", "Øk dose", "Reduser dose", "Seponer"]
+    },
+
+    {
+      "Class": "treatment",
+      "Ident": "furosemid",
+      "Title": "Furosemid",
+      "Modifiers": ["Legg til", "Øk dose", "Reduser dose", "Seponer"]
+    },
+
+    {
+      "Class": "drug",
+      "Ident": "amilorid–hydroklortiazid",
+      "Title": "Amilorid–hydroklortiazid",
+      "Modifiers": ["Legg til", "Øk dose", "Reduser dose", "Seponer"]
+    },
+    {
+      "Class": "treatment",
+      "Ident": "physical-therapy",
+      "Title": "Fysioterapi"
+    }
+  ]
 
 }

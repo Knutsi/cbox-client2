@@ -15,6 +15,7 @@ module cbox {
     export class DiagnosisPickerView extends ElementController{
 
         listRoot:HTMLDivElement;
+        clearButton:HTMLDivElement;
 
         constructor(root, pc) {
             super(root, pc);
@@ -22,11 +23,12 @@ module cbox {
             var pendingList = (<PlayPageController>this.pageController).game.pendingDiagnosis;
 
             this.listRoot = this.player("list");
+            this.clearButton = this.player("clear");
 
             // events:
             pendingList.onChange.subscribe(() => { this.update() })
 
-            this.player("clear").onclick = () => {
+            this.clearButton.onclick = () => {
                 pendingList.clearSelected();
             }
         }
@@ -36,6 +38,7 @@ module cbox {
             var pendingList = (<PlayPageController>this.pageController).game.pendingDiagnosis;
 
             this.render(pendingList);
+            this.updateButtons(pendingList);
         }
 
 
@@ -64,6 +67,17 @@ module cbox {
                 div.appendChild(checkbox);
                 div.appendChild(text);
             });
+
+
+
+        }
+
+
+        updateButtons(pendingList:BindingList<Diagnosis>) {
+            if(pendingList.selected.length <= 0)
+                this.clearButton.classList.add("disabled");
+            else
+                this.clearButton.classList.remove("disabled");
 
         }
 

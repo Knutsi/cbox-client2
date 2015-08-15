@@ -254,6 +254,30 @@ module cbox {
 
         }
 
+        private getPendingRx(rx:TreatmentChoice) {
+
+            for(var i in this.pendingTreatments.items)
+                if(this.pendingTreatments.items[i].treatment.ident == rx.treatment.ident)
+                    return this.pendingTreatments.items[i];
+
+            return null;
+
+        }
+
+        hasPendingRx(rx:TreatmentChoice) {
+            return this.getPendingRx(rx) != null;
+        }
+
+
+        togglePendingRx(rx:TreatmentChoice) {
+            var existing_rx = this.getPendingRx(rx);
+            if(existing_rx)
+                this.pendingTreatments.remove([existing_rx]);
+            else
+                this.pendingTreatments.add([rx])
+
+        }
+
     }
 
 }

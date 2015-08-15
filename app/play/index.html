@@ -116,17 +116,33 @@
                     (nytt vindu)</a>
                 </div>
                 <div>
-
-                    <div>
-                        <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
-                    </div>
-
+                    <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
                     <div class="topline" data-cbox-role="results"></div>
                 </div>
 
             </div>
         </div>
 
+        <!-- TREATMENT SEARCH SCREEN -->
+        <div id="rxsearch" class="screen" data-cbox-controller="ScreenView">
+
+            <div class="std_pad accent_header"  data-cbox-controller="ScoreView">
+                P: 1/100 R: 20% C: 4000,- Time: 00:05:20
+            </div>
+
+            <div id="rxsearchview" class="searchpanel" data-cbox-controller="TreatmentSearchView">
+                <div id="cancelRxSearchButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
+                <h1 data-cbox-role="headline"  >Finn behandlinger, terapi</h1>
+
+                <div>
+                    <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
+                    Annet: <div class="button">Avvente/ingen behandling</div>
+                    <div class="topline" data-cbox-role="results"></div>
+                </div>
+
+            </div>
+        </div>
 
 
 
@@ -139,10 +155,12 @@
 
             <div class="std_pad" data-cbox-controller="DiagnosisPickerView">
                 <div id="cancelDnTButton" class="button">Tilbake <span class="tiny">(esc)</span></div>
+
                 <div class="snapleft_on_landscape">
                     <h1 >
                         Hva er det pasienten feiler?
                     </h1>
+
                     <input id="dxSearchField" type="text" class="largesearchbox" placeholder="Søk.." />
                     <div data-cbox-role="list"></div>
                     <div>
@@ -157,15 +175,10 @@
                     Hvilke tiltak vil du vurdere?
                 </h1>
 
-                <input type="text" class="largesearchbox" placeholder="Søk.." />
+                <input id="rxSearchField"  type="text" class="largesearchbox" placeholder="Søk.." />
+                <div data-cbox-role="list"></div>
                 <div>
-                    <div class="searchresult"><input type="checkbox" disabled="true" /> <div class="dosetoggle">Øk dose</div>Furix</div>
-                    <div class="searchresult"><input type="checkbox" disabled="true"  /> <div class="dosetoggle">Øk dose</div>Metoprolol</div>
-                    <div class="searchresult"><input type="checkbox" /> Samtaleterapi</div>
-                    <div class="searchresult"><input type="checkbox" /> Livsstilsintervensjon</div>
-                </div>
-                <div>
-                    <div class="button">Fjern merkede</div>
+                    <div class="button" data-cbox-role="clear">Fjern merkede</div>
                 </div>
             </div>
 
@@ -187,11 +200,6 @@
                 <div class="form">
                     <h1 data-cbox-role="title">Blod, beinmarg, biopsi</h1>
                     <div class="content" data-cbox-role="content">
-                        <div class="contentblock">
-                            <!--<h2>Overskrift 1</h2>
-                            <div><input type="checkbox" />Valg nummer en</div>
-                            <div><input type="checkbox" />Valg nummer to</div>-->
-                        </div>
                     </div>
                 </div>
 

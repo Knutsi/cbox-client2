@@ -65,6 +65,8 @@
 /// <reference path="controllers/playpage/DiagnosisPickerView.ts" />
 /// <reference path="controllers/playpage/ActionSearchView.ts" />
 /// <reference path="controllers/playpage/DiagnosisSearchView.ts" />
+/// <reference path="controllers/playpage/TreatmentSearchView.ts" />
+
 
 /// <reference path="controllers/playpage/FormView.ts" />
 

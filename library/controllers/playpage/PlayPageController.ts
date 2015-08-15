@@ -53,9 +53,12 @@ module cbox {
             this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
             this.element('cancelActionSearchButton').onclick = () => { this.screenManager.activate("playscreen") };
 
-
             this.element('dxSearchField').onclick = () => { this.activateDiagnosisSearch() };
+            this.element('rxSearchField').onclick = () => { this.activateTreatmentSearch() };
+
             this.element('cancelDxSearchButton').onclick = () => { this.screenManager.activate("dntscreen") };
+            this.element('cancelRxSearchButton').onclick = () => { this.screenManager.activate("dntscreen") };
+
 
             // respond to hash changes:
             window.onhashchange = () => {
@@ -108,7 +111,8 @@ module cbox {
         }
 
         activateTreatmentSearch() {
-            this.screenManager.activate("dssnsearch");
+            this.screenManager.activate("rxsearch");
+            (<DiagnosisSearchView>MVC.ids['rxsearchview']).focus();
         }
 
         activateForm(ident:string) {

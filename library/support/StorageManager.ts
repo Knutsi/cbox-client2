@@ -16,11 +16,12 @@ module cbox {
 
         // internal fields:
         clientpackageRaw:{};
+        treatmentPackageRaw:{};
 
         forms:Form[];
         actions:Action[];
         diagnosis:Diagnosis[];
-        treatment:Treatment[];
+        treatments:Treatment[];
 
         // events:
         onLoadDone:Event<GenericEventArgs> = new Event<GenericEventArgs>();
@@ -40,6 +41,7 @@ module cbox {
             // set up the tasks to load:
             var cp_task = new LoadTask("Client package");
             var dx_task = new LoadTask("Diagnosis package");
+            var rx_task = new LoadTask("Treatment");
             this.tasks.push(cp_task, dx_task);
 
             // load and parse client package:
@@ -53,6 +55,12 @@ module cbox {
                 dx_task,
                 this.serviceRootUrl + "icd10no.txt",
                 (task:LoadTask, data:string) => { this.parseICD10(task, data) });
+
+            // load and parse treatment package:
+            this.loadAndParse(
+                rx_task,
+                this.serviceRootUrl + "treatments.json",
+                (task:LoadTask, data:string) => { this.parseTreatmentPackage(task, data) });
 
             // run a timer to check if tasks are done:
             this.taskCheckInterval = setInterval(() => {
@@ -108,8 +116,32 @@ module cbox {
             this.diagnosis = rows.map( (r) => { return Diagnosis.fromTabDelimitedLine(r) });
 
             task.ok = true;
+        }
 
-            console.log("Parsing ICD10");
+        parseTreatmentPackage(task:LoadTask, text:string) {
+
+            // two passes nessesary: (1) get objects,
+            this.treatmentPackageRaw = JSON.parse(text);
+            this.treatments = this.treatmentPackageRaw["Treatments"].map( (t) => { return Treatment.fromObject(t) });
+
+            // (2) assign subspecs:
+            this.treatments.forEach((treatment) => {
+                if(treatment.subspecIdents)
+                    treatment.subspecs = treatment.subspecIdents.map( (ident) => { return this.getTreatment(ident); })
+                else
+                    treatment.subspecs = null;
+            });
+
+            task.ok = true;
+        }
+
+
+        private getTreatment(ident:string):Treatment {
+            for(var i in this.treatments)
+                if(this.treatments[i].ident.toLowerCase() == ident.toLowerCase())
+                    return this.treatments[i];
+
+            return null;
         }
 
 
