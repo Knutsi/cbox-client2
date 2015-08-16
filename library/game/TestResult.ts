@@ -11,9 +11,9 @@ module cbox {
         type:string;
         values:string[] = [];
         prefix:string;
+        initialReveal:boolean = false;
 
         // values for context tracking and highlighting:
-        actionContext:Action = null; // the action context the value was requested in:
         committedInVersion:number = 0; // the number of the commit that yielded the value
 
 

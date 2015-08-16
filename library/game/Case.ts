@@ -11,7 +11,7 @@ module cbox {
         static ROOT_IDENT:string = "_root";
         static AGE_KEY:string = "history.age";
         static GENDER_KEY:string = "history.gender";
-        static PRESENTING_COMPLAINT_KEY:string = "history.presenting.short";
+        static PRESENTING_COMPLAINT_KEY:string = "history.presenting.description";
 
         problems:Problem[] = [];
         diagnosis:Diagnosis[] = [];
@@ -23,9 +23,16 @@ module cbox {
         // events:
         onUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
+        constructor(createRoot:boolean=false) {
+            if(createRoot) {
+                var root = new Problem();
+                root.ident = Case.ROOT_IDENT;
+                this.addProblem(root);
+            }
+        }
 
         static fromObject(obj:{}):Case {
-            var case_ = new Case();
+            var case_ = new Case(false);
 
             case_.problems = obj["Problems"].map( (p) => { return Problem.fromObject(p); } );
             //case_.diagnosis = obj["Diagnosis"].map( (p) => { return Problem.fromObject(p); } );
@@ -36,8 +43,25 @@ module cbox {
         }
 
 
+
+
+
         get initial():Case {
-            return this;
+            var case_ = new Case(true);
+
+            // add basics:
+            var age = this.rootProblem.get("history.age");
+            var gender = this.rootProblem.get("history.gender");
+            var presenting = this.rootProblem.get("history.presenting.description");
+            case_.rootProblem.addResult(age);
+            case_.rootProblem.addResult(gender);
+            case_.rootProblem.addResult(presenting);
+
+            // add all test results with "initial reveal":
+
+
+
+            return case_;
         }
 
 
@@ -74,19 +98,42 @@ module cbox {
 
 
         extract(ap_pairs:ActionProblemPair[]):Problem[] {
-            return null;
+
+            // this will keep copies of the problems, indexed by ident:
+            var results:{ [ident:string]: Problem; } = { };
+
+            // get results and return them by problem:
+            ap_pairs.forEach( (ap_pair) => {
+
+                // ensure requested problem is in collection:
+                if(!results[ap_pair.problem.ident])
+                    results[ap_pair.problem.ident] = ap_pair.problem.cloneEmpty();
+
+                // get keys from the action:
+                var keys = ap_pair.action.yields;   // FIXME this should look up in ontology!
+
+                // look up result and add to problem:
+                keys.forEach( (key) => {
+
+                    var result = this.getResult(ap_pair.problem.ident, key);
+                    results[ap_pair.problem.ident].addResult(result);
+
+                });
+
+            });
+
+
+            // get all items from results:
+            var retval:Problem[] = [];
+            for(var key in results)
+                retval.push(results[key]);
+
+            return retval;
         }
 
 
         get rootProblem():Problem {
-
-            for(var i in this.problems) {
-
-                if(this.problems[i].ident == Case.ROOT_IDENT)
-                    return this.problems[i];
-
-                return null;    // should never really get here..
-            }
+            return this.getProblem(Case.ROOT_IDENT);
         }
 
 
@@ -96,6 +143,25 @@ module cbox {
 
 
         problemByIdent(ident:string) {
+            for(var i in this.problems)
+                if(this.problems[i].ident == ident)
+                    return this.problems[i];
+
+            return null;
+        }
+
+
+        getResult(problem_ident:string, key) {
+
+            var problem = this.getProblem(problem_ident);
+            if(!problem)
+                return null;
+
+            return problem.get(key);
+        }
+
+
+        getProblem(ident:string):Problem {
             for(var i in this.problems)
                 if(this.problems[i].ident == ident)
                     return this.problems[i];

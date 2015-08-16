@@ -11,7 +11,7 @@
         startGame(specs:any, callback:(status:AsyncRequestResult, case_:Case) => void);
 
         commitActions(
-            actions:any,
+            actions:ActionProblemPair[],
             callback:(
                 status:AsyncRequestResult,
                 result:Problem[],

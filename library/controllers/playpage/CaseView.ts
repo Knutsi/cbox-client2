@@ -170,6 +170,8 @@ module cbox {
 
 
         renderResult(parent_span:HTMLSpanElement, result:TestResult) {
+
+            // render result:
             var span = document.createElement("span");
             span.innerText = result.displayString;
             span.setAttribute("data-cbox-commit-nr", result.committedInVersion.toString());

@@ -140,7 +140,7 @@ module cbox {
         commitActions() {
 
             // send pending actions to interface:
-            this.service.commitActions(this.pendingActions, (status, results, assets, score) => {
+            this.service.commitActions(this.pendingActions.items, (status, results, assets, score) => {
 
                 if(status.ok) {
                     // update internal fields to current status:

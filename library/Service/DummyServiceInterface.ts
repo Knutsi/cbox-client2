@@ -25,7 +25,7 @@ module cbox {
             prob1.ident = Case.ROOT_IDENT;
             prob1.title = "Root"
 
-            prob1.addResultQuick("history.presenting.short", "Gradvis innsettende tungpust.");
+            prob1.addResultQuick("history.presenting.description", "Gradvis innsettende tungpust.");
             prob1.addResultQuick("history.age", "99", "NUMBER");
             prob1.addResultQuick("history.gender", "Kvinne");
             prob1.addResultQuick("history.past-conditions", "Tidligere frisk.");

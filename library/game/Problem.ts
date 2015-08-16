@@ -60,6 +60,17 @@ module cbox {
             return null;
         }
 
+        cloneEmpty(results=false) {
+
+            var problem = new Problem();
+
+            problem.ident = this.ident;
+            problem.title = this.title;
+            problem.classes = this.classes.concat([]);
+
+            return problem;
+        }
+
     }
 }
 

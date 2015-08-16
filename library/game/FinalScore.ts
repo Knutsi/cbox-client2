@@ -5,9 +5,9 @@
 module cbox {
 
     export class FinalScore {
-        points:number;
-        calculationComments:string[];
-        caseComments:string[];
+        points:number = 0;
+        calculationComments:string[] = ["-"];
+        caseComments:string[] = ["-"];
     }
 
 }
