@@ -14,6 +14,8 @@ module cbox {
         static PRESENTING_COMPLAINT_KEY:string = "history.presenting.short";
 
         problems:Problem[] = [];
+        diagnosis:Diagnosis[] = [];
+        followup:FollowupQuestion[] = [9;]
 
         // keep track of times this has been updated:
         version = 0;
@@ -21,6 +23,10 @@ module cbox {
         // events:
         onUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
+
+        get initial():Case {
+            return this;
+        }
 
         /**
          * Extends the case with the results anbd problems provided, then increases the verison count.
@@ -52,6 +58,13 @@ module cbox {
 
             this.onUpdated.fire(new GenericEventArgs());
         }
+
+
+        extract(ap_pairs:ActionProblemPair[]):Case {
+            return this;
+        }
+
+
 
         get rootProblem():Problem {
 

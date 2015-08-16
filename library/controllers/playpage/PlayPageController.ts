@@ -18,12 +18,8 @@ module cbox {
         constructor() {
             super();
 
-            // DEBUG - catch initial hash:
-            /*if(window.location.hash)
-                this.debugHash = window.location.hash.substr(1);*/
-
             // setup the game client:
-            var serviceUrl = "../../testservice/";
+            var serviceUrl = "../../service/";
             this.service = new DummyServiceInterface();
             this.storage = new StorageManager(serviceUrl);
             this.game = new GameClient(this.service, this.storage);

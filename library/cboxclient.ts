@@ -35,6 +35,7 @@
 /// <reference path="service/IServiceInterface.ts" />
 /// <reference path="service/DummyServiceInterface.ts" />
 /// <reference path="service/FileServiceInterface.ts" />
+/// <reference path="service/FileGameState.ts" />
 
 /* Game layer implemntation */
 /// <reference path="game/ClientState.ts" />
