@@ -59,7 +59,7 @@ module cbox {
             // load and parse treatment package:
             this.loadAndParse(
                 rx_task,
-                this.serviceRootUrl + "treatments.json",
+                this.serviceRootUrl + "treatments_fest.json",
                 (task:LoadTask, data:string) => { this.parseTreatmentPackage(task, data) });
 
             // run a timer to check if tasks are done:
