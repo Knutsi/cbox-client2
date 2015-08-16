@@ -13,6 +13,19 @@ module cbox {
         classes:string[] = ["General"];
         results:TestResult[] = [];
 
+
+        static fromObject(obj:{}):Problem {
+            var prob = new Problem();
+
+            prob.classes = obj["Classes"]
+            prob.ident = obj["Ident"];
+            prob.title = obj["Title"];
+            prob.results = obj["TestResults"].map((r) => { return TestResult.fromObject(r) });
+
+            return prob;
+        }
+
+
         addResult(result:TestResult) {
 
             // if value exists, we replace it:

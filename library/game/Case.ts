@@ -15,7 +15,7 @@ module cbox {
 
         problems:Problem[] = [];
         diagnosis:Diagnosis[] = [];
-        followup:FollowupQuestion[] = [9;]
+        followup:FollowupQuestion[] = [];
 
         // keep track of times this has been updated:
         version = 0;
@@ -24,9 +24,22 @@ module cbox {
         onUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
 
 
+        static fromObject(obj:{}):Case {
+            var case_ = new Case();
+
+            case_.problems = obj["Problems"].map( (p) => { return Problem.fromObject(p); } );
+            //case_.diagnosis = obj["Diagnosis"].map( (p) => { return Problem.fromObject(p); } );
+            //case_.treatments = obj["Treatments"].map( (p) => { return Problem.fromObject(p); } );
+            //case_.followup = obj["Followup"].map( (p) => { return Problem.fromObject(p); } );
+
+            return case_;
+        }
+
+
         get initial():Case {
             return this;
         }
+
 
         /**
          * Extends the case with the results anbd problems provided, then increases the verison count.
@@ -60,10 +73,9 @@ module cbox {
         }
 
 
-        extract(ap_pairs:ActionProblemPair[]):Case {
-            return this;
+        extract(ap_pairs:ActionProblemPair[]):Problem[] {
+            return null;
         }
-
 
 
         get rootProblem():Problem {

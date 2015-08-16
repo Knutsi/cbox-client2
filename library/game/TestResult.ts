@@ -17,6 +17,16 @@ module cbox {
         committedInVersion:number = 0; // the number of the commit that yielded the value
 
 
+        static fromObject(obj:{}):TestResult {
+            var result = new TestResult();
+
+            result.key = obj["Key"];
+            result.values = obj["Values"];
+
+            return result;
+        }
+
+
         get displayString():string {
             if(!this.prefix)
                 return this.values[0];
