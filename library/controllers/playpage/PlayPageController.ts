@@ -21,8 +21,8 @@ module cbox {
 
             // setup the game client:
             var serviceUrl = "../../service/";
-            //this.service = new FileServiceInterface(serviceUrl, 2);
-            this.service = new DummyServiceInterface();
+            this.service = new FileServiceInterface(serviceUrl, 2);
+            //this.service = new DummyServiceInterface();
             this.storage = new StorageManager(serviceUrl);
             this.game = new GameClient(this.service, this.storage);
         }
