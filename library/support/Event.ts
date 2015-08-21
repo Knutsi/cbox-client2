@@ -55,9 +55,9 @@ module cbox {
                     this.listeners[i].callback(arg)
                 }
                 catch(e) {
-                    throw "Event callback culd not be called.  Dumping exception and subscription reference";
                     console.log(e);
                     console.log(this.listeners[i].reference);
+                    throw "Event callback culd not be called.  Dumping exception and subscription reference";
                 }
             }
         }
