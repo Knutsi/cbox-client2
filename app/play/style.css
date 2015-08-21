@@ -135,37 +135,43 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .form .content { display: flex; flex-wrap: wrap; user-select: none;   }
 
 .form .contentblock {
-    padding-top: 10px;
+    padding: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    border-right: 1px solid #E7EDEF;
+    border-right: 1px dashed rgba(231, 154, 0, 0.17);
     width: 220px;
     font-size: smaller;
+    background-color: rgba(235, 234, 233, 0.64);
+    margin-top: 10px;
 }
 
 .form h1 { color: rgb(144, 0, 0); border-bottom: 7px solid rgb(144, 0, 0); }
-.form .contentblock h2 { margin: 0; }
+.form .contentblock h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.22);
+}
 
 .dosetoggle {
-    display: inline;
-    margin-right: 7px;
-    border-radius: 3px;
-    background-color: #F9BF9D;
-    padding: 0px 7px;
-    user-select: none;
-    -webkit-user-select: none;
+display: inline;
+margin-right: 7px;
+border-radius: 3px;
+background-color: #F9BF9D;
+padding: 0px 7px;
+user-select: none;
+-webkit-user-select: none;
 }
 
 
 .score {
-    font-size: x-large;
-    padding: 10px 20px;
-    background-color: greenyellow;
-    border-radius: 10px;
-    display: inline-block;
-    color: darkgreen;
-    font-family: sans-serif;
-    font-weight: bold;
+font-size: x-large;
+padding: 10px 20px;
+background-color: greenyellow;
+border-radius: 10px;
+display: inline-block;
+color: darkgreen;
+font-family: sans-serif;
+font-weight: bold;
 
 }
 
