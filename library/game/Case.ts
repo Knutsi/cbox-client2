@@ -11,7 +11,7 @@ module cbox {
         static ROOT_IDENT:string = "_root";
         static AGE_KEY:string = "history.age";
         static GENDER_KEY:string = "history.gender";
-        static PRESENTING_COMPLAINT_KEY:string = "history.presenting.description";
+        static PRESENTING_COMPLAINT_KEY:string = "history.presenting.short";
 
         problems:Problem[] = [];
         diagnosis:Diagnosis[] = [];
