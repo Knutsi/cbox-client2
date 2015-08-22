@@ -107,7 +107,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .completetbutton_mod {  background-color: #EAF4F7;  font-size: large;  }
 .header { font-size: x-large; }
 .problem_title {  color: gray;}
-.flash_highlight { animation-duration: 3s; animation-name: flash_highlight;  background-color: rgba(251, 255, 223, 1);}
+.flash_highlight { animation-duration: 3s; animation-name: flash_highlight;  background-color: rgba(251, 255, 223, 0.47);}
 .largesearchbox {  font-size: x-large;  margin-top:10px; }
 .comment {  font-style: italic; opacity: 0.5; }
 
@@ -206,7 +206,7 @@ font-weight: bold;
 
 @keyframes flash_highlight {
     from {
-        background-color: rgb(255, 254, 88);
+        background-color: rgb(253, 255, 163);
     }
     to {
         background-color: rgba(251, 255, 223, 0.47);
