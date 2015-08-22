@@ -79,7 +79,7 @@ module cbox {
         renderTitle(case_:Case) {
             /* title data should ways be included in a case, meaning age, gender and presenting complaint is
             * always present */
-            var age = case_.rootProblem.get(Case.AGE_KEY).displayString;
+            var age = case_.rootProblem.get(Case.AGE_KEY).values[0];
             var gender = case_.rootProblem.get(Case.GENDER_KEY).displayString;
             var complaint = case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY).displayString.toLowerCase();
 
@@ -156,9 +156,11 @@ module cbox {
                     var action_span = document.createElement("span");
 
                     // add action headline:
-                    var action_title_span = document.createElement("span");
-                    action_title_span.textContent = action.title + ": ";
-                    action_span.appendChild(action_title_span);
+                    if(action.headlineVisibleHint) {
+                        var action_title_span = document.createElement("span");
+                        action_title_span.textContent = action.title + ": ";
+                        action_span.appendChild(action_title_span);
+                    }
 
                     // render each result with a key yielded by this action into the span:
                     action.yields.forEach( (yield_key) => {
@@ -189,6 +191,8 @@ module cbox {
 
 
         renderResult(parent_span:HTMLSpanElement, result:TestResult) {
+
+            // get test info:
 
             // render result:
             var span = document.createElement("span");

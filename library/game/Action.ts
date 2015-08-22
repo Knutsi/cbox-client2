@@ -14,6 +14,7 @@ module cbox {
         risk:number;
         targetClasses:string[];
         title:string;
+        headlineVisibleHint:boolean;
 
         yields:string[];
         doesNotGroup:boolean = false;
@@ -28,6 +29,7 @@ module cbox {
             action.risk = obj["Risk"];
             action.targetClasses = obj["TargetClasses"];
             action.title = obj["Title"];
+            action.headlineVisibleHint = obj["VisibleHeadlineHint"];
 
             action.yields = obj["Yield"];
             action.doesNotGroup = obj["DoesNotGroup"] || false;

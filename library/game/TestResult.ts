@@ -11,6 +11,7 @@ module cbox {
         type:string;
         values:string[] = [];
         prefix:string;
+        unit:string;
         initialReveal:boolean = false;
 
         // values for context tracking and highlighting:
@@ -22,16 +23,24 @@ module cbox {
 
             result.key = obj["Key"];
             result.values = obj["Values"];
+            result.prefix = obj["Prefix"];
+            result.unit = obj["Unit"];
 
             return result;
         }
 
 
         get displayString():string {
-            if(!this.prefix)
-                return this.values[0];
-            else
-                return this.prefix + " " + this.values[0];
+            var prefix = "";
+            var unit = "";
+
+            if(this.prefix)
+                prefix = this.prefix + " ";
+
+            if(this.unit)
+                unit = " " + this.unit + ".";
+
+            return prefix + this.values[0] + unit;
         }
     }
 }
