@@ -50,9 +50,9 @@ module cbox {
             var case_ = new Case(true);
 
             // add basics:
-            var age = this.rootProblem.get("history.age");
-            var gender = this.rootProblem.get("history.gender");
-            var presenting = this.rootProblem.get("history.presenting.description");
+            var age = this.rootProblem.get(Case.AGE_KEY);
+            var gender = this.rootProblem.get(Case.GENDER_KEY);
+            var presenting = this.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY);
             case_.rootProblem.addResult(age);
             case_.rootProblem.addResult(gender);
             case_.rootProblem.addResult(presenting);

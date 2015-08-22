@@ -79,10 +79,24 @@ module cbox {
         renderTitle(case_:Case) {
             /* title data should ways be included in a case, meaning age, gender and presenting complaint is
             * always present */
-            this.titleH1.innerText = RenderHelper.toStringOnlyCommas([
+            var age = case_.rootProblem.get(Case.AGE_KEY).displayString;
+            var gender = case_.rootProblem.get(Case.GENDER_KEY).displayString;
+            var complaint = case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY).displayString.toLowerCase();
+
+            // adjust gender name:
+            var gender_desc = "Kvinne";
+            if(parseInt(age) < 19) {
+                if(gender == "f") gender_desc = "Jente";
+                if(gender == "m") gender_desc = "Gutt";
+            } else if(gender == "m")
+                gender_desc = "Mann"
+
+            /*this.titleH1.innerText = RenderHelper.toStringOnlyCommas([
                 case_.rootProblem.get(Case.GENDER_KEY),
                 case_.rootProblem.get(Case.AGE_KEY),
-                case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY)]);
+                case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY)]);*/
+
+            this.titleH1.innerText = gender_desc + ", " + age + ", " + complaint;
         }
 
         /**
@@ -140,6 +154,11 @@ module cbox {
 
                     var results_rendered = [];
                     var action_span = document.createElement("span");
+
+                    // add action headline:
+                    var action_title_span = document.createElement("span");
+                    action_title_span.textContent = action.title + ": ";
+                    action_span.appendChild(action_title_span);
 
                     // render each result with a key yielded by this action into the span:
                     action.yields.forEach( (yield_key) => {
