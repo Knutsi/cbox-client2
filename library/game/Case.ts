@@ -39,6 +39,7 @@ module cbox {
             //case_.treatments = obj["Treatments"].map( (p) => { return Problem.fromObject(p); } );
             //case_.followup = obj["Followup"].map( (p) => { return Problem.fromObject(p); } );
 
+            case_.updateParentChildRelations();
             return case_;
         }
 
@@ -93,6 +94,7 @@ module cbox {
 
             });
 
+            this.updateParentChildRelations();
             this.onUpdated.fire(new GenericEventArgs());
         }
 
@@ -167,6 +169,40 @@ module cbox {
                     return this.problems[i];
 
             return null;
+        }
+
+
+        /****
+         * Updates the parentResult and childResult fields of the results.
+         */
+        updateParentChildRelations() {
+
+            // reset
+
+            this.problems.forEach((problem) => {
+
+                // clear existing relationships:
+                problem.results.forEach((result) => {
+                    result.parentResult = null;
+                    result.childResults = [];
+                });
+
+                // reestablish relationships:
+                problem.results.forEach((result) => {
+
+                    // set parent - child association:
+                    if(result.parentKey) {
+                        var parent = problem.get(result.parentKey);
+                        result.parentResult = parent;
+
+                        if(parent)
+                            parent.childResults.push(result);
+                    }
+
+                })
+
+            })
+
         }
 
     }

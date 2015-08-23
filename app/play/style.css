@@ -2,6 +2,7 @@
 body { font-size: 16px; margin:0; padding: 0; font-family: 'Open Sans', sans-serif; line-height: 1.6;}
 h1 { margin:0; font-family: 'Lato', sans-serif;}
 
+
 /*  COMPONENTS */
 
 @media screen and (orientation:landscape) {
@@ -153,27 +154,34 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 }
 
 .dosetoggle {
-display: inline;
-margin-right: 7px;
-border-radius: 3px;
-background-color: #F9BF9D;
-padding: 0px 7px;
-user-select: none;
--webkit-user-select: none;
+    display: inline;
+    margin-right: 7px;
+    border-radius: 3px;
+    background-color: #F9BF9D;
+    padding: 0px 7px;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 
 .score {
-font-size: x-large;
-padding: 10px 20px;
-background-color: greenyellow;
-border-radius: 10px;
-display: inline-block;
-color: darkgreen;
-font-family: sans-serif;
-font-weight: bold;
-
+    font-size: x-large;
+    padding: 10px 20px;
+    background-color: greenyellow;
+    border-radius: 10px;
+    display: inline-block;
+    color: darkgreen;
+    font-family: sans-serif;
+    font-weight: bold;
 }
+
+.copyrightnote {
+    position: fixed;
+    right: 0; bottom: 0;
+    font-size: x-small;
+    color: rgba(86, 93, 115, 0.67);
+}
+
 
 /* COMPONENT MODIFIERS */
 

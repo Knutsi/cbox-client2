@@ -67,8 +67,9 @@ module cbox {
             // highlight latest added spans if not 0:
             if(case_.version != 0) {
                 var highlights = this.root.querySelectorAll("[data-cbox-commit-nr=\"" + case_.version +"\"]");
-                for(var i in highlights)
-                    (<HTMLSpanElement>highlights.item(i)).classList.add("flash_highlight");
+                if(highlights.length > 0)
+                    for(var i in highlights)
+                        (<HTMLSpanElement>highlights.item(i)).classList.add("flash_highlight");
             }
         }
 
@@ -167,7 +168,7 @@ module cbox {
 
                         for(var i in results) {
                             var result:TestResult = results[i];
-                            if(result.key == yield_key) {
+                            if(result.key == yield_key && this.shouldRender(result)) {
                                 results_rendered.push(result);
                                 // render:
                                 this.renderResult(action_span, result);
@@ -201,6 +202,37 @@ module cbox {
             parent_span.appendChild(span);
             parent_span.appendChild(document.createTextNode(" "));
         }
+
+
+        /***
+         * Checks if the result should be rendered or not.  This is to enable parent-child based rules.
+         * Basically, (1) for a parent, if one or more of the children are abnormal, we should not render.
+         * (2) for a parent with no abnormal children, we render
+         * (3) children render if siblings exists that are abnormal
+         * @param result
+         */
+        private shouldRender(result:TestResult) {
+
+            if(!result.hasChildren && !result.parentResult)
+                return true;
+
+            if(result.parentResult != null && !result.hasAbnormalSiblings)
+                return false;
+
+            if(result.hasAbnormalChildren)
+                return false;
+
+            if(result.abnormal || result.hasAbnormalSiblings)
+                return true;
+
+            if(!result.hasAbnormalChildren)
+                return true;
+
+            return false;
+        }
+
+
+
 
     }
 
