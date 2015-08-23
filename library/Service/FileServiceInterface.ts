@@ -34,7 +34,7 @@ module cbox {
             callback:(status:AsyncRequestResult, case_:Case)=>void)
         {
 
-            var url =  this.serviceRoot + "/case/" + Math.round(Math.random() * (this.caseCount - 1))+ ".json";
+            var url =  this.serviceRoot + "case/" + Math.round(Math.random() * (this.caseCount - 1))+ ".json";
             var req = new XMLHttpRequest();
             req.open("GET", url, true);
 
