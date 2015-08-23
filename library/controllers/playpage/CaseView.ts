@@ -111,7 +111,7 @@ module cbox {
             if(!problem.isRoot) {
                 var title_span = document.createElement("span");
                 title_span.className = "problem_title";
-                title_span.innerText = problem.title;
+                title_span.innerText = case_.getProblemTextReference(problem) + " " + problem.title + ": ";
                 div.appendChild(title_span);
             }
 

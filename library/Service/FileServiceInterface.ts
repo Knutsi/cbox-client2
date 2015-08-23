@@ -19,6 +19,7 @@ module cbox {
         committedDiagnosis:Diagnosis[] = [];
         committedTreatments:TreatmentChoice[] = [];
         committedFollowups:FollowupQuestion[] = [];
+        revealedProblems:Problem[] = [];
 
         constructor(serviceroot, casecount) {
             this.serviceRoot = serviceroot;
@@ -40,10 +41,16 @@ module cbox {
             req.onreadystatechange = () => {
 
                 if(req.status == 200 && req.readyState == 4) {
+
                     this.handleCompleteCaseDataRecieved(req.responseText);
+                    this.revealedProblems.push(this.fullCase.rootProblem);
+
                     callback(new AsyncRequestResult(true), this.fullCase.initial);
+
                 } else if(req.readyState == 4) {
+
                     alert("Case loading failed.  Cannot recover from this error.");
+
                 }
             };
 
@@ -53,7 +60,7 @@ module cbox {
 
 
         /**
-         * Concatinates the current committed actions with the new ones.  THen extractx the scorecard and
+         * Concatinates the current committed actions with the new ones.  Then extracts the scorecard and
          * case to give the player.
          * **/
         commitActions(
@@ -62,9 +69,15 @@ module cbox {
         {
 
             this.committedActions = this.committedActions.concat(actions);
+
+            // extract results based on the action problem pairs:
+            var results = this.fullCase.extract(actions);
+            this.appendTriggeredProblems(results, this.fullCase);
+
+
             callback(
                 new AsyncRequestResult(true),
-                this.fullCase.extract(actions),
+                results,
                 [],
                 this.scorecard
             );
@@ -119,6 +132,44 @@ module cbox {
          * **/
         get finalScore():FinalScore {
             return new FinalScore();
+        }
+
+        get revealedProblemIdents():string[] {
+            return this.revealedProblems.map( (p) => { return p.ident });
+        }
+
+        appendTriggeredProblems(results:Problem[], fullCase:Case) {
+
+            // get all keys:
+            var all_keys = [];
+            results.forEach((p) => {
+                all_keys = all_keys.concat(p.keys)
+            });
+
+
+            // check if any of the keys trigger any of the problems:
+            fullCase.triggerConditions.forEach( (triggcon) => {
+                if(all_keys.indexOf(triggcon.key) != -1) {
+
+                    // this triggers a problem - see if it is already known:
+                    if(this.revealedProblemIdents.indexOf(triggcon.problemTriggered.ident) == -1) {
+
+                        // problem is unknown, add it:
+                        var revealed_problem = triggcon.problemTriggered.cloneEmpty()
+                        results.push(revealed_problem);
+
+                        // for this problem, look up the keys triggered by the reveal:
+                        triggcon.autotriggerKeys.forEach((autokey) => {
+
+                            var result = this.fullCase.getResult(revealed_problem.ident, autokey);
+                            if(result)
+                                revealed_problem.addResult(result);
+                        });
+                    }
+
+                }
+            })
+
         }
 
     }

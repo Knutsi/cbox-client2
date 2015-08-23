@@ -177,7 +177,7 @@ module cbox {
             if(index == -1)
                 return "(xx)";
             else
-                return "(" + (index + 1) + ")";
+                return "(" + String.fromCharCode(96 + index) + ")";
 
 
         }
