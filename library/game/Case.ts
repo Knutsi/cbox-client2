@@ -172,6 +172,33 @@ module cbox {
         }
 
 
+        getProblemTextReference(problem:Problem):string {
+            var index = this.problems.indexOf(problem);
+            if(index == -1)
+                return "(xx)";
+            else
+                return "(" + (index + 1) + ")";
+
+
+        }
+
+
+        get triggerConditions():ProblemRevealCondition[] {
+
+            var results = [];
+
+            this.problems.forEach((p) => {
+
+                // skip root problem:
+                if(p.isRoot)
+                    return;
+
+                p.triggers.forEach((t) => { results.push(t) });
+            })
+
+            return results;
+        }
+
         /****
          * Updates the parentResult and childResult fields of the results.
          */

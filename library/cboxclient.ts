@@ -44,6 +44,7 @@
 /// <reference path="game/Action.ts" />
 /// <reference path="game/Case.ts" />
 /// <reference path="game/Problem.ts" />
+/// <reference path="game/ProblemRevealCondition.ts" />
 /// <reference path="game/Asset.ts" />
 /// <reference path="game/AssetCollection.ts" />
 /// <reference path="game/TestResult.ts" />

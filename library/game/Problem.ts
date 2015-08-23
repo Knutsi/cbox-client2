@@ -12,6 +12,7 @@ module cbox {
         title:string;
         classes:string[] = ["General"];
         results:TestResult[] = [];
+        triggers:ProblemRevealCondition[];
 
 
         static fromObject(obj:{}):Problem {
@@ -21,6 +22,8 @@ module cbox {
             prob.ident = obj["Ident"];
             prob.title = obj["Title"];
             prob.results = obj["TestResults"].map((r) => { return TestResult.fromObject(r) });
+            prob.triggers = obj["Triggers"].map((t) => { return ProblemRevealCondition.fromObject(t, prob) });
+
 
             return prob;
         }
@@ -58,6 +61,10 @@ module cbox {
                     return this.results[i];
 
             return null;
+        }
+
+        get keys():string[] {
+            return this.results.map((r) => { return r.key });
         }
 
         cloneEmpty(results=false) {
