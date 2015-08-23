@@ -32,7 +32,7 @@ module cbox {
         titleH1:HTMLHeadingElement;
         caseDiv:HTMLDivElement;
 
-        static primaryGrouping = ["history.", "clinical.", "lab.", "study."];
+        static primaryGrouping = ["history.", "clinical.", "lab.", "micbio.", "study."];
 
         constructor(root, pc) {
             super(root, pc);
@@ -60,8 +60,19 @@ module cbox {
 
             // render components:
             this.renderTitle(case_);
-            case_.problems.forEach( (problem) => {
-                this.renderProblem(problem, case_, controller);
+
+
+            // render problems split by primary groups:
+            CaseView.primaryGrouping.forEach( (prefix) => {
+                var p = document.createElement("p");
+                p.setAttribute("data-primary-group", prefix);   // just for kicks
+
+                case_.problems.forEach( (problem) => {
+                    this.renderProblem(prefix, p, problem, case_, controller);
+                    p.appendChild(document.createTextNode(" "));   // extra space
+                });
+
+                this.caseDiv.appendChild(p);
             });
 
             // highlight latest added spans if not 0:
@@ -103,49 +114,54 @@ module cbox {
         /**
          * Renders a problem into the case div.  If it's the case t
          * **/
-        renderProblem(problem:Problem, case_:Case, controller:PlayPageController){
+        renderProblem(
+            prefix:string,
+            p:HTMLParagraphElement,
+            problem:Problem,
+            case_:Case,
+            controller:PlayPageController)
+        {
 
-            var div = document.createElement("div");
+            //var div = document.createElement("div");
+
+
+            // find relevant results for this primary group:
+            var results = problem.results.filter( (r) => {
+                return r.key.indexOf(prefix) == 0
+                    && r.key != Case.GENDER_KEY
+                    && r.key != Case.PRESENTING_COMPLAINT_KEY
+                    && r.key != Case.AGE_KEY;
+            } );
 
             // if we are *not* root, we add title:
-            if(!problem.isRoot) {
+            if(!problem.isRoot && results.length > 0) {
                 var title_span = document.createElement("span");
                 title_span.className = "problem_title";
                 title_span.innerText = case_.getProblemTextReference(problem) + " " + problem.title + ": ";
-                div.appendChild(title_span);
+                p.appendChild(title_span);
             }
 
             // at this level, we render the problem's value first grouped by key,
             // then by headline, and then by action:
-            CaseView.primaryGrouping.forEach( (prefix) => {
 
-                // for root problem, use a new paragraph for each primary group
-                // others are rendered straight into the problem div:
-                var root:HTMLElement = div;
-                if(problem.isRoot) {
-                    root = document.createElement("p");
-                    div.appendChild(root);
-                }
+            // for root problem, use a new paragraph for each primary group
+            // others are rendered straight into the problem div:
+            /*var root:HTMLElement = div;
+            if(problem.isRoot) {
+                root = document.createElement("p");
+                div.appendChild(root);
+            }*/
 
-                this.renderPrimaryGroup(prefix, problem, root, controller);
-
-            });
-
-            this.caseDiv.appendChild(div);
+            this.renderPrimaryGroup(results, problem, p, controller);
         }
 
         /**
          * The primary group is a collection of results with a given prefix.  Inside the primary group the
          * results are sorted by the headline the triggering action belongs to.
          * ***/
-        renderPrimaryGroup(prefix:string, problem:Problem, root:HTMLElement, controller:PlayPageController) {
+        renderPrimaryGroup(results:TestResult[], problem:Problem, root:HTMLElement, controller:PlayPageController) {
             // find results in problem that starts with given prefix:
-            var results = problem.results.filter( (r) => {
-                return r.key.indexOf(prefix) == 0
-                    && r.key != Case.GENDER_KEY
-                    && r.key != Case.PRESENTING_COMPLAINT_KEY
-                    && r.key != Case.AGE_KEY;
-            } )
+
 
             // work through all the headlines and their actions, render results as indicated:
             controller.storage.headlines.forEach( (headline) => {
