@@ -61,6 +61,9 @@ module cbox {
                 this.screenManager.activate(document.location.hash.substr(1), false);
             };
 
+            // handle key strokes:
+            document.onkeyup = (event) => { this.handleKeystroke(event) };
+
             // initialize game client. From now on, this will control everything:
             this.game.initialize();
         }
@@ -96,9 +99,10 @@ module cbox {
         }
 
 
-        activateActionSearch() {
+        activateActionSearch(str) {
             this.screenManager.activate("actionsearch");
             (<ActionSearchView>MVC.ids['actionsearchview']).focus();
+            (<ActionSearchView>MVC.ids['actionsearchview']).startWith(str);
         }
 
         activateDiagnosisSearch() {
@@ -116,5 +120,35 @@ module cbox {
             (<FormView>MVC.ids["formview"]).formID = ident;
             document.body.scrollIntoView(true); // scroll to top in mobile espcailly
         }
+
+        handleKeystroke(event:KeyboardEvent) {
+
+            console.log(event);
+            // if user presses escape, we go back to playscreen:
+            //console.log(event.keyCode);
+            //console.log(event.key);
+            if(event.keyCode == 27) {
+                this.screenManager.activate("playscreen");
+                return;
+            }
+
+            // all other queries go to search:
+            if(this.screenManager.current.ident == "playscreen") {
+                var chr = String.fromCharCode(event.which);
+
+                if(event.shiftKey) {
+                    if(chr == "a" || chr == "A")
+                        this.activateForm("2");
+
+                    if(chr == "k" || chr == "K")
+                        this.activateForm("8");
+
+                    return;
+                }
+
+                this.activateActionSearch(chr);
+            }
+        }
+
     }
 }

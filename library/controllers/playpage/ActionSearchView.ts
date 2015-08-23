@@ -19,6 +19,10 @@ module cbox {
             this.searchField.focus();
         }
 
+        startWith(str:string) {
+            this.searchField.value = str;
+        }
+
         handleInput(input:string) {
 
             // for short string we just clear the results:
