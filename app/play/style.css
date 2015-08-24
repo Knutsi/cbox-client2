@@ -197,17 +197,25 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .textbox { text-align: justify; }
 
 .centercomplete {
-    font-size: x-large;
+    font-size: large;
     /* background-color: #EAEAEA; */
     padding: 40px;
     cursor: pointer;
     border-radius: 10px;
     /* box-shadow: 0px 1px 1px black; */
-    border: 1px solid #F7F7F7;
-    /* position: fixed; */
+    border: 1px solid #D9D9D9;
+    position: absolute;
     left: 50%;
     top: 50%;
-    /* transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
+}
+
+@media screen and (max-width: 800px) {
+    .centercomplete {
+        position: inherit;
+        transform: none;
+
+    }
 }
 
 /* ANIMATIONS */
