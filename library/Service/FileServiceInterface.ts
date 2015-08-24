@@ -26,6 +26,27 @@ module cbox {
             this.caseCount = casecount;
         }
 
+        loadManifesto(callback) {
+
+            var url =  this.serviceRoot + "case/manifesto.json";
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+
+            req.onreadystatechange = () => {
+
+                if(req.status == 200 && req.readyState == 4) {
+                    // parse manifest:
+                    var manifest = <any>JSON.parse(req.responseText);
+                    this.caseCount = parseInt(manifest["CaseCount"]);
+                    console.log("Manifesto loaded");
+                    callback();
+                }
+            };
+
+            req.send();
+        }
+
+
         /**
          * For the file interface, we need to load a file with the full case once the game starts
          * */
@@ -33,29 +54,41 @@ module cbox {
             specs:any,
             callback:(status:AsyncRequestResult, case_:Case)=>void)
         {
+            // load manifesto, then case:
+            this.loadManifesto( () => {
 
-            var url =  this.serviceRoot + "case/" + Math.round(Math.random() * (this.caseCount - 1))+ ".json";
-            var req = new XMLHttpRequest();
-            req.open("GET", url, true);
+                var url =  this.serviceRoot + "case/" + Math.round(Math.random() * (this.caseCount - 1))+ ".json";
+                var req = new XMLHttpRequest();
+                req.open("GET", url, true);
 
-            req.onreadystatechange = () => {
+                req.onreadystatechange = () => {
 
-                if(req.status == 200 && req.readyState == 4) {
+                    if(req.status == 200 && req.readyState == 4) {
 
-                    this.handleCompleteCaseDataRecieved(req.responseText);
-                    this.revealedProblems.push(this.fullCase.rootProblem);
+                        this.handleCompleteCaseDataRecieved(req.responseText);
+                        this.revealedProblems.push(this.fullCase.rootProblem);
 
-                    callback(new AsyncRequestResult(true), this.fullCase.initial);
+                        // autotrigger problems:
+                        var case_  = this.fullCase.initial;
+                        //var problems = case_.problems;
+                        this.appendTriggeredProblems(case_.problems, this.fullCase);
+                        //case_.problems = problems;
 
-                } else if(req.readyState == 4) {
+                        callback(new AsyncRequestResult(true), case_);
 
-                    alert("Case loading failed.  Cannot recover from this error.");
+                    } else if(req.readyState == 4) {
 
-                }
-            };
+                        alert("Case loading failed.  Cannot recover from this error.");
 
-            // go go gadget async request!
-            req.send();
+                    }
+                };
+
+                // go go gadget async request!
+                req.send();
+
+            });
+
+
         }
 
 

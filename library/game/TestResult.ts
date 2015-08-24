@@ -40,19 +40,19 @@ module cbox {
         }
 
 
-        get displayString():string {
+        get displayStringHTML():string {
             var prefix = "";
             var unit = "";
             var abnormal_flag = "";
 
             if(this.prefix)
-                prefix = this.prefix + " ";
+                prefix = this.prefix + ": ";
 
             if(this.unit)
                 unit = " " + this.unit + ".";
 
             if(this.isLabValue && this.abnormal)
-                abnormal_flag = "*";
+                abnormal_flag = "<span class=\"abnormal_mark\">*</span>";
 
             return prefix + this.values[0] + abnormal_flag + unit;
         }
@@ -82,7 +82,7 @@ module cbox {
 
 
         get isLabValue():boolean {
-            if(this.key.indexOf("lab.") == 0 && this.type == TestResult.TYPE_NUMBER)
+            if(this.key.indexOf("lab.") == 0)
                 return true;
             else
                 return false;

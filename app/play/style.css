@@ -183,6 +183,10 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 }
 
 
+.abnormal_mark {
+    color: rgba(255, 0, 0, 0.71);
+}
+
 /* COMPONENT MODIFIERS */
 
 .std_pad {  padding: 20px; }

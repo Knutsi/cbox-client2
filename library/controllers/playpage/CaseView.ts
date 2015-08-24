@@ -92,15 +92,15 @@ module cbox {
             /* title data should ways be included in a case, meaning age, gender and presenting complaint is
             * always present */
             var age = case_.rootProblem.get(Case.AGE_KEY).values[0];
-            var gender = case_.rootProblem.get(Case.GENDER_KEY).displayString;
-            var complaint = case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY).displayString.toLowerCase();
+            var gender = case_.rootProblem.get(Case.GENDER_KEY).displayStringHTML;
+            var complaint = case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY).displayStringHTML.toLowerCase();
 
             // adjust gender name:
             var gender_desc = "Kvinne";
             if(parseInt(age) < 19) {
-                if(gender == "f") gender_desc = "Jente";
-                if(gender == "m") gender_desc = "Gutt";
-            } else if(gender == "m")
+                if(gender == "F") gender_desc = "Jente";
+                if(gender == "M") gender_desc = "Gutt";
+            } else if(gender == "M")
                 gender_desc = "Mann"
 
             /*this.titleH1.innerText = RenderHelper.toStringOnlyCommas([
@@ -213,7 +213,7 @@ module cbox {
 
             // render result:
             var span = document.createElement("span");
-            span.innerText = result.displayString;
+            span.innerHTML = result.displayStringHTML;
             span.setAttribute("data-cbox-commit-nr", result.committedInVersion.toString());
             parent_span.appendChild(span);
             parent_span.appendChild(document.createTextNode(" "));
@@ -228,7 +228,7 @@ module cbox {
          * @param result
          */
         private shouldRender(result:TestResult) {
-            if(result.displayString.trim() == "(NULL)")
+            if(result.displayStringHTML.trim() == "(NULL)")
                 return false;
 
             if(!result.hasChildren && !result.parentResult)

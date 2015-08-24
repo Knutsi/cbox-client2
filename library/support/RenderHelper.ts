@@ -14,7 +14,7 @@ module cbox {
 
             results.forEach((result, i) => {
 
-                str += RenderHelper.componentize(result.displayString);
+                str += RenderHelper.componentize(result.displayStringHTML);
 
                 // comma if not final component:
                 if(i != results.length - 1)
