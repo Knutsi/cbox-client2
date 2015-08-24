@@ -228,6 +228,8 @@ module cbox {
          * @param result
          */
         private shouldRender(result:TestResult) {
+            if(result.displayString.trim() == "(NULL)")
+                return false;
 
             if(!result.hasChildren && !result.parentResult)
                 return true;

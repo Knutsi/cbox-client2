@@ -58,7 +58,7 @@ module cbox {
             case_.rootProblem.addResult(gender);
             case_.rootProblem.addResult(presenting);
 
-            // add all test results with "initial reveal":
+            //
 
 
 

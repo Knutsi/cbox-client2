@@ -44,7 +44,7 @@ module cbox {
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
             this.element('doneButton').onclick = () => {this.game.reset(); };
 
-            this.element('actionSearchButton').onclick = () => { this.activateActionSearch() };
+            this.element('actionSearchButton').onclick = () => { this.activateActionSearch("") };
 
             this.element('dxSearchField').onclick = () => { this.activateDiagnosisSearch() };
             this.element('rxSearchField').onclick = () => { this.activateTreatmentSearch() };
