@@ -175,12 +175,15 @@ module cbox {
                     // add action headline:
                     if(action.headlineVisibleHint) {
                         var action_title_span = document.createElement("span");
+                        action_title_span.className = "action_title_span";
                         action_title_span.textContent = action.title + ": ";
                         action_span.appendChild(action_title_span);
                     }
 
                     // render each result with a key yielded by this action into the span:
-                    action.yields.forEach( (yield_key) => {
+                    var yields = action.yields.concat([]);  // clone yields
+                    this.shuffle(yields);   // randomize order
+                    yields.forEach( (yield_key) => {
 
                         for(var i in results) {
                             var result:TestResult = results[i];
@@ -249,8 +252,24 @@ module cbox {
             return false;
         }
 
+        private shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
 
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
 
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
 
     }
 

@@ -125,6 +125,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .searchresult:hover { background-color: #FFE5B8; }
 
 
+.action_title_span { color: #C45D2E; }
+
 .form {
     margin-top: 10px;
     margin-bottom: 10px;
