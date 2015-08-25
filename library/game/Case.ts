@@ -47,19 +47,39 @@ module cbox {
 
 
 
-        get initial():Case {
+        makeInitial():Case {
             var case_ = new Case(true);
 
             // add basics:
-            var age = this.rootProblem.get(Case.AGE_KEY);
+            /*var age = this.rootProblem.get(Case.AGE_KEY);
             var gender = this.rootProblem.get(Case.GENDER_KEY);
             var presenting = this.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY);
             case_.rootProblem.addResult(age);
             case_.rootProblem.addResult(gender);
-            case_.rootProblem.addResult(presenting);
+            case_.rootProblem.addResult(presenting);*/
 
-            //
+            // extend with given problems:
+            /*var ap_pairs = initial_actions.map( (a) => { return new ActionProblemPair(a, this.rootProblem) } );
+            case_.extend(this.extract(ap_pairs));*/
 
+            var initials = [
+                "history.age",
+                "history.gender",
+                "history.presenting.short",
+                "clinical.general-condition",
+                "clinical.skin.apperance-palor",
+                "clinical.skin.touch",
+                "clinical.generalized-edema",
+                "clinical.generalized-lymphadenopathy",
+                "clinical.neurological.orientation",
+                "clinical.neurological.gcs",
+                "clinical.neurological.conciousness-description",
+                "clinical.neurological.cooperation"];
+
+            initials.forEach( (k) =>  {
+                var result = this.rootProblem.get(k);
+                case_.rootProblem.addResult(result);
+            });
 
 
             return case_;
