@@ -9,7 +9,7 @@ module cbox {
 
     export class FinalScoreView extends ElementController{
 
-        scoreSpan:HTMLSpanElement;
+        percentageSpan:HTMLSpanElement;
         scoreCommentUl:HTMLUListElement;
         caseCommentUL:HTMLUListElement;
 
@@ -19,7 +19,7 @@ module cbox {
             super(root, pc);
 
             // grab UI-elements:
-            this.scoreSpan = this.player("score");
+            this.percentageSpan = this.player("percentage");
             this.scoreCommentUl = this.player("score-comment-list");
             this.caseCommentUL = this.player("case-comment-list");
 
@@ -31,7 +31,7 @@ module cbox {
 
         update() {
             // set score:
-            this.scoreSpan.textContent = this.game.finalScore.points.toString();
+            this.percentageSpan.textContent = this.game.finalScore.percentage.toString();
 
             // add score comments:
             var poplist = (list, ul) => {

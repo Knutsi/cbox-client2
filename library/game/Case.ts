@@ -14,7 +14,7 @@ module cbox {
         static PRESENTING_COMPLAINT_KEY:string = "history.presenting.short";
 
         problems:Problem[] = [];
-        diagnosis:Diagnosis[] = [];
+        diagnosis:CaseDiagnosis[] = [];
         followup:FollowupQuestion[] = [];
 
         // keep track of times this has been updated:
@@ -35,7 +35,7 @@ module cbox {
             var case_ = new Case(false);
 
             case_.problems = obj["Problems"].map( (p) => { return Problem.fromObject(p); } );
-            //case_.diagnosis = obj["Diagnosis"].map( (p) => { return Problem.fromObject(p); } );
+            case_.diagnosis = obj["Diagnosis"].map( (p) => { return CaseDiagnosis.fromObject(p); } );
             //case_.treatments = obj["Treatments"].map( (p) => { return Problem.fromObject(p); } );
             //case_.followup = obj["Followup"].map( (p) => { return Problem.fromObject(p); } );
 

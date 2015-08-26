@@ -6,6 +6,7 @@ module cbox {
 
     export class FinalScore {
         points:number = 0;
+        percentage:number;
         calculationComments:string[] = ["-"];
         caseComments:string[] = ["-"];
     }

@@ -7,5 +7,6 @@ module cbox {
     export class DiagnosisChoice {
 
 
+
     }
 }

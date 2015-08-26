@@ -36,6 +36,9 @@
 /// <reference path="service/DummyServiceInterface.ts" />
 /// <reference path="service/FileServiceInterface.ts" />
 
+/// <reference path="support/FinalScoreCalculation.ts" />
+/// <reference path="support/FinalScoreCalculationGroup.ts" />
+
 
 /* Game layer implemntation */
 /// <reference path="game/ClientState.ts" />
@@ -45,6 +48,7 @@
 /// <reference path="game/Case.ts" />
 /// <reference path="game/Problem.ts" />
 /// <reference path="game/ProblemRevealCondition.ts" />
+/// <reference path="game/CaseDiagnosis.ts" />
 /// <reference path="game/Asset.ts" />
 /// <reference path="game/AssetCollection.ts" />
 /// <reference path="game/TestResult.ts" />
