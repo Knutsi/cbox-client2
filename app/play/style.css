@@ -31,6 +31,16 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     .actions {   width: 350px;}
 }
 
+#error_banner {
+    position: fixed;
+    background-color: rgba(247, 13, 13, 0.17);
+    width: 100%;
+    text-align: center;
+    font-size: smaller;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.48);
+    padding: 1px 0;
+    display: none;
+}
 
 .screen {  animation-duration: 0.0s; animation-name: slidein_left;  display:none; }
 .case {  }
@@ -107,7 +117,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .completetbutton_mod {  background-color: #EAF4F7;  font-size: large;  }
 .header { font-size: x-large; }
-.problem_title {  color: #E39608;}
+.problem_title {  color: #E39608; /*cursor: pointer;*/}
+/*.problem_title:hover {  font-weight: bold; }*/
 .flash_highlight { animation-duration: 3s; animation-name: flash_highlight;  background-color: rgba(251, 255, 223, 0.47);}
 .largesearchbox {  font-size: x-large;  margin-top:10px; }
 .comment {  font-style: italic; opacity: 0.5; }
@@ -125,7 +136,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .searchresult:hover { background-color: #FFE5B8; }
 
 
-.action_title_span { color: #C45D2E; }
+.action_title_span { color: #C45D2E;  }
 
 .form {
     margin-top: 10px;

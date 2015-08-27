@@ -18,6 +18,8 @@ module cbox {
         constructor() {
             super();
 
+            // error message banner:
+            window.onerror = () => { (<HTMLElement>document.querySelector("#error_banner")).style.display = "block"; };
 
             // setup the game client:
             var serviceUrl = "../../service/";
@@ -25,6 +27,8 @@ module cbox {
             //this.service = new DummyServiceInterface();
             this.storage = new StorageManager(serviceUrl);
             this.game = new GameClient(this.service, this.storage);
+
+
         }
 
 

@@ -39,17 +39,20 @@ module cbox {
                 p.textContent = question.question;
                 this.questionDiv.appendChild(p);
 
-                question.options.forEach((option, j) => {
+                question.answers.forEach((answer, j) => {
                     var name = "Q" + i + "." + j;
 
                     var input = document.createElement("input");
-                    input.setAttribute("type", question.type);
+                    input.setAttribute("type", "checkbox");
+                    if(question.type == FollowupQuestion.TYPE_SINGLE_CHOICE)
+                        input.setAttribute("type", "radio");
+
                     input.setAttribute("id", name);
                     input.setAttribute("name", "Q" + i);
 
                     var label = document.createElement("label");
                     label.setAttribute("for", name);
-                    label.textContent = option;
+                    label.textContent = answer.text;
 
                     var br = document.createElement("br");
 
@@ -60,11 +63,10 @@ module cbox {
                     // control state dynamics:
                     input.onchange = () => {
                         if(input.checked) {
-                            question.userAnswerIndexes.push(j);
+                            answer.chosen = true;
                         } else {
-                            question.userAnswerIndexes.splice(question.userAnswerIndexes.indexOf(j), 1);
+                            answer.chosen = false;
                         }
-
                     }
                 });
             })
