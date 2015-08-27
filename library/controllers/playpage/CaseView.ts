@@ -32,7 +32,16 @@ module cbox {
         titleH1:HTMLHeadingElement;
         caseDiv:HTMLDivElement;
 
+        problemHeadlineClicked:Event<ProblemHeadlineClickedEventArgs> = new Event<ProblemHeadlineClickedEventArgs>();
+
         static primaryGrouping = ["history.", "clinical.", "lab.", "micbio.", "study."];
+        static primaryGroupHeading = {
+            "history." : "Anamnese",
+            "clinical." : "Klinisk undersøkelse",
+            "lab." : "Lab",
+            "micbio." : "Mikrobiologi",
+            "study." : "Raiologi, skopi",
+        };
 
         constructor(root, pc) {
             super(root, pc);
@@ -64,6 +73,8 @@ module cbox {
 
             // render problems split by primary groups:
             CaseView.primaryGrouping.forEach( (prefix) => {
+                var head = document.createElement("h2");
+                head.textContent = CaseView.primaryGroupHeading[prefix];
                 var p = document.createElement("p");
                 p.setAttribute("data-primary-group", prefix);   // just for kicks
 
@@ -72,6 +83,8 @@ module cbox {
                     p.appendChild(document.createTextNode(" "));   // extra space
                 });
 
+                if(p.innerHTML.trim() != "")
+                    this.caseDiv.appendChild(head);
                 this.caseDiv.appendChild(p);
             });
 
@@ -138,6 +151,10 @@ module cbox {
                 var title_span = document.createElement("span");
                 title_span.className = "problem_title";
                 title_span.innerText = case_.getProblemTextReference(problem) + " " + problem.title + ": ";
+                title_span.onclick = () =>
+                {
+                    this.problemHeadlineClicked.fire(new ProblemHeadlineClickedEventArgs(problem));
+                };
                 p.appendChild(title_span);
             }
 
@@ -271,6 +288,14 @@ module cbox {
             return array;
         }*/
 
+    }
+
+    export class ProblemHeadlineClickedEventArgs {
+        problem:Problem;
+
+        constructor(problem:Problem) {
+            this.problem = problem;
+        }
     }
 
 
