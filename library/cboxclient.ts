@@ -9,6 +9,7 @@
 
 
 /* Support classes*/
+/// <reference path="support/Tools.ts" />
 /// <reference path="support/AsyncRequestResult.ts" />
 /// <reference path="support/BindingList.ts" />
 /// <reference path="support/Event.ts" />
@@ -80,8 +81,6 @@
 
 
 /// <reference path="controllers/playpage/FormView.ts" />
-
-
 
 
 console.log("Cbox client library loaded");

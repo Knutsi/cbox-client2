@@ -109,7 +109,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .data_changed_mark { background-color: #D7F7BA; }
 
 .disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: default;
 }
 
@@ -117,7 +117,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 
 .completetbutton_mod {  background-color: #EAF4F7;  font-size: large;  }
 .header { font-size: x-large; }
-.problem_title {  color: #E39608; /*cursor: pointer;*/}
+.problem_title { color: #E39608; border-bottom: 1px dotted #B8B3B3;  cursor: pointer; }
 /*.problem_title:hover {  font-weight: bold; }*/
 .flash_highlight { animation-duration: 3s; animation-name: flash_highlight;  background-color: rgba(251, 255, 223, 0.47);}
 .largesearchbox {  font-size: x-large;  margin-top:10px; }

@@ -39,6 +39,9 @@ module cbox {
                 p.textContent = question.question;
                 this.questionDiv.appendChild(p);
 
+                // randomize answer order:
+                Tools.shuffle(question.answers);
+
                 question.answers.forEach((answer, j) => {
                     var name = "Q" + i + "." + j;
 

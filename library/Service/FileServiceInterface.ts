@@ -15,6 +15,7 @@ module cbox {
         serviceRoot:string;
         caseCount:number;
         fullCase:Case;
+        gameStart:Date;
         committedActions:ActionProblemPair[] = [];
         committedDiagnosis:Diagnosis[] = [];
         committedTreatments:TreatmentChoice[] = [];
@@ -73,6 +74,9 @@ module cbox {
                         //var problems = case_.problems;
                         this.appendTriggeredProblems(case_.problems, this.fullCase);
                         //case_.problems = problems;
+
+                        // start time:
+                        this.gameStart = new Date();
 
                         callback(new AsyncRequestResult(true), case_);
 
@@ -156,7 +160,26 @@ module cbox {
          * Scorecard calculated on basis of the current commits
          * **/
         get scorecard():Scorecard {
-            return new Scorecard();
+
+            // sum time spent:
+            var time_accum = this.committedActions.reduce( (pv, app) => { return pv + app.action.time }, 0);
+            var pain_accum = this.committedActions.reduce( (pv, app) => { return pv + app.action.pain }, 0);
+            var cost_accum = this.committedActions.reduce( (pv, app) => { return pv + app.action.cost }, 0);
+            var risk_accum =
+                (1 - (1 - this.committedActions.reduce( (pv, app) => { return pv * app.action.risk }, 0))) * 100;
+
+            var card = new Scorecard();
+            card.timeMS = time_accum * 1000; // miliseconds
+            card.comfort = pain_accum;
+            card.cost = cost_accum;
+            card.risk = risk_accum;
+
+            // add time spend since game started:
+            var now:Date = new Date()
+            var timespan = now.getTime() - this.gameStart.getTime();
+            card.timeMS += timespan;
+
+            return card;
         }
 
 

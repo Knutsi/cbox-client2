@@ -10,7 +10,7 @@ module cbox {
     export class ScoreView extends ElementController{
 
         static COMFORTS = [
-            "Komfortabel",
+            "Pas. komfortabel",
             "Lett ukomfortabel",
             "Moderat ukomfortabel",
             "Svært ukomfortabel",
@@ -57,18 +57,20 @@ module cbox {
             /*if(this.timerReference)
                 clearInterval(this.timerReference);*/
 
+            var comfort = Math.round(score.comfort)
+
             // start timer:
             this.timeDeltaMS = 0;
             if(!this.timerReference)
                 this.timerReference = setInterval(() => { this.updateTime() }, 1000);
 
             // Update the cells:
-            this.comfortCell.textContent = ScoreView.COMFORTS[score.comfort];
-            this.riskCell.textContent = score.risk.toFixed(2).toString() + "% risk";
+            this.comfortCell.textContent = ScoreView.COMFORTS[comfort];
+            this.riskCell.textContent = score.risk.toFixed(2).toString() + "% risiko";
             this.costCell.textContent = score.cost.toString() + ",- nok";
 
             // set risk cell class based on score:
-            this.comfortCell.className = "comfort-level-" + score.comfort;
+            this.comfortCell.className = "comfort-level-" + comfort;
         }
 
         updateTime() {

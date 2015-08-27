@@ -12,6 +12,7 @@ module cbox {
         ident:string;
         pain:number;
         risk:number;
+        time:number;
         targetClasses:string[];
         title:string;
         headlineVisibleHint:boolean;
@@ -23,10 +24,11 @@ module cbox {
 
             var action = new Action();
 
-            action.cost = obj["Cost"];
+            action.cost = obj["Money"];
             action.ident = obj["Ident"];
             action.pain = obj["Pain"];
             action.risk = obj["Risk"];
+            action.time = parseInt(obj["Time"]);
             action.targetClasses = obj["TargetClasses"];
             action.title = obj["Title"];
             action.headlineVisibleHint = obj["VisibleHeadlineHint"];

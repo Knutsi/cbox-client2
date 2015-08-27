@@ -182,7 +182,7 @@ module cbox {
 
                     // render each result with a key yielded by this action into the span:
                     var yields = action.yields.concat([]);  // clone yields
-                    this.shuffle(yields);   // randomize order
+                    Tools.shuffle(yields);   // randomize order
                     yields.forEach( (yield_key) => {
 
                         for(var i in results) {
@@ -252,7 +252,7 @@ module cbox {
             return false;
         }
 
-        private shuffle(array) {
+        /*private shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
 
             // While there remain elements to shuffle...
@@ -269,7 +269,7 @@ module cbox {
             }
 
             return array;
-        }
+        }*/
 
     }
 
