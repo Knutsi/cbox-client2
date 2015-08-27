@@ -69,7 +69,7 @@ module cbox {
                         this.revealedProblems.push(this.fullCase.rootProblem);
 
                         // autotrigger problems:
-                        var case_  = this.fullCase.initial;
+                        var case_  = this.fullCase.makeInitial();
                         //var problems = case_.problems;
                         this.appendTriggeredProblems(case_.problems, this.fullCase);
                         //case_.problems = problems;
@@ -164,12 +164,27 @@ module cbox {
          * Scorecard calculated on basis of the current commits
          * **/
         get finalScore():FinalScore {
-            return new FinalScore();
+
+            var fs = new FinalScore();
+            var calculator = new FinalScoreCalculation(
+                this.fullCase,
+                this.committedDiagnosis,
+                this.committedTreatments,
+                this.committedFollowups);
+
+            fs.calculationComments = calculator.calulationComments;
+            fs.percentage = calculator.percentage;
+            fs.points = calculator.playerScore;
+
+            console.log(calculator);
+
+            return fs;
         }
 
         get revealedProblemIdents():string[] {
             return this.revealedProblems.map( (p) => { return p.ident });
         }
+
 
         appendTriggeredProblems(results:Problem[], fullCase:Case) {
 

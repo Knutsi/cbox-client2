@@ -104,16 +104,16 @@ module cbox {
         static get demoQuestions() {
             var q1 = new FollowupQuestion();
             q1.question = "Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?";
-            q1.options = ["Småcellet", "Plateepitelkarsinom", "Storcellekarsinom"];
+            //q1.options = ["Småcellet", "Plateepitelkarsinom", "Storcellekarsinom"];
             q1.type = FollowupQuestion.TYPE_SINGLE_CHOICE;
 
             var q2 = new FollowupQuestion();
             q2.question = "Hvilke av de følgende er røde flagg ved ryggsmerter?";
-            q2.options = [
+            /*q2.options = [
                 "Smerteintensitet varierer, ofte bedre i ro",
                 "Utbredte og eventuelle progrediserende nevrologiske utfall",
                 "Alder under 20 eller over 55 år",
-                "Hosting/nysing reproduserer smerteutstrålingen"];
+                "Hosting/nysing reproduserer smerteutstrålingen"];*/
             q2.type = FollowupQuestion.TYPE_MULTIPLE_CHOICE;
 
             return [q1, q2];
