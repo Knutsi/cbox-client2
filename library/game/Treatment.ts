@@ -9,8 +9,8 @@ module cbox {
         class_:string;
         ident:string;
         title:string;
-        subspecIdents:string[];
-        subspecs:Treatment[];
+        tradenames:string[];
+        searchIndex:string;
         modifiers:string[];
 
 
@@ -20,8 +20,14 @@ module cbox {
             treatment.class_ = obj["Class"];
             treatment.ident = obj["Ident"];
             treatment.title = obj["Title"];
-            treatment.subspecIdents = obj["Subspecs"];
+            treatment.tradenames = obj["Subspecs"];
             treatment.modifiers = obj["Modifiers"];
+
+            if(treatment.class_ == "substance")
+                treatment.modifiers = ["Øk dose", "Reduser dose", "Legg til", "Seponer"];
+
+            // index for reach:
+            treatment.searchIndex = treatment.title + ", " + treatment.tradenames.join(", ");
 
             return treatment;
         }

@@ -38,7 +38,8 @@ module cbox {
             pc.storage.treatments.forEach( (rx) => {
 
                 // match query with title:
-                if(rx.title.toLowerCase().indexOf(input.toLowerCase()) != -1)
+                if(rx.title.toLowerCase().indexOf(input.toLowerCase()) != -1
+                    || rx.searchIndex.toLowerCase().indexOf(input.toLowerCase()) != -1)
                 {
                     this.currentResults.push(new TreatmentChoice(rx));
                 }
@@ -65,7 +66,8 @@ module cbox {
             var div = document.createElement("div");
             var modifier = document.createElement("div");
             var checkbox = document.createElement("input");
-            var text_title = document.createTextNode(rx.displayName);
+            var text_title = document.createTextNode(rx.displayName + " ");
+            var tradenames_span = document.createElement('span');
 
             div.className = "searchresult";
             modifier.className = "dosetoggle";
@@ -88,6 +90,11 @@ module cbox {
 
             // add text:
             div.appendChild(text_title);
+
+            // add tradename span:
+            tradenames_span.textContent = rx.treatment.searchIndex;
+            tradenames_span.className = "comment";
+            div.appendChild(tradenames_span);
 
             // set checkbox state:
             checkbox.checked = pc.game.hasPendingRx(rx);

@@ -112,7 +112,7 @@ module cbox {
                 if(action.appliesTo(problem))  {
                     count++;
 
-                    this.renderChoice(action, problem, parent_div, game, controller, false);
+                    this.renderChoice(action, problem, parent_div, game, controller, true);
                 }
             })
 

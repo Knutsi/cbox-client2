@@ -59,7 +59,7 @@ module cbox {
             // load and parse treatment package:
             this.loadAndParse(
                 rx_task,
-                this.serviceRootUrl + "treatments_fest.json",
+                this.serviceRootUrl + "RxCatalog.json",
                 (task:LoadTask, data:string) => { this.parseTreatmentPackage(task, data) });
 
             // run a timer to check if tasks are done:
@@ -125,12 +125,12 @@ module cbox {
             this.treatments = this.treatmentPackageRaw["Treatments"].map( (t) => { return Treatment.fromObject(t) });
 
             // (2) assign subspecs:
-            this.treatments.forEach((treatment) => {
+            /*this.treatments.forEach((treatment) => {
                 if(treatment.subspecIdents)
                     treatment.subspecs = treatment.subspecIdents.map( (ident) => { return this.getTreatment(ident); })
                 else
                     treatment.subspecs = null;
-            });
+            });*/
 
             task.ok = true;
         }

@@ -54,7 +54,9 @@ module cbox {
             if(this.isLabValue && this.abnormal)
                 abnormal_flag = "<span class=\"abnormal_mark\">*</span>";
 
-            return prefix + this.values.join(', ') + abnormal_flag + unit;
+            var non_null_values = this.values.filter( (v) => { return v.trim() != "(NULL)" });
+
+            return prefix + non_null_values.join(', ') + abnormal_flag + unit;
         }
 
 
