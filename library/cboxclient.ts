@@ -27,6 +27,7 @@
 /// <reference path="support/logicnode/LogicNodeBase.ts" />
 /// <reference path="support/logicnode/LogicNode.ts" />
 /// <reference path="support/logicnode/LogicNodeTreeRoot.ts" />
+/// <reference path="support/logicnode/IsTreatment.ts" />
 
 
 /// <reference path="game/Action.ts" />

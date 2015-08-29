@@ -9,10 +9,12 @@ module cbox.logicnode {
 
     export class LogicNode extends LogicNodeBase {
 
+        public static LOGIC_TYPE_AND = "AND";
+        public static LOGIC_TYPE_OR = "OR";
         public static LOGIC_TYPE_N_OF = "N_OF";
         public static LOGIC_TYPE_NOT = "NEITHER";
 
-        logicType:string = LogicNode.LOGIC_TYPE_N_OF;
+        logicType:string = LogicNode.LOGIC_TYPE_AND;
         n:number = 0;
 
         constructor() {
@@ -23,6 +25,12 @@ module cbox.logicnode {
 
         eval():boolean {
             switch(this.logicType) {
+
+                case LogicNode.LOGIC_TYPE_AND:
+                    return this.evalAnd();
+
+                case LogicNode.LOGIC_TYPE_OR:
+                    return this.evalOr();
 
                 case LogicNode.LOGIC_TYPE_N_OF:
                     return this.evalNOf();
@@ -35,6 +43,13 @@ module cbox.logicnode {
             }
         }
 
+        private evalAnd():boolean {
+            return this.positiveChildren == this.children.length;
+        }
+
+        private evalOr():boolean {
+            return this.positiveChildren >= 1;
+        }
 
         private evalNOf():boolean {
             return this.positiveChildren == this.n;
@@ -57,7 +72,16 @@ module cbox.logicnode {
         }
 
         get displayName():string {
-            throw "Not implemented";
+            return this.logicType;
+        }
+
+        static fromObject(obj:{}):LogicNode {
+
+            var node = new LogicNode();
+            node.logicType = obj['LogicType'];
+            node.children = LogicNodeBase.instanceChildren(obj['Children']);
+
+            return node;
         }
 
 
