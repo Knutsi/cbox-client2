@@ -20,7 +20,10 @@ module cbox {
         }
 
         get modifier():string {
-            return this.treatment.modifiers[this.modifierIndex];
+            if(this.treatment.modifiers.length > 0)
+                return this.treatment.modifiers[this.modifierIndex];
+            else
+                return null;
         }
 
         nextModifier() {

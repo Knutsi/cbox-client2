@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/library/Service/DummyServiceInterface.ts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/controllers/playpage/CaseView.ts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/controllers/playpage/ScoreView.ts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/game/Treatment.ts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/service/DummyServiceInterface.ts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/support/FinalScoreCalculation.ts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/RxCatalog.json" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

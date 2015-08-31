@@ -11,7 +11,7 @@ module cbox {
         title:string;
         tradenames:string[];
         searchIndex:string;
-        modifiers:string[];
+        modifiers:string[] = [];
 
 
         static fromObject(obj:{}):Treatment {
@@ -20,11 +20,14 @@ module cbox {
             treatment.class_ = obj["Class"];
             treatment.ident = obj["Ident"];
             treatment.title = obj["Title"];
-            treatment.tradenames = obj["Subspecs"];
-            treatment.modifiers = obj["Modifiers"];
+            treatment.tradenames = obj["Subspecs"] || [] ;
+            treatment.modifiers = obj["Modifiers"] || [];
 
             if(treatment.class_ == "substance")
-                treatment.modifiers = ["Øk dose", "Reduser dose", "Legg til", "Seponer"];
+                treatment.modifiers = ["Legg til", "Seponer"];
+
+            if(treatment.modifiers.length == 0)
+                treatment.modifiers = null;
 
             // index for reach:
             treatment.searchIndex = treatment.title + ", " + treatment.tradenames.join(", ");

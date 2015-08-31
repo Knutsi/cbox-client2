@@ -12,6 +12,8 @@ module cbox {
      */
     export class FileServiceInterface implements IServiceInterface  {
 
+        static FOLLOWUP_SCORE = 2;
+
         serviceRoot:string;
         caseCount:number;
         fullCase:Case;
@@ -143,7 +145,7 @@ module cbox {
          * **/
         commitFollowup(
             followup:cbox.FollowupQuestion[],
-            callback:(p1:cbox.AsyncRequestResult, p2:cbox.FinalScore)=>void)
+            callback:(p1:cbox.AsyncRequestResult, p2:Result)=>void)
         {
             this.committedFollowups = followup;
             callback(new AsyncRequestResult(true), this.finalScore)
@@ -186,23 +188,62 @@ module cbox {
         /**
          * Scorecard calculated on basis of the current commits
          * **/
-        get finalScore():FinalScore {
+        get finalScore():Result {
 
             var fs = new FinalScore();
-            var calculator = new FinalScoreCalculation(
-                this.fullCase,
-                this.committedDiagnosis,
-                this.committedTreatments,
-                this.committedFollowups);
 
-            fs.calculationComments = calculator.calulationComments;
-            fs.percentage = calculator.percentage;
-            fs.points = calculator.playerScore;
+            // run score tree:
+            var objects:any[] = this.committedActions.concat(<any[]>this.committedDiagnosis);
+            objects = objects.concat(this.committedTreatments);
+            objects = objects.concat(this.committedFollowups);
 
-            console.log(calculator);
+            this.fullCase.scoreTree.objects = objects;
 
-            return fs;
+            // create final score object:
+            var result =  this.fullCase.scoreTree.result;
+
+            // adjust for correct followups:
+            result.maxScore += this.maxFollowupScore;
+            result.score += this.followupScore;
+
+            var quiz_answer_quoted = this.followupCorrectAnswers.map((a) => { return "\"" + a + "\""});
+            result.scoreExplanation.push("Riktige quiz-svar var: " + quiz_answer_quoted.join(", "));
+
+            return result;
         }
+
+        get followupScore():number {
+            var score = 0;
+
+            this.fullCase.followup.forEach((q) => {
+
+                var correct_answers = q.answers.filter( (a) => { return a.correct } );
+                var correct_choices = correct_answers.filter( (a) => { return a.chosen } );
+                var point_pr_correct = FileServiceInterface.FOLLOWUP_SCORE / correct_answers.length;
+                score += Math.round(correct_choices.length * point_pr_correct);
+
+            })
+
+            return score;
+        }
+
+        get maxFollowupScore():number {
+            return this.fullCase.followup.length * FileServiceInterface.FOLLOWUP_SCORE;
+        }
+
+        get followupCorrectAnswers():string[] {
+            var answers = [];
+            this.fullCase.followup.forEach((q) => {
+
+                var correct_answers = q.answers.filter( (a) => { return a.correct } );
+                var correct_answers_str = correct_answers.map( (a) => { return a.text });
+                answers = answers.concat(correct_answers_str);
+
+            })
+
+            return answers;
+        }
+
 
         get revealedProblemIdents():string[] {
             return this.revealedProblems.map( (p) => { return p.ident });

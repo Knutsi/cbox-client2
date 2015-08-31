@@ -16,6 +16,7 @@ module cbox {
         problems:Problem[] = [];
         diagnosis:CaseDiagnosis[] = [];
         followup:FollowupQuestion[] = [];
+        scoreTree:ScoreTree;
 
         // keep track of times this has been updated:
         version = 0;
@@ -35,8 +36,8 @@ module cbox {
             var case_ = new Case(false);
 
             case_.problems = obj["Problems"].map( (p) => { return Problem.fromObject(p); } );
-            case_.diagnosis = obj["Diagnosis"].map( (p) => { return CaseDiagnosis.fromObject(p); } );
-            //case_.treatments = obj["Treatments"].map( (p) => { return Problem.fromObject(p); } );
+            //case_.diagnosis = obj["Diagnosis"].map( (p) => { return CaseDiagnosis.fromObjectInherited(p); } );
+            case_.scoreTree = ScoreTree.fromObject(obj["ScoreTree"]);
             case_.followup = obj["Followup"].map( (p) => { return FollowupQuestion.fromObject(p); } );
 
             case_.updateParentChildRelations();

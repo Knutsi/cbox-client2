@@ -71,6 +71,7 @@ module cbox {
             document.body.scrollIntoView(true);
         }
 
+
         signalDataChanged() {
             this.dataflag = ScreenDataFlag.CHANGED;
             this.onDataChangeSignaled.fire(new GenericEventArgs());

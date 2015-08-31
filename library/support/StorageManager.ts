@@ -16,7 +16,7 @@ module cbox {
 
         // internal fields:
         clientpackageRaw:{};
-        treatmentPackageRaw:{};
+        treatmentPackageRaw:any[];
 
         forms:Form[];
         actions:Action[];
@@ -122,7 +122,7 @@ module cbox {
 
             // two passes nessesary: (1) get objects,
             this.treatmentPackageRaw = JSON.parse(text);
-            this.treatments = this.treatmentPackageRaw["Treatments"].map( (t) => { return Treatment.fromObject(t) });
+            this.treatments = this.treatmentPackageRaw.map( (t) => { return Treatment.fromObject(t) });
 
             // (2) assign subspecs:
             /*this.treatments.forEach((treatment) => {
@@ -136,7 +136,7 @@ module cbox {
         }
 
 
-        private getTreatment(ident:string):Treatment {
+        public getTreatment(ident:string):Treatment {
             for(var i in this.treatments)
                 if(this.treatments[i].ident.toLowerCase() == ident.toLowerCase())
                     return this.treatments[i];

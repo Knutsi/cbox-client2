@@ -95,9 +95,9 @@ module cbox {
             followup:cbox.FollowupQuestion[],
             callback:(
                 status:cbox.AsyncRequestResult,
-                score:cbox.FinalScore)=>void)
+                score:Result)=>void)
         {
-            callback(new AsyncRequestResult(true), DummyServiceInterface.demoFinalScore);
+            callback(new AsyncRequestResult(true), new Result());
         }
 
 

@@ -23,12 +23,14 @@
 /// <reference path="support/ElementController.ts" />
 /// <reference path="support/LoadTask.ts" />
 
-
-/// <reference path="support/logicnode/LogicNodeBase.ts" />
 /// <reference path="support/logicnode/LogicNode.ts" />
-/// <reference path="support/logicnode/LogicNodeTreeRoot.ts" />
-/// <reference path="support/logicnode/IsTreatment.ts" />
-
+/// <reference path="support/logicnode/ConsequenceNode.ts" />
+/// <reference path="support/logicnode/PointsNode.ts" />
+/// <reference path="support/logicnode/DiagnosisNode.ts" />
+/// <reference path="support/logicnode/TreatmentNode.ts" />
+/// <reference path="support/logicnode/TestNode.ts" />
+/// <reference path="support/logicnode/ScoreTree.ts" />
+/// <reference path="support/logicnode/Result.ts" />
 
 /// <reference path="game/Action.ts" />
 /// <reference path="game/Class.ts" />

@@ -8,11 +8,22 @@ module cbox {
 
     export class TreatmentSearchView extends SearchView {
 
+        static NO_TREATMENT_IDENT = "no-treatment";
+
         currentResults:TreatmentChoice[] = [];
+        noTreatmentButton:HTMLDivElement;
 
         constructor(root, pc) {
             super(root, pc);
 
+            this.noTreatmentButton = this.player("no-treatment-button");
+            this.noTreatmentButton.onclick = () => {
+                var ctrlr = <PlayPageController>this.pageController;
+                var no_treatment = ctrlr.storage.getTreatment(TreatmentSearchView.NO_TREATMENT_IDENT);
+                var treatment_choice = new TreatmentChoice(no_treatment);
+                ctrlr.game.pendingTreatments.add([treatment_choice]);
+                ctrlr.screenManager.activate("dntscreen");
+            }
         }
 
         focus() {

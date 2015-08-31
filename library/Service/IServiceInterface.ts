@@ -28,7 +28,7 @@
         commitFollowup(
             followup:FollowupQuestion[], callback:(
                 status:AsyncRequestResult,
-                score:FinalScore) => void );
+                score:Result) => void );
     }
 
 }

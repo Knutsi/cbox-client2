@@ -35,7 +35,7 @@ module cbox {
         assets:BindingList<Asset> = new BindingList<Asset>();
         score:Scorecard;
         followupQuestions:BindingList<FollowupQuestion> = new BindingList<FollowupQuestion>();
-        finalScore:FinalScore;
+        finalScore:Result;
 
         // events:
         onCaseUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();

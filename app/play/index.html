@@ -29,9 +29,10 @@
         <div id="readyscreen" class="screen" data-cbox-controller="ScreenView">
             <div class="centercomplete textbox">
                 <p>
-                    Vennligst merk: Dette systemet er ikke en fullverdig simulering av helsehjelp og feil kan forekomme.
+                    Vennligst merk: Dette systemet er ikke en fullverdig simulering av helsehjelp. Sammenhenger
+                    mellom tester, handlinger og diagnoser representerer ikke reelle prediktive verdier eller sansynlighetsratioer.
                     Systemet er laget for å gi opplæring i viktige sammenhenger mellom plager, tester, behandling og
-                    deres kostnader. Utfordringene og hjelpemidler tilgjengelig representerer ikke et spesifikt nivå i helsetjenesten.
+                    deres kostnader, samt gi mengdetrening i disse. Utfordringene og hjelpemidler tilgjengelig representerer ikke et spesifikt nivå i helsetjenesten.
                 </p>
                 <p>
                     Kasuistikkene du nå skal løse erstatter ikke praktisk erfaring, men er ment å komplimenterer den.  Lykke til! (:
@@ -208,7 +209,7 @@
 
                 <div>
                     <input type="text" class="largesearchbox" data-cbox-role="input" placeholder="Søk.." />
-                    Annet: <div class="button">Avvente/ingen behandling</div>
+                    Annet: <div class="button" data-cbox-role="no-treatment-button">Avvente/ingen behandling</div>
                     <div class="topline" data-cbox-role="results"></div>
                 </div>
 
@@ -336,17 +337,13 @@
                 <div class="score"><span data-cbox-role="percentage">0</span> % korrekt</div>
                 <div>
                     <ul data-cbox-role="score-comment-list">
-                        <li>3 av 5 relevante diagnoser</li>
-                        <li>Relevante behandlinger</li>
-                        <li>3 av 3 riktige oppføgingsspørsmål</li>
                     </ul>
                 </div>
 
-                <div data-cbox-controller="CommentView">
-                    <h2>Kommentarer</h2>
+                <div data-cbox-controller="CommentView" >
+                    <h2 data-cbox-role="case-comment-headline">Kommentarer</h2>
                     <ul data-cbox-role="case-comment-list">
-                        <li>Pasienten hadde mycoplasma infeksjon </li>
-                        <li>Pasiente hadde snikende tungpust, et uvanlig debutsymptom for lungecancer</li>
+
                     </ul>
                 </div>
             </div>

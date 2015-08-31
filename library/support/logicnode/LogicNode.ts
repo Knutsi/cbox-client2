@@ -1,91 +1,117 @@
 /**
- * Created by knut on 8/28/2015.
+ * Created by knut on 8/31/2015.
  */
 
 /// <reference path="../../cboxclient.ts" />
 
+module cbox {
 
-module cbox.logicnode {
+    export class LogicNode {
 
-    export class LogicNode extends LogicNodeBase {
+        public static LOGIC_ALL_OF = "IF_ALL_OF";
+        public static LOGIC_EITHER_OF = "IF_EITHER_OF";
+        public static LOGIC_NONE_OF = "IF_NONE_OF";
 
-        public static LOGIC_TYPE_AND = "AND";
-        public static LOGIC_TYPE_OR = "OR";
-        public static LOGIC_TYPE_N_OF = "N_OF";
-        public static LOGIC_TYPE_NOT = "NEITHER";
+        easyStrings = {
+            'IF_ALL_OF' : "hvis alle av",
+            'IF_EITHER_OF' : "hvis en eller flere av",
+            'IF_NONE_OF' : "hvis ingen av"
+        };
 
-        logicType:string = LogicNode.LOGIC_TYPE_AND;
-        n:number = 0;
-
-        constructor() {
-            super();
-            this.type = "LogicNode";
-        }
+        type:string;
+        logic:string = LogicNode.LOGIC_EITHER_OF;
+        children:LogicNode[] = [];
+        objects_:{}[] = [];
 
 
         eval():boolean {
-            switch(this.logicType) {
 
-                case LogicNode.LOGIC_TYPE_AND:
-                    return this.evalAnd();
+            switch(this.logic) {
 
-                case LogicNode.LOGIC_TYPE_OR:
-                    return this.evalOr();
+                case LogicNode.LOGIC_ALL_OF:
+                    return this.children.length > 0 && this.positiveChildren == this.children.length;
 
-                case LogicNode.LOGIC_TYPE_N_OF:
-                    return this.evalNOf();
+                case LogicNode.LOGIC_EITHER_OF:
+                    return this.positiveChildren > 0;
 
-                case LogicNode.LOGIC_TYPE_NOT:
-                    return this.evalNeither();
+                case LogicNode.LOGIC_NONE_OF:
+                    return this.positiveChildren == 0;
 
                 default:
-                    throw "Unknown logic type set for LogicNode.eval()";
+                    throw "Dang, logic node with unknown logic?  4th dimensional stuff? Logic is: " + this.logic;
+
             }
         }
 
-        private evalAnd():boolean {
-            return this.positiveChildren == this.children.length;
-        }
 
-        private evalOr():boolean {
-            return this.positiveChildren >= 1;
-        }
-
-        private evalNOf():boolean {
-            return this.positiveChildren == this.n;
-        }
-
-        evalNeither():boolean {
-            return this.positiveChildren == 0;
+        get matched():boolean
+        {
+            return this.eval()
         }
 
 
-        private get positiveChildren():number {
+        set objects(objects:any[]) {
 
-            return this.children.reduce( (pv, child) => {
-                if(child.eval())
-                    return pv + 1;
+            // recusrively set all children to have these objects as theirs:
+            this.objects_ = objects;
+            this.children.forEach( (child) => {
+                child.objects = objects;
+            })
+        }
+
+        get objects():any[] {
+            return this.objects_;
+        }
+
+        get positiveChildren():number
+        {
+            return this.children.reduce(
+                (pv, child) => {
+                    if(child.matched)
+                        return pv +1;
+                    else
+                        return pv;
+                }, 0);
+        }
+
+
+        get stringDescription():string {
+
+            var str = this.easyStrings[this.logic];
+
+            if(this.children.length > 0) {
+
+                var child_descs = this.children.map((c) => { return c.stringDescription});
+
+                if(this.logic == LogicNode.LOGIC_EITHER_OF)
+                    str += " (" + child_descs.join(" eller ") + ")";
                 else
-                    return 0;
+                    str += " (" + child_descs.join(" og ") + ")";
+            }
 
-            }, 0);
+            return str;
         }
 
-        get displayName():string {
-            return this.logicType;
+
+        static fromObjectInherited(obj:{}, node:LogicNode) {
+            if("Logic" in obj)
+                node.logic = obj['Logic'];
+
+            if("Children" in obj)
+                node.children = obj['Children'].map( (c) => { return ScoreTree.instanceNode(c); } );
+
+            node.type = obj['Type'];
         }
+
 
         static fromObject(obj:{}):LogicNode {
-
             var node = new LogicNode();
-            node.logicType = obj['LogicType'];
-            node.children = LogicNodeBase.instanceChildren(obj['Children']);
+            node.logic = obj['Logic'];
+            node.children = obj['Children'].map( (c) => { return ScoreTree.instanceNode(c); } );
 
             return node;
         }
-
-
     }
 
-}
 
+}
