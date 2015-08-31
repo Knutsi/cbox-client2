@@ -210,8 +210,11 @@ module cbox {
 
         }
 
-        reset() {
+        reset(restart:boolean=false) {
             this.go(ClientState.READY);
+
+            if(restart)
+                this.play();
         }
 
 
