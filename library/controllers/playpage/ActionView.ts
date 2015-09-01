@@ -33,7 +33,7 @@ module cbox {
             controller.storage.forms.forEach( (form) => {
                 var div = document.createElement("div");
                 div.className = "button";
-                div.innerText = form.title;
+                div.textContent = form.title;
 
                 this.listRoot.appendChild(div);
 

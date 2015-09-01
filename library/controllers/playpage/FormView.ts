@@ -60,7 +60,7 @@ module cbox {
         update() {
             // if rendering form:
             if(this.form != null) {
-                this.title.innerText = this.form.title;
+                this.title.textContent = this.form.title;
 
                 // render headlines:
                 this.contentRoot.innerHTML = "";
@@ -72,7 +72,7 @@ module cbox {
 
             // render problem selection:
             else if(this.problem != null) {
-                this.title.innerText = "Mulige handlinger for \"" + this.problem.title + "\"";
+                this.title.textContent = "Mulige handlinger for \"" + this.problem.title + "\"";
                 this.contentRoot.innerHTML = "";
                 this.renderProblemActions();
             } else {
@@ -91,7 +91,7 @@ module cbox {
 
             this.contentRoot.appendChild(div);
 
-            h2.innerText = headline.title;
+            h2.textContent = headline.title;
 
             // get actions that can be applied to the case from this headline:
 

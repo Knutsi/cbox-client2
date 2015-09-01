@@ -67,12 +67,12 @@ module cbox {
                 // add modifiers:
                 if(rx.treatment.modifiers) {
                     div.appendChild(modifier);
-                    modifier.innerText = rx.modifier;
+                    modifier.textContent = rx.modifier;
 
                     // add modifier toggle dynamics:
                     modifier.onclick = (ev) => {
                         rx.nextModifier();
-                        modifier.innerText = rx.modifier;
+                        modifier.textContent = rx.modifier;
                         ev.stopPropagation();
                     }
                 }

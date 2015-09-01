@@ -121,7 +121,7 @@ module cbox {
                 case_.rootProblem.get(Case.AGE_KEY),
                 case_.rootProblem.get(Case.PRESENTING_COMPLAINT_KEY)]);*/
 
-            this.titleH1.innerText = gender_desc + ", " + age + ", " + complaint;
+            this.titleH1.textContent = gender_desc + ", " + age + ", " + complaint;
         }
 
         /**
@@ -150,7 +150,7 @@ module cbox {
             if(!problem.isRoot && results.length > 0) {
                 var title_span = document.createElement("span");
                 title_span.className = "problem_title";
-                title_span.innerText = case_.getProblemTextReference(problem) + " " + problem.title + ": ";
+                title_span.textContent = case_.getProblemTextReference(problem) + " " + problem.title + ": ";
                 title_span.onclick = () =>
                 {
                     this.problemHeadlineClicked.fire(new ProblemHeadlineClickedEventArgs(problem));
