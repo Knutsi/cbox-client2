@@ -238,6 +238,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .flash { animation-duration: 3s; animation-name: slidein;  }
 .center { text-align: center; }
 .textbox { text-align: justify; }
+.noborder { border: 0; }
 
 .centercomplete {
     font-size: large;
@@ -251,14 +252,14 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     /* left: 50%; */
     /* top: 50%; */
     /* transform: translate(-50%,-50%); */
-    margin-top: 20px;
+    margin: 50px;
 }
 
 @media screen and (max-width: 800px) {
     .centercomplete {
         position: inherit;
         transform: none;
-
+        margin:30px;
     }
 }
 

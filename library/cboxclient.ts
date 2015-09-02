@@ -9,6 +9,7 @@
 
 
 /* Support classes*/
+/// <reference path="support/LoadArguments.ts" />
 /// <reference path="support/Tools.ts" />
 /// <reference path="support/AsyncRequestResult.ts" />
 /// <reference path="support/BindingList.ts" />
@@ -44,6 +45,10 @@
 /// <reference path="service/IServiceInterface.ts" />
 /// <reference path="service/DummyServiceInterface.ts" />
 /// <reference path="service/FileServiceInterface.ts" />
+
+/// <reference path="service/ExportManifesto.ts" />
+/// <reference path="service/ExportManifestoEntry.ts" />
+
 
 /// <reference path="support/FinalScoreCalculation.ts" />
 /// <reference path="support/FinalScoreCalculationGroup.ts" />

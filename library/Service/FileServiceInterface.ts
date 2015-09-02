@@ -15,7 +15,7 @@ module cbox {
         static FOLLOWUP_SCORE = 2;
 
         serviceRoot:string;
-        caseCount:number;
+        serviceCaseManifest:ExportManifesto;
         fullCase:Case;
         gameStart:Date;
         committedActions:ActionProblemPair[] = [];
@@ -24,9 +24,10 @@ module cbox {
         committedFollowups:FollowupQuestion[] = [];
         revealedProblems:Problem[] = [];
 
+
         constructor(serviceroot, casecount) {
             this.serviceRoot = serviceroot;
-            this.caseCount = casecount;
+            //this.caseCount = casecount;
         }
 
         loadManifesto(callback) {
@@ -39,8 +40,9 @@ module cbox {
 
                 if(req.status == 200 && req.readyState == 4) {
                     // parse manifest:
-                    var manifest = <any>JSON.parse(req.responseText);
-                    this.caseCount = parseInt(manifest["CaseCount"]);
+                    var manifest_raw = <any>JSON.parse(req.responseText);
+                    this.serviceCaseManifest = ExportManifesto.fromObject(manifest_raw);
+
                     console.log("Manifesto loaded");
                     callback();
                 }
@@ -60,7 +62,15 @@ module cbox {
             // load manifesto, then case:
             this.loadManifesto( () => {
 
-                var url =  this.serviceRoot + "case/" + Math.round(Math.random() * (this.caseCount - 1))+ ".json";
+                // make case id randomly, or override if in dev-mode:
+                var case_id = this.serviceCaseManifest.randomEntry.id;
+                if(LoadArguments.get("mode") == "dev" && LoadArguments.has("caseid"))
+                    case_id = parseInt(LoadArguments.get("caseid"));
+
+                if(LoadArguments.get("mode") == "dev" && LoadArguments.has("model"))
+                    case_id = this.serviceCaseManifest.randomIdentFromModel(LoadArguments.get("model")).id;
+
+                var url =  this.serviceRoot + "case/" + case_id + ".json";
                 var req = new XMLHttpRequest();
                 req.open("GET", url, true);
 
