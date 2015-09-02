@@ -13,8 +13,6 @@ module cbox {
         storage:StorageManager;
         game:GameClient;
 
-        debugHash:string;
-
         constructor() {
             super();
 
@@ -86,14 +84,12 @@ module cbox {
 
                 case ClientState.READY:
                     this.screenManager.activate("readyscreen");
-                    if(this.debugHash)
+                    if(LoadArguments.get("mode") == "dev")
                         this.game.play();
                     break;
 
                 case ClientState.PLAYING_CASE:
                     this.screenManager.activate("playscreen");
-                    if(this.debugHash)
-                        this.screenManager.activate(this.debugHash);
 
                     break;
 
