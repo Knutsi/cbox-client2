@@ -10,8 +10,10 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     /*.case {  margin-right: 33%; }
     .actions {  position: absolute; width: 30%; right: 0px; top: 80px; }*/
     .flexbox {
+        display: -ms-flex;
         display: -webkit-flex;
         display: flex;
+        -ms-flex-wrap: wrap;
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap
     }
@@ -27,8 +29,10 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     }
 
     .flexbox {
+        display: -ms-flex;
         display: -webkit-flex;
         display: flex;
+        -ms-flex-wrap: wrap;
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap
 
@@ -80,6 +84,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     text-transform: uppercase;
     color: cadetblue;
     user-select: none;
+    -ms-user-select: none;
     -webkit-user-select: none;
 }
 @media screen and (orientation:portrait)
@@ -168,8 +173,10 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 }
 
 .form .content {
+    display: -ms-flex;
     display: -webkit-flex;
-    display: flex; 
+    display: flex;
+    -ms-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap; 
     user-select: none;   }
