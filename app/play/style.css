@@ -227,7 +227,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 }
 
 /* COMPONENT MODIFIERS */
-
+.strikethrough { text-decoration: line-through; color: #CECCCC; }
 .std_pad {  padding: 20px; }
 .tiny { font-size: xx-small; }
 .top_margin10px {  margin-top:10px; }

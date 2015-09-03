@@ -30,6 +30,7 @@ module cbox {
         pendingActions:BindingList<ActionProblemPair> = new BindingList<ActionProblemPair>();
         pendingDiagnosis:BindingList<Diagnosis> = new BindingList<Diagnosis>();
         pendingTreatments:BindingList<TreatmentChoice> = new BindingList<TreatmentChoice>();
+        commitedActions:BindingList<ActionProblemPair> = new BindingList<ActionProblemPair>();
 
         case_:Case;
         assets:BindingList<Asset> = new BindingList<Asset>();
@@ -115,6 +116,8 @@ module cbox {
             this.pendingTreatments.clear();
             this.followupQuestions.clear();
 
+            this.commitedActions.clear();
+
             // user interface to request case and start game:
             this.service.startGame(specs, (status, case_) => {
                 if(status.ok) {
@@ -159,6 +162,7 @@ module cbox {
             });
 
             // clear pending actions:
+            this.commitedActions.add(this.pendingActions.items);
             this.pendingActions.clear();
         }
 

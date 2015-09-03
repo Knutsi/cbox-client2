@@ -131,6 +131,12 @@ module cbox {
         {
             var ap_pair = new ActionProblemPair(action, problem);
 
+            // check if this ap-pair has already been played:
+            var matched_pairs = game.commitedActions.items.filter(
+                (app) =>
+                {  return app.action.ident == action.ident && app.problem.ident == problem.ident; }
+            );
+
             // create elements:
             var div = document.createElement("div");
             var checkbox = document.createElement("input");
@@ -141,6 +147,8 @@ module cbox {
 
 
             div.className = "clickable";
+            if(matched_pairs.length > 0)
+                div.className = "clickable strikethrough";
             checkbox.setAttribute("type", "checkbox");
             checkbox.checked = game.hasPending(ap_pair);
 
