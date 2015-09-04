@@ -10,7 +10,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     /*.case {  margin-right: 33%; }
     .actions {  position: absolute; width: 30%; right: 0px; top: 80px; }*/
     .flexbox {
-        display: -ms-flex;
+        display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
         -ms-flex-wrap: wrap;
@@ -29,7 +29,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     }
 
     .flexbox {
-        display: -ms-flex;
+        display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
         -ms-flex-wrap: wrap;
