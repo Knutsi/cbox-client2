@@ -42,6 +42,20 @@ module cbox {
             return this.entries[index];
         }
 
+
+        /***
+         * Returns unique models from entries.
+         * */
+        get uniqueModels():string[] {
+            var dx = [];
+
+            this.entries.forEach( (entry) => {
+                if(dx.indexOf(entry.modelName) == -1)
+                    dx.push(entry.modelName);
+            });
+
+            return dx;
+        }
     }
 
 }

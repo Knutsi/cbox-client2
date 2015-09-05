@@ -23,12 +23,16 @@ module cbox {
 
             // setup the game client:
             var serviceUrl = "../../service/";
-            this.service = new FileServiceInterface(serviceUrl, 2);
+            this.service = new FileServiceInterface(serviceUrl);
             //this.service = new DummyServiceInterface();
             this.storage = new StorageManager(serviceUrl);
             this.game = new GameClient(this.service, this.storage);
 
 
+        }
+
+        get devMode():boolean {
+            return LoadArguments.has("mode") && LoadArguments.get("mode") == "dev";
         }
 
 
@@ -41,7 +45,7 @@ module cbox {
             } )
 
             // setup events for buttons that control flow (buttons for elements are handled by controllers):
-            this.element('startGameButton').onclick = () => { this.game.play(); this.initialSetupDone = true };
+            /*this.element('startGameButton').onclick = () => { this.game.play(); this.initialSetupDone = true };*/
             this.element('gotoDnTButton').onclick = () => { this.screenManager.activate("dntscreen") };
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
@@ -54,6 +58,19 @@ module cbox {
             this.element('dxSearchField').onclick = () => { this.activateDiagnosisSearch() };
             this.element('rxSearchField').onclick = () => { this.activateTreatmentSearch() };
 
+
+            // respond to game start click in initial setup view
+            (<InitialSetupView>MVC.ids["initialSetup"]).onPlayClicked.subscribe((ev) => {
+
+                // get sequence mode:
+                var coordinator = (<FileServiceInterface>this.service).sequenceCoordinator;
+                var setup_view= (<InitialSetupView>MVC.ids["initialSetup"])
+                this.initialSetupDone = true;
+                coordinator.mode = setup_view.sequenceMode;
+                coordinator.specificModel = setup_view.specificModel;
+
+                this.game.play();
+            });
 
             // when a case view problem headline is clicked, we wish to respond:
             (<CaseView>MVC.ids["caseView"]).problemHeadlineClicked.subscribe((ev) => {

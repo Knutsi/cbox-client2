@@ -48,7 +48,7 @@
 
 /// <reference path="service/ExportManifesto.ts" />
 /// <reference path="service/ExportManifestoEntry.ts" />
-
+/// <reference path="service/CaseSequenceCoordinator.ts" />
 
 /// <reference path="support/FinalScoreCalculation.ts" />
 /// <reference path="support/FinalScoreCalculationGroup.ts" />
@@ -91,7 +91,7 @@
 /// <reference path="controllers/playpage/ActionSearchView.ts" />
 /// <reference path="controllers/playpage/DiagnosisSearchView.ts" />
 /// <reference path="controllers/playpage/TreatmentSearchView.ts" />
-
+/// <reference path="controllers/playpage/InitialSetupView.ts" />
 
 /// <reference path="controllers/playpage/FormView.ts" />
 

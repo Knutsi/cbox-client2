@@ -52,31 +52,41 @@
                 </div>
                 -->
 
-
-
-            <div class="centercomplete textbox">
+            <div id="initialSetup"  class="centercomplete textbox" data-cbox-controller="InitialSetupView">
                 <h1>Hvordan vil du spille?</h1>
                 <p>I Cbox kan nye kasuistikker lages on-the-fly.  Kasustikkene vil altså være ulike selv om de har en diagnose du har sett før.  Hvordan ønsker du at kasustikkene skal velges?</p>
 
-                <input type="radio" id="neverSameRadio" name="gametype" />
-                <label for="neverSameRadio">
-                    Aldri samme diagnose *
-                </label><br/>
-
-                <input type="radio" id="gradualAddRadio" name="gametype" checked/>
-                <label for="gradualAddRadio">
-                    Legg gradvis til nye diagnoser
-                </label><br/>
-
-                <input type="radio" id="pickAllRadio" name="gametype" />
-                <label for="pickAllRadio">
-                    Velg tilfeldig blandt alle diagnoser
-                </label><br/>
                 <p>
-                    <span class="tiny">(*) Etter seks runder velges tilfeldig blandt tidligere spilte</span>
+                    <input type="radio" id="neverSameRadio" name="gametype" />
+                    <label for="neverSameRadio" data-cbox-role="radio-never-same">
+                        Aldri samme diagnose <span class="faded">*</span>
+                    </label><br/>
+
+                    <input type="radio" id="gradualAddRadio" name="gametype" data-cbox-role="radio-gradual-add" checked/>
+                    <label for="gradualAddRadio">
+                        Legg gradvis til nye diagnoser <span class="faded">**</span>
+                    </label><br/>
+
+                    <input type="radio" id="randomPickRadio" name="gametype" data-cbox-role="radio-pick-all"  />
+                    <label for="randomPickRadio">
+                        Velg tilfeldig blandt alle diagnoser
+                    </label><br/>
+
+                    <div data-cbox-role="radio-specific-model">
+                        <input type="radio" id="specificModelRadio" name="gametype"   />
+                        <label for="specificModelRadio">
+                            Spesifikk modell:
+                        </label><input type="text" data-cbox-role="specific-model-input" />
+                        <br/>
+                    </div>
+                </p>
+
+                <p class="tiny">
+                        (*) Etter seks runder velges tilfeldig blandt tidligere spilte.<br>
+                        (**) 70% sannsynlighet for å få en ny diagnose ved neste case. Maks seks ulike diagnoser.
                 </p>
                 <div class="center">
-                    <div id="startGameButton" class="button">Start spill</div>
+                    <div id="startGameButton" class="button" data-cbox-role="start-game-button">Start spill</div>
                 </div>
 
             </div>

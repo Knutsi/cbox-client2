@@ -29,6 +29,10 @@ module cbox {
             return array;
         }
 
+        static randomEntry(list:any[]) {
+            var index =  Math.round(Math.random() * (list.length - 1));
+            return list[index];
+        }
 
     }
 

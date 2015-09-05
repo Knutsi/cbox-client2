@@ -246,6 +246,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .center { text-align: center; }
 .textbox { text-align: justify; }
 .noborder { border: 0; }
+.faded { opacity: 0.3; }
 
 .centercomplete {
     font-size: large;

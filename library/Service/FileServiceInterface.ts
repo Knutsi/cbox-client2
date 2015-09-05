@@ -16,6 +16,7 @@ module cbox {
 
         serviceRoot:string;
         serviceCaseManifest:ExportManifesto = null;
+        sequenceCoordinator:CaseSequenceCoordinator = new cbox.CaseSequenceCoordinator();
         fullCase:Case;
         gameStart:Date;
         committedActions:ActionProblemPair[] = [];
@@ -25,7 +26,7 @@ module cbox {
         revealedProblems:Problem[] = [];
 
 
-        constructor(serviceroot, casecount) {
+        constructor(serviceroot) {
             this.serviceRoot = serviceroot;
         }
 
@@ -48,6 +49,7 @@ module cbox {
                     // parse manifest:
                     var manifest_raw = <any>JSON.parse(req.responseText);
                     this.serviceCaseManifest = ExportManifesto.fromObject(manifest_raw);
+                    this.sequenceCoordinator.manifest = this.serviceCaseManifest;
 
                     console.log("Manifesto loaded");
                     callback();
@@ -69,12 +71,14 @@ module cbox {
             this.loadManifesto( () => {
 
                 // make case id randomly, or override if in dev-mode:
-                var case_id = this.serviceCaseManifest.randomEntry.id;
+                /*var case_id = this.serviceCaseManifest.randomEntry.id;
                 if(LoadArguments.get("mode") == "dev" && LoadArguments.has("caseid"))
                     case_id = parseInt(LoadArguments.get("caseid"));
 
                 if(LoadArguments.get("mode") == "dev" && LoadArguments.has("model"))
-                    case_id = this.serviceCaseManifest.randomIdentFromModel(LoadArguments.get("model")).id;
+                    case_id = this.serviceCaseManifest.randomIdentFromModel(LoadArguments.get("model")).id; */
+
+                var case_id = this.sequenceCoordinator.nextCaseID;
 
                 var url =  this.serviceRoot + "case/" + case_id + ".json";
                 var req = new XMLHttpRequest();
