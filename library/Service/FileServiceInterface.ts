@@ -15,7 +15,7 @@ module cbox {
         static FOLLOWUP_SCORE = 2;
 
         serviceRoot:string;
-        serviceCaseManifest:ExportManifesto;
+        serviceCaseManifest:ExportManifesto = null;
         fullCase:Case;
         gameStart:Date;
         committedActions:ActionProblemPair[] = [];
@@ -27,11 +27,17 @@ module cbox {
 
         constructor(serviceroot, casecount) {
             this.serviceRoot = serviceroot;
-            //this.caseCount = casecount;
         }
 
         loadManifesto(callback) {
 
+            // only load manifest if needed:
+            if(this.serviceCaseManifest != null) {
+                callback();
+                return;
+            }
+
+            // load the manifest from server:
             var url =  this.serviceRoot + "case/manifesto.json";
             var req = new XMLHttpRequest();
             req.open("GET", url, true);
@@ -99,9 +105,15 @@ module cbox {
                     }
                 };
 
+                // reset state:
+                this.committedActions = [];
+                this.committedDiagnosis = [];
+                this.committedTreatments= [];
+                this.committedFollowups = [];
+                this.revealedProblems = [];
+
                 // go go gadget async request!
                 req.send();
-
             });
 
 

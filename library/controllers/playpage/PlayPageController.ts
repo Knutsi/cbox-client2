@@ -12,6 +12,8 @@ module cbox {
         service:IServiceInterface;
         storage:StorageManager;
         game:GameClient;
+        initialSetupDone:boolean = false;
+
 
         constructor() {
             super();
@@ -39,12 +41,12 @@ module cbox {
             } )
 
             // setup events for buttons that control flow (buttons for elements are handled by controllers):
-            this.element('startGameButton').onclick = () => { this.game.play() };
+            this.element('startGameButton').onclick = () => { this.game.play(); this.initialSetupDone = true };
             this.element('gotoDnTButton').onclick = () => { this.screenManager.activate("dntscreen") };
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
-            this.element('doneButton').onclick = () => {this.game.reset(true); };
+            this.element('doneButton').onclick = () => { this.restartGame(); };
             this.element('toEvalFormButton').onclick = () => { window.location.href = "http://goo.gl/forms/7yWlUyPQEc"; };
 
             this.element('actionSearchButton').onclick = () => { this.activateActionSearch("") };
@@ -76,6 +78,14 @@ module cbox {
             this.game.initialize();
         }
 
+
+        restartGame() {
+            console.log("Restarting game");
+            this.game.reset(false);
+            this.game.play();
+        }
+
+
         handleGameStateChange(state:string) {
             switch (state) {
                 case ClientState.LOADING:
@@ -83,14 +93,12 @@ module cbox {
                     break;
 
                 case ClientState.READY:
-                    this.screenManager.activate("readyscreen");
-                    if(LoadArguments.get("mode") == "dev")
-                        this.game.play();
+                    if(!this.initialSetupDone)
+                        this.screenManager.activate("readyscreen");
                     break;
 
                 case ClientState.PLAYING_CASE:
                     this.screenManager.activate("playscreen");
-
                     break;
 
                 case ClientState.PLAYING_FOLLOWUP:

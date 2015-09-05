@@ -83,6 +83,9 @@ module cbox {
 
 
         renderHeadline(headline:Headline) {
+            if(headline.title.trim() == "")
+                return; // nasty workaround for hstory.presentation.short hanging out in the form with empty headline..
+
             var div = document.createElement("div");
             var h2 = document.createElement("h2");
 
@@ -92,6 +95,7 @@ module cbox {
             this.contentRoot.appendChild(div);
 
             h2.textContent = headline.title;
+
 
             // get actions that can be applied to the case from this headline:
 

@@ -125,6 +125,9 @@ module cbox {
                     this.score = new Scorecard();
                     this.go(ClientState.PLAYING_CASE);
 
+                    // check if starting conditions qualify for a specific action completed:
+                    this.checkResultsForActionsCompleted();
+
                     this.onCaseUpdated.fire(new GenericEventArgs());
                     this.onScoreUpdated.fire(new GenericEventArgs());
 
@@ -288,6 +291,34 @@ module cbox {
                 this.pendingTreatments.remove([existing_rx]);
             else
                 this.pendingTreatments.add([rx])
+
+        }
+
+        /*
+        * Checks if the current results qualify as actions completed.
+        * */
+        checkResultsForActionsCompleted() {
+
+            this.case_.problems.forEach( (problem) => {
+
+                problem.results.forEach( (result) => {
+
+                    this.storage.actions.forEach((action) => {
+
+                        var fullfilled_keys = action.yields.filter( (t) => { return problem.keys.indexOf(t) != -1 }  );
+
+                        /* this might be a bad decition, but if there are three keys revealed, it should
+                        * really be fully revealed to make sense - so it will be added */
+                        if(fullfilled_keys.length == action.yields.length || fullfilled_keys.length > 3) {
+                            var ap_pair = new ActionProblemPair(action, problem);
+                            this.commitedActions.add([ap_pair]);
+                        }
+
+                    })
+
+                });
+
+            });
 
         }
 
