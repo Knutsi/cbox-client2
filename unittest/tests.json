@@ -7,6 +7,7 @@
     "../../tests/screenmanager.js",
     "../../tests/lists.js",
     "../../tests/gameclient.js",
-    "../../tests/logicnode.js"
+    "../../tests/logicnode.js",
+    "../../tests/scorekeeper.js"
   ]
 }

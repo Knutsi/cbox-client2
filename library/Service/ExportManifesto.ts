@@ -30,12 +30,23 @@ module cbox {
 
         }
 
+
+        modelByIdent(ident:number) {
+            for(var i in this.entries)
+                if(this.entries[i].id == ident)
+                    return this.entries[i].modelName;
+
+            return null;
+        }
+
+
         randomIdentFromModel(model_name:string):ExportManifestoEntry {
 
             var entries = this.identsByModel(model_name);
             var index = Math.round(Math.random() * (entries.length - 1));
             return entries[index];
         }
+
 
         get randomEntry():ExportManifestoEntry {
             var index = Math.round(Math.random() * (this.caseCount - 1));

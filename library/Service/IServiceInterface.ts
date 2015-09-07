@@ -28,7 +28,9 @@
         commitFollowup(
             followup:FollowupQuestion[], callback:(
                 status:AsyncRequestResult,
-                score:Result) => void );
+                score:Result,
+                scorecard:Scorecard,
+                modelname:string) => void );
     }
 
 }

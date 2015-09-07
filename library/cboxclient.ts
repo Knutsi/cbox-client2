@@ -49,7 +49,8 @@
 /// <reference path="service/ExportManifesto.ts" />
 /// <reference path="service/ExportManifestoEntry.ts" />
 /// <reference path="service/CaseSequenceCoordinator.ts" />
-
+/// <reference path="service/Scorekeeper.ts" />
+/// <reference path="service/ScorekeeperEntry.ts" />
 /// <reference path="support/FinalScoreCalculation.ts" />
 /// <reference path="support/FinalScoreCalculationGroup.ts" />
 

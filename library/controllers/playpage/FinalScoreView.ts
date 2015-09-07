@@ -14,6 +14,20 @@ module cbox {
         caseCommentH2:HTMLHeadingElement;
         caseCommentUL:HTMLUListElement;
 
+        myTimeCell:HTMLTableCellElement;
+        myCostCell:HTMLTableCellElement;
+        myRiskCell:HTMLTableCellElement;
+        myComfortCell:HTMLTableCellElement;
+
+        meanTimeCell:HTMLTableCellElement;
+        meanCostCell:HTMLTableCellElement;
+        meanRiskCell:HTMLTableCellElement;
+        //meanComfortCell:HTMLTableCellElement;
+
+        meanCells:HTMLTableCellElement[];
+
+        comparisonComment:HTMLSpanElement;
+
         game:GameClient;
 
         constructor(root, pc) {
@@ -25,13 +39,27 @@ module cbox {
             this.caseCommentH2 = this.player("case-comment-headline");
             this.caseCommentUL = this.player("case-comment-list");
 
+            this.myTimeCell = this.player("my-time");
+            this.myCostCell = this.player("my-cost");
+            this.myRiskCell = this.player("my-risk");
+            //this.myComfortCell = this.player("my-comfort");
+
+            this.meanTimeCell = this.player("mean-time");
+            this.meanCostCell = this.player("mean-cost");
+            this.meanRiskCell = this.player("mean-risk");
+            //this.meanComfortCell = this.player("mean-comfort");
+
+            this.meanCells = [this.meanTimeCell, this.meanCostCell, this.meanRiskCell];
+
+            this.comparisonComment = this.player("comparison-message");
+
             // connect to game and it's events:
             this.game = (<PlayPageController>this.pageController).game;
-            this.game.onFinalScoreUpdated.subscribe(() => { this.update() })
+            this.game.onFinalScoreUpdated.subscribe(() => { this.updateMain(); this.updateComparison(); })
         }
 
 
-        update() {
+        updateMain() {
             // set score:
             var result = this.game.finalScore;
             this.percentageSpan.textContent = result.percentage.toString();
@@ -41,7 +69,7 @@ module cbox {
                 ul.innerHTML ="";
                 list.forEach((comment) => {
                     var li = document.createElement("li");
-                    li.textContent = comment
+                    li.textContent = comment;
                     ul.appendChild(li);
                 })
             }
@@ -66,6 +94,74 @@ module cbox {
                 this.caseCommentH2.style.display = "block";
         }
 
+        /**
+         * Updates the comparison table.
+         * */
+        updateComparison() {
+            // clear existing:
+            this.comparisonComment.style.display = "block";
+            this.comparisonComment.textContent = "Henter sammenligning..";
+            this.meanCells.forEach((cell) => { cell.textContent = "--" });
+
+            // fill our data:
+            this.myTimeCell.textContent = Tools.millisecondsToTimeString(this.game.score.timeMS);
+            this.myCostCell.textContent = this.game.score.cost.toString() + ",-";
+            this.myRiskCell.textContent = this.game.score.risk.toString();
+
+            // send request for comparison data:
+            var controller = <PlayPageController>this.pageController;
+            var service = <FileServiceInterface>controller.service;
+            var url =  "/HowIsTheScore?name=" + encodeURIComponent(this.game.modelName);
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.onreadystatechange = () => {
+                if(req.readyState == 4) {
+
+                    if(req.status != 200) {
+                        this.comparisonComment.textContent = "Kunne ikke hente sammenligningsdata. Teknisk feil.";
+                    } else {
+                        try
+                        {
+                            var data = JSON.parse(req.responseText);
+                            if(data['Status'] == "OK") {
+
+                                this.handleComparisonDataRecieved(
+                                    data["TimeMean"],
+                                    data["CostMean"],
+                                    data["RiskMean"]
+                                );
+                                this.comparisonComment.style.display = "none";
+
+                            } else if(data['Status'] == "INSUFFICIENT") {
+
+                                this.comparisonComment.textContent = "Utilstrekkelig datamengde innsamlet til å danne en sammenligning";
+                            }
+                        } catch (err) {
+                            console.log("Error: exception on comparison data loading");
+                            console.log(err);
+                            this.comparisonComment.textContent = "Sammenligning kunne desverre ikke hentes.";
+                        }
+                    }
+                }
+            };
+
+            req.send();
+        }
+
+        handleComparisonDataRecieved(time_ms:number, cost:number, risk:number) {
+
+            this.comparisonComment.style.display = "none";
+
+            this.meanTimeCell.textContent = Tools.millisecondsToTimeString(time_ms);
+            this.meanCostCell.textContent = cost.toString() + ",-";
+            this.meanRiskCell.textContent = risk.toString() ;
+            //this.meanComfortCell.textContent = comfort.toString();
+
+            if(this.game.score.timeMS < time_ms)
+                this.myTimeCell.className = "green_fore";
+            else
+                this.myTimeCell.className = "red_fore";
+        }
 
     }
 

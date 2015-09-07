@@ -18,6 +18,7 @@ module cbox {
         serviceCaseManifest:ExportManifesto = null;
         sequenceCoordinator:CaseSequenceCoordinator = new cbox.CaseSequenceCoordinator();
         fullCase:Case;
+        currentCaseIdent:number;
         gameStart:Date;
         committedActions:ActionProblemPair[] = [];
         committedDiagnosis:Diagnosis[] = [];
@@ -25,6 +26,7 @@ module cbox {
         committedFollowups:FollowupQuestion[] = [];
         revealedProblems:Problem[] = [];
 
+        scorekeeper:Scorekeeper = new Scorekeeper();
 
         constructor(serviceroot) {
             this.serviceRoot = serviceroot;
@@ -79,6 +81,7 @@ module cbox {
                     case_id = this.serviceCaseManifest.randomIdentFromModel(LoadArguments.get("model")).id; */
 
                 var case_id = this.sequenceCoordinator.nextCaseID;
+                this.currentCaseIdent = case_id;
 
                 var url =  this.serviceRoot + "case/" + case_id + ".json";
                 var req = new XMLHttpRequest();
@@ -171,10 +174,20 @@ module cbox {
          * **/
         commitFollowup(
             followup:cbox.FollowupQuestion[],
-            callback:(p1:cbox.AsyncRequestResult, p2:Result)=>void)
+            callback:(p1:cbox.AsyncRequestResult, p2:Result, card:Scorecard, modelname:string)=>void)
         {
             this.committedFollowups = followup;
-            callback(new AsyncRequestResult(true), this.finalScore)
+            var finalscore = this.finalScore;
+            var model = this.serviceCaseManifest.modelByIdent(this.currentCaseIdent);
+            callback(new AsyncRequestResult(true), finalscore, this.scorecard, model);
+
+            this.scorekeeper.add(this.fullCase.resourceStatGroup, this.scorecard, finalscore.percentage/100);
+
+            // submit score if good standing:
+            var standing = this.scorekeeper.getStanding(this.fullCase.resourceStatGroup);
+            if(standing > 0.8) {
+                this.submitScoreStats();
+            }
         }
 
 
@@ -265,7 +278,7 @@ module cbox {
                 var correct_answers_str = correct_answers.map( (a) => { return a.text });
                 answers = answers.concat(correct_answers_str);
 
-            })
+            });
 
             return answers;
         }
@@ -307,7 +320,26 @@ module cbox {
 
                 }
             })
+        }
 
+
+        submitScoreStats() {
+            /* FULLY AWARE THIS CAN ME CHEATED WITH!  But this is an internal test only,
+            * please keep the peace.  */
+
+            // create a url for submission:
+            var card = this.scorecard;
+            var model = this.serviceCaseManifest.modelByIdent(this.currentCaseIdent)
+            var urlprams = "model=" + model
+                + "&time=" + card.timeMS
+                + "&comfort=" + card.comfort
+                + "&risk=" + card.risk
+                + "&cost=" + card.cost;
+
+            // send request:
+            var req = new XMLHttpRequest();
+            req.open("GET", "/RegisterScore?" + urlprams, true);
+            req.send();
         }
 
     }

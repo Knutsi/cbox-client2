@@ -37,6 +37,7 @@ module cbox {
         score:Scorecard;
         followupQuestions:BindingList<FollowupQuestion> = new BindingList<FollowupQuestion>();
         finalScore:Result;
+        modelName:string;   // empty until final score arrived
 
         // events:
         onCaseUpdated:Event<GenericEventArgs> = new Event<GenericEventArgs>();
@@ -201,10 +202,12 @@ module cbox {
             this.go(ClientState.AWAIT_SCORE_AND_COMMENT);
 
             // send followupQuestions answers to service:
-            this.service.commitFollowup(this.followupQuestions.items, (status, finalscore) => {
+            this.service.commitFollowup(this.followupQuestions.items, (status, finalscore, scorecard, model_name) => {
 
                 if(status.ok) {
                     this.finalScore = finalscore;
+                    this.score = scorecard;
+                    this.modelName = model_name;
                     this.go(ClientState.SCORE_AND_COMMENT);
                     this.onFinalScoreUpdated.fire(new GenericEventArgs());
 

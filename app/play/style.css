@@ -221,6 +221,16 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
     font-weight: bold;
 }
 
+.comparison_box {
+    background-color: #FDF6E8;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comparison_box h2 {
+    margin: 0 0 10px 0;
+}
+
 .copyrightnote {
     position: fixed;
     right: 0; bottom: 0;
@@ -240,6 +250,8 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .top_margin10px {  margin-top:10px; }
 .topline {  margin-top: 10px; padding-top:10px; border-top: 1px dotted gray;  }
 .red { background-color: rgb(249, 186, 186); }
+.green_fore { color: rgb(30, 180, 19); }
+.red_fore { color: rgb(180, 19, 19); }
 .resize110x100 {  width: 100px;  height:100px; }
 .clickable { cursor: pointer; }
 .flash { animation-duration: 3s; animation-name: slidein;  }

@@ -10,6 +10,9 @@ module cbox {
         comfort:number = 0;
         risk:number = 0.0;
         cost:number = 0;
+
     }
+
+
 
 }

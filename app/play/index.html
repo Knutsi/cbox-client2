@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- INNEHOLDER IKKE PALMEOLJE  -->
+<!-- Kan inneholde spor av nøtter og melk -->
+<!-- (Lurer du på hvordan dette er laget, kontakt knutsindre@gmail.com) -->
 <head>
     <link href="style.css" rel="stylesheet" />
     <meta charset="UTF-8">
@@ -14,9 +17,7 @@
 </head>
 
 <body onload="cbox.MVC.load(new cbox.PlayPageController())">
-    <!-- INNEHOLDER IKKE PALMEOLJE  -->
-    <!-- Kan inneholde spor av nøtter og melk -->
-    <!-- (Lurer du på hvordan dette er laget, kontakt knutsindre@gmail.com) -->
+
 
     <div id="error_banner">En teknisk feil har desverre oppstått, kanskje som følge av at du bruke en eldre nettleser.  Det er mulig du vil oppleve instabilitet eller stans.</div>
 
@@ -82,7 +83,7 @@
                 </p>
 
                 <p class="tiny">
-                        (*) Etter seks runder velges tilfeldig blandt tidligere spilte.<br>
+                        (*) Etter seks runder velges tilfeldig blandt tidligere diagnoser, men kasuistikken vil være ny.<br>
                         (**) 70% sannsynlighet for å få en ny diagnose ved neste case. Maks seks ulike diagnoser.
                 </p>
                 <div class="center">
@@ -353,20 +354,7 @@
             <div class="std_pad"  data-cbox-controller="FollowupView">
                 <h1>Oppfølgingsspørsmål</h1>
                 <div data-cbox-role="questions">
-                    <p>Hvilken form for lungekreft er sterkt assosiert med røyking, og en av de mest agressive?</p>
-                    <input type="radio" name="q1" /><label>Småcellet</label><br />
-                    <input type="radio" name="q1"  /><label>Plateepitelkarsinom</label><br />
-                    <input type="radio" name="q1"  /><label>Storcellekarsinom</label>
 
-                    <p>Lungekreft bør vurderes hos personer som røyker > 15 sigaretter pr. dag med persisterende/forværret hoste i over..</p>
-                    <input type="radio" name="q2" /><label>2 uker</label><br />
-                    <input type="radio" name="q2"  /><label>6 uker</label><br />
-                    <input type="radio" name="q2"  /><label>12 uker</label>
-
-                    <p>Hvor lenge kan infeksjon med mycoplasma pneumonia påvises i nasofarynxprøve?</p>
-                    <input type="radio" name="q3" /><label>Maksimalt 2 uker fra hostestart</label><br />
-                    <input type="radio" name="q3"  /><label>Maksimalt 4 uker fra hostestart</label><br />
-                    <input type="radio" name="q3"  /><label>Så lenge pasienten hoster</label>
                 </div>
             </div>
 
@@ -381,18 +369,53 @@
         <div id="sncscreen" class="screen" data-cbox-controller="ScreenView">
 
             <div class="std_pad" data-cbox-controller="FinalScoreView">
-                <h1>Resultat</h1>
-                <div class="score"><span data-cbox-role="percentage">0</span> % korrekt</div>
                 <div>
-                    <ul data-cbox-role="score-comment-list">
-                    </ul>
+                    <h1>Resultat</h1>
+                    <div class="score"><span data-cbox-role="percentage">0</span> % korrekt</div>
+                    <div>
+                        <ul data-cbox-role="score-comment-list"></ul>
+                    </div>
+
+                    <div data-cbox-controller="CommentView" >
+                        <h2 data-cbox-role="case-comment-headline">Kommentarer</h2>
+                        <ul data-cbox-role="case-comment-list"></ul>
+                    </div>
                 </div>
 
-                <div data-cbox-controller="CommentView" >
-                    <h2 data-cbox-role="case-comment-headline">Kommentarer</h2>
-                    <ul data-cbox-role="case-comment-list">
+                <div class="comparison_box">
+                    <h2>Deg vs. andre</h2>
+                    <div data-cbox-role="comparison-message"></div>
+                    <table data-cbox-role="comparison-table" >
+                        <tr>
+                            <th></th>
+                            <th>Meg</th>
+                            <th>Andre <span class="faded">*</span></th>
+                        </tr>
+                        <tr>
+                            <td>Tid:</td>
+                            <td data-cbox-role="my-time">1:00</td>
+                            <td data-cbox-role="mean-time">1:00</td>
+                        </tr>
+                        <tr>
+                            <td>Penger:</td>
+                            <td data-cbox-role="my-cost">1:00</td>
+                            <td data-cbox-role="mean-cost">1:00</td>
+                        </tr>
+                        <tr>
+                            <td>Risiko:</td>
+                            <td data-cbox-role="my-risk">1:00</td>
+                            <td data-cbox-role="mean-risk">1:00</td>
+                        </tr>
+                       <!-- <tr>
+                            <td>Ubehag:</td>
+                            <td data-cbox-role="my-comfort">1:00</td>
+                            <td data-cbox-role="mean-comfort">1:00</td>
+                        </tr>-->
 
-                    </ul>
+                    </table>
+                    <p class="tiny">
+                        (*) Kun de som klarer over 80% i minst tre lignende kasuistikker teller i statistikken - diagnose og behandling er viktigere enn ressurser brukt.
+                    </p>
                 </div>
             </div>
 

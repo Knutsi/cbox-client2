@@ -17,6 +17,7 @@ module cbox {
         diagnosis:CaseDiagnosis[] = [];
         followup:FollowupQuestion[] = [];
         scoreTree:ScoreTree;
+        resourceStatGroup:string;
 
         // keep track of times this has been updated:
         version = 0;
@@ -39,6 +40,7 @@ module cbox {
             //case_.diagnosis = obj["Diagnosis"].map( (p) => { return CaseDiagnosis.fromObjectInherited(p); } );
             case_.scoreTree = ScoreTree.fromObject(obj["ScoreTree"]);
             case_.followup = obj["Followup"].map( (p) => { return FollowupQuestion.fromObject(p); } );
+            case_.resourceStatGroup = obj["ResourceScoreGroup"];
 
             case_.updateParentChildRelations();
             return case_;

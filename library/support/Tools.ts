@@ -34,6 +34,24 @@ module cbox {
             return list[index];
         }
 
+        static millisecondsToTimeString(time_ms:number):string {
+            // calculate time spent:
+            var t = time_ms/1000;
+            var seconds = Math.floor(t % 60);
+            t /= 60;
+            var minutes = Math.floor(t % 60);
+            t /= 60;
+            var hours = Math.floor(t % 24);
+            t /= 24;
+            var days = Math.floor(t);
+
+            var leading_0_seconds = "";
+            if(seconds < 10)
+                leading_0_seconds = "0";
+
+            return days + ":" + hours + ":" + minutes + ":" + leading_0_seconds + seconds;
+        }
+
     }
 
 }

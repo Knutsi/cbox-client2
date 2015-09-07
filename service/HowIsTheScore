@@ -1,0 +1,6 @@
+{
+    "Status" : "INSUFFICIENT",
+    "TopPlayerTimeMean" : 10000,
+    "TopPlayerCostMean" : 100,
+    "TopPlayerRiskMean" : 0.6
+}
