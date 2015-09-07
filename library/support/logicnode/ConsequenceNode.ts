@@ -15,8 +15,8 @@ module cbox {
 
         group:string;
         consequence:string;
-        matchedComment:string;
-        unmatchedComment:string;
+        matchedComment:string = "";
+        unmatchedComment:string = "";
 
         static fromObject(obj:{}):ConsequenceNode {
             var node = new ConsequenceNode();
@@ -100,7 +100,12 @@ module cbox {
             }
 
             // clean and return:
-            return comments.filter( (c) => { return c.trim() != "" } );
+            return comments.filter( (c) => {
+                if(!c)
+                    return false;
+
+                return c.trim() != ""
+            } );
         }
 
 

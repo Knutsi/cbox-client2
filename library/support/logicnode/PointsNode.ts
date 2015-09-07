@@ -8,8 +8,8 @@ module cbox {
     export class PointsNode extends LogicNode {
 
         points = 0;
-        matchedComment:string;
-        unmatchedComment:string;
+        matchedComment:string = "";
+        unmatchedComment:string = "";
 
         static fromObject(obj:{}):PointsNode {
             var node = new PointsNode();
