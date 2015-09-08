@@ -202,12 +202,14 @@ module cbox {
             this.go(ClientState.AWAIT_SCORE_AND_COMMENT);
 
             // send followupQuestions answers to service:
-            this.service.commitFollowup(this.followupQuestions.items, (status, finalscore, scorecard, model_name) => {
+            this.service.commitFollowup(this.followupQuestions.items, (status, finalscore, scorecard, model_name, comments) => {
 
                 if(status.ok) {
                     this.finalScore = finalscore;
                     this.score = scorecard;
                     this.modelName = model_name;
+                    this.case_.comments = comments;
+
                     this.go(ClientState.SCORE_AND_COMMENT);
                     this.onFinalScoreUpdated.fire(new GenericEventArgs());
 

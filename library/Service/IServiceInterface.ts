@@ -30,7 +30,8 @@
                 status:AsyncRequestResult,
                 score:Result,
                 scorecard:Scorecard,
-                modelname:string) => void );
+                modelname:string,
+                comments:string[]) => void );
     }
 
 }

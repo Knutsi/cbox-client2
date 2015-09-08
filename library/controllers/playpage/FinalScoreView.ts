@@ -84,11 +84,11 @@ module cbox {
             this.scoreCommentUl.appendChild(ul);
             poplist(result.scoreExplanation, ul);
 
-
-            poplist(this.game.finalScore.comments, this.caseCommentUL);
+            var all_comments = this.game.finalScore.comments.concat(this.game.case_.comments);
+            poplist(all_comments, this.caseCommentUL);
 
             // hide comments headline if not needed:
-            if(this.game.finalScore.comments.length <= 0)
+            if(all_comments.length <= 0)
                 this.caseCommentH2.style.display = "none";
             else
                 this.caseCommentH2.style.display = "block";

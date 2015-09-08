@@ -16,6 +16,7 @@ module cbox {
         problems:Problem[] = [];
         diagnosis:CaseDiagnosis[] = [];
         followup:FollowupQuestion[] = [];
+        comments:string[] = [];
         scoreTree:ScoreTree;
         resourceStatGroup:string;
 
@@ -38,6 +39,7 @@ module cbox {
 
             case_.problems = obj["Problems"].map( (p) => { return Problem.fromObject(p); } );
             //case_.diagnosis = obj["Diagnosis"].map( (p) => { return CaseDiagnosis.fromObjectInherited(p); } );
+            case_.comments = obj["Comments"];
             case_.scoreTree = ScoreTree.fromObject(obj["ScoreTree"]);
             case_.followup = obj["Followup"].map( (p) => { return FollowupQuestion.fromObject(p); } );
             case_.resourceStatGroup = obj["ResourceScoreGroup"];

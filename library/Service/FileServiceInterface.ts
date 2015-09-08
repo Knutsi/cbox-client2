@@ -174,12 +174,17 @@ module cbox {
          * **/
         commitFollowup(
             followup:cbox.FollowupQuestion[],
-            callback:(p1:cbox.AsyncRequestResult, p2:Result, card:Scorecard, modelname:string)=>void)
+            callback:(
+                p1:cbox.AsyncRequestResult,
+                p2:Result,
+                card:Scorecard,
+                modelname:string,
+                comments:string[]) => void)
         {
             this.committedFollowups = followup;
             var finalscore = this.finalScore;
             var model = this.serviceCaseManifest.modelByIdent(this.currentCaseIdent);
-            callback(new AsyncRequestResult(true), finalscore, this.scorecard, model);
+            callback(new AsyncRequestResult(true), finalscore, this.scorecard, model, this.fullCase.comments);
 
             this.scorekeeper.add(this.fullCase.resourceStatGroup, this.scorecard, finalscore.percentage/100);
 
