@@ -177,6 +177,12 @@ module cbox {
         commitDnT() {
             this.go(ClientState.AWAIT_PLAYING_FOLLOWUP);
 
+            // check if there is no treatment, then set "avventende":
+            if(this.pendingTreatments.length == 0) {
+                var no_treatment = this.storage.getTreatment("no-treatment");
+                this.pendingTreatments.add([new TreatmentChoice(no_treatment)]);
+            }
+
             // send diagnosis and treatments to service:
             this.service.commitDnT(this.pendingDiagnosis.items, this.pendingTreatments.items, (status, questions) => {
 

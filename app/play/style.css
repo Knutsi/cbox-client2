@@ -142,7 +142,7 @@ h1 { margin:0; font-family: 'Lato', sans-serif;}
 .problem_title { color: #E39608; border-bottom: 1px dotted #B8B3B3;  cursor: pointer; }
 /*.problem_title:hover {  font-weight: bold; }*/
 .flash_highlight { transition: background-color 0.5s; animation-duration: 3s; animation-name: flash_highlight;  background-color: rgba(251, 255, 223, 0.64);}
-.case p:hover .flash_highlight { background-color: rgba(251, 255, 223, 0.95); }
+.case p:hover .flash_highlight { background-color: rgba(247, 255, 190, 0.95); }
 .largesearchbox {  font-size: x-large;  margin-top:10px; }
 .comment {  font-style: italic; opacity: 0.5; }
 .marked_comment { color: rgb(193, 148, 100);  font-size: small; font-weight: bold; }
