@@ -136,6 +136,7 @@ class LogicNodeTest extends UnitTest.Test {
         var logic_n = new cbox.LogicNode();
         var dx_node = new cbox.DiagnosisNode();
 
+
         high_node.consequence = cbox.ConsequenceNode.TYPE_HIGEST_OF;
         points_n.points = 10;
         dx_node.code = "A10";
@@ -145,18 +146,52 @@ class LogicNodeTest extends UnitTest.Test {
         points_n.children.push(logic_n);
         logic_n.children.push(dx_node);
 
+        // add a dx-node in a comment branch:
+        var comment_node = new cbox.ConsequenceNode();
+        var logic_n_nopoint = new cbox.LogicNode();
+        var dx_node_nopoint = new cbox.DiagnosisNode();
+
+        comment_node.consequence = cbox.ConsequenceNode.TYPE_COMMENT_FOR;
+        dx_node_nopoint.code = "A99";
+
+        tree.items.push(comment_node);
+        comment_node.children.push(logic_n_nopoint);
+        logic_n_nopoint.children.push(dx_node_nopoint);
+
+        // collect all nodes:
+        var nodes = [
+            high_node,
+            points_n,
+            logic_n,
+            dx_node,
+            comment_node,
+            logic_n_nopoint,
+            dx_node_nopoint];
+
+        // create diagnosis:
         var dx_choice1 = new cbox.Diagnosis();
         dx_choice1.code = "A10";
         var dx_choice2 = new cbox.Diagnosis();
         dx_choice2.code = "A99";
 
+        // assert all nodes in tree:
+        var unpaired = tree.allNodes.filter( (n) => { return nodes.indexOf(n) == -1 } );
+        var ancestry = tree.getAncenstry(dx_node);
+        this.assertEqual(0, unpaired.length);
+        this.assertEqual(3, ancestry.length);
+        this.assertEqual(high_node, ancestry[2]);
+        this.assertEqual(dx_node, tree.allDxNodes[0]);
+        this.assertEqual(logic_n, tree.getParent(dx_node));
+
+
         // test that tree provides points:
-        tree.objects = [dx_choice1, dx_choice2];
-        this.assertEqual(tree.result.score, 10);
+       // tree.objects = [dx_choice1, dx_choice2];
+       // this.assertEqual(tree.result.score, 10);
 
         // check if dx provides points:
-        this.assertTrue(tree.maybeProvidesPoints(dx_choice1));
-        this.assertNotTrue(tree.maybeProvidesPoints(dx_choice2));
+        this.assertEqual(1, tree.pointProvidingDxNodes.length);
+        this.assertEqual(dx_node, tree.pointProvidingDxNodes[0]);
+        this.assertEqual(dx_node_nopoint, tree.nonPointProvidingDxNodes[0]);
     }
 }
 
