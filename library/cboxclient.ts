@@ -11,6 +11,7 @@
 /* Support classes*/
 /// <reference path="support/LoadArguments.ts" />
 /// <reference path="support/Tools.ts" />
+/// <reference path="support/DCP.ts" />
 /// <reference path="support/AsyncRequestResult.ts" />
 /// <reference path="support/BindingList.ts" />
 /// <reference path="support/Event.ts" />
@@ -32,6 +33,7 @@
 /// <reference path="support/logicnode/TestNode.ts" />
 /// <reference path="support/logicnode/ScoreTree.ts" />
 /// <reference path="support/logicnode/Result.ts" />
+
 
 /// <reference path="game/Action.ts" />
 /// <reference path="game/Class.ts" />

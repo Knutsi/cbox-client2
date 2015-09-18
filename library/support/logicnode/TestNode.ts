@@ -33,7 +33,7 @@ module cbox {
         }
 
         get stringDescription():string {
-            return this.title;
+            return "utført test \"" + this.title + "\"";
         }
 
     }

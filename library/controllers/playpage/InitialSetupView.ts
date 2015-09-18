@@ -50,7 +50,7 @@ module cbox {
             this.randomPickRadio.onclick = () => {this.sequenceMode = CaseSequenceCoordinator.MODE_RANDOM;};
             this.specificModelRadio.onclick = () => {this.sequenceMode = CaseSequenceCoordinator.MODE_SPECIFIC_MODEL;};
 
-            this.startGameButton.onclick = () => { this.onPlayClicked.fire(new GenericEventArgs()); }
+            this.startGameButton.onclick = () => { if(DCP.isReady("STARTGAME")) this.onPlayClicked.fire(new GenericEventArgs()); }
         }
 
 

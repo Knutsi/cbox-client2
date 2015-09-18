@@ -50,7 +50,7 @@ module cbox {
             this.element('cancelDnTButton').onclick = () => {this.screenManager.activate("playscreen") };
             this.element('commitDnTButton').onclick = () => {this.game.commitDnT(); };
             this.element('commitFollowupButton').onclick = () => {this.game.commitFollowup(); };
-            this.element('doneButton').onclick = () => { this.restartGame(); };
+            this.element('doneButton').onclick = () => { if(DCP.isReady("RESTART")) this.restartGame(); };
             this.element('toEvalFormButton').onclick = () => { window.location.href = "http://goo.gl/forms/7yWlUyPQEc"; };
 
             this.element('actionSearchButton').onclick = () => { this.activateActionSearch("") };
